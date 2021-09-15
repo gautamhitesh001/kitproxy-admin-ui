@@ -41,8 +41,8 @@ jobs:
                   NODE_VERSION: ${{ matrix.node-version }}
                   NODE_ENV: production
 
-            - name: Run tests
-              run: npm run test
-              env:
-                  NODE_VERSION: ${{ matrix.node-version }}
-                  NODE_ENV: production
+            # - name: Run tests
+            #   run: npm run test
+            #   env:
+            #       NODE_VERSION: ${{ matrix.node-version }}
+            #       NODE_ENV: production
