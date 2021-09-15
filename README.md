@@ -14,3 +14,5 @@ language: JavaScript
 <br/>
 
 # <p align="center" style="font-weight: 700; color: #FF5544"> kit-Proxy Admin User Interface </p>
+
+[![Build Kit-Proxy Adminstration User Interface](https://github.com/nowfloats/kit-proxy-admin-ui/actions/workflows/verifyBuilds.yml/badge.svg?branch=main)](https://github.com/nowfloats/kit-proxy-admin-ui/actions/workflows/verifyBuilds.yml)
