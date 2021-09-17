@@ -7,3 +7,8 @@ export var ui_fullLogo = fullLogo;
 
 console.log(packageJson.version);
 export var app_version = "v" + packageJson.version;
+
+export const roleConstants = {
+	ADMIN_ROLE: "Admin",
+	CUSTOMER_ROLE: "Customer",
+};
