@@ -1,4 +1,3 @@
-import { ui_logo, app_version } from "./config/Constants";
 import { Provider } from "react-redux";
 import { store } from "./appRedux/store";
 import "./App.scss";
