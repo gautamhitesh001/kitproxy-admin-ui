@@ -132,4 +132,5 @@ thumb
 sketch
 
 .dccache
+package-lock.json
 build/
