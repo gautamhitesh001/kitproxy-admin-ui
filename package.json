@@ -51,6 +51,16 @@
 		"node": ">=14.0.0",
 		"npm": ">= 6.0"
 	},
+	"os": [
+		"darwin",
+		"linux",
+		"win32",
+		"win64",
+		"freebsd",
+		"openbsd",
+		"sunos",
+		"x64"
+	],
 	"license": "Apache v2.0",
 	"author": {
 		"name": "KitSune Developers",
