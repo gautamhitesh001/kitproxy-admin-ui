@@ -1,4 +1,4 @@
-import "./style.scss";
+import "../../../scss/login.scss";
 import { ui_logo, app_version } from "../../../config/Constants";
 
 export const Login = () => {
