@@ -134,3 +134,4 @@ sketch
 .dccache
 build/
 yarn.lock
+package-lock.json
