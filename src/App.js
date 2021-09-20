@@ -1,5 +1,5 @@
 import { ui_logo, app_version } from "./config/Constants";
-import "./App.css";
+import "./scss/App.css";
 
 function App() {
 	return (
