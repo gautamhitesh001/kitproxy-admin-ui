@@ -1,6 +1,6 @@
 import "../../../scss/login.scss";
 import { ui_logo, app_version } from "../../../config/Constants";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 
 export const Login = () => {
 	return (
