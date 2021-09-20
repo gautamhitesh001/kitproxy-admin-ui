@@ -54,6 +54,7 @@
 	"os": [
 		"darwin",
 		"linux",
+		"arm64",
 		"win32",
 		"win64",
 		"freebsd",
