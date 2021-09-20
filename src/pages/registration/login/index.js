@@ -1,5 +1,6 @@
 import "../../../scss/login.scss";
 import { ui_logo, app_version } from "../../../config/Constants";
+import Typography from '@mui/material/Typography';
 
 export const Login = () => {
 	return (
@@ -12,9 +13,9 @@ export const Login = () => {
 					<br />
 					Program Version : {app_version}
 				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+				<Typography variant="h1" component="div" gutterBottom>
 					Learn React
-				</a>
+				</Typography>
 			</header>
 		</div>
 	);
