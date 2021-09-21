@@ -86,7 +86,7 @@ export const theme = createTheme({
 			disabled: "#F9F9FA",
 		},
 		background: {
-			paper: "#F9F9FA",
+			paper: "#FDFDFD",
 			default: "#F9F9FA",
 		},
 	},
