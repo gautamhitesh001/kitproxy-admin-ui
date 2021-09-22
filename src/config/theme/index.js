@@ -90,4 +90,7 @@ export const theme = createTheme({
 			default: "#F9F9FA",
 		},
 	},
+	shape: {
+		borderRadius: 10,
+	},
 });
