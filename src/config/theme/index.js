@@ -1,4 +1,16 @@
 import { createTheme } from "@mui/material/styles";
+import InterRegularWoff from "../../assets/fonts/Inter/Inter-Regular.woff";
+import InterRegularWoff2 from "../../assets/fonts/Inter/Inter-Regular.woff2";
+import InterRegularTtf from "../../assets/fonts/Inter/Inter-Regular.ttf";
+import InterMediumWoff from "../../assets/fonts/Inter/Inter-Medium.woff";
+import InterMediumWoff2 from "../../assets/fonts/Inter/Inter-Medium.woff2";
+import InterMediumTtf from "../../assets/fonts/Inter/Inter-Medium.ttf";
+import InterSemiBoldWoff from "../../assets/fonts/Inter/Inter-SemiBold.woff";
+import InterSemiBoldWoff2 from "../../assets/fonts/Inter/Inter-SemiBold.woff2";
+import InterSemiBoldTtf from "../../assets/fonts/Inter/Inter-SemiBold.ttf";
+import InterBoldWoff from "../../assets/fonts/Inter/Inter-Bold.woff";
+import InterBoldWoff2 from "../../assets/fonts/Inter/Inter-Bold.woff2";
+import InterBoldTtf from "../../assets/fonts/Inter/Inter-Bold.ttf";
 
 export const theme = createTheme({
 	breakpoints: {
@@ -92,5 +104,47 @@ export const theme = createTheme({
 	},
 	shape: {
 		borderRadius: 10,
+	},
+
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: `
+			@font-face {
+			  font-family: 'Inter';
+			  font-style: normal;
+			  font-display: swap;
+			  font-weight: 400;
+			  src: local('Inter'), local('Inter-Regular'), url(${InterRegularWoff}) format('woff'), url(${InterRegularTtf}) format('ttf'),url(${InterRegularWoff2}) format('woff2');
+			  unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+			}
+
+			@font-face {
+				font-family: 'Inter';
+				font-style: normal;
+				font-display: swap;
+				font-weight: 500;
+				src: local('Inter'), local('Inter-Medium'), url(${InterMediumWoff}) format('woff'), url(${InterMediumTtf}) format('ttf'),url(${InterMediumWoff2}) format('woff2');
+				unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+			  }
+
+			  @font-face {
+				font-family: 'Inter';
+				font-style: normal;
+				font-display: swap;
+				font-weight: 600;
+				src: local('Inter'), local('Inter-SemiBold'), url(${InterSemiBoldWoff}) format('woff'), url(${InterSemiBoldTtf}) format('ttf'),url(${InterSemiBoldWoff2}) format('woff2');
+				unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+			  }
+
+			  @font-face {
+				font-family: 'Inter';
+				font-style: normal;
+				font-display: swap;
+				font-weight: 700;
+				src: local('Inter'), local('Inter-Bold'), url(${InterBoldWoff}) format('woff'), url(${InterBoldTtf}) format('ttf'),url(${InterBoldWoff2}) format('woff2');
+				unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+			  }
+		  `,
+		},
 	},
 });
