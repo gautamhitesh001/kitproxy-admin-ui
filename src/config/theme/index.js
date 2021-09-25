@@ -88,7 +88,19 @@ export const theme = createTheme({
 			white: "#FDFDFD",
 		},
 		primary: { main: "#F4672A" },
-		secondary: { main: "#2D3648" },
+		secondary: {
+			main: "#2D3648",
+			10: "#ECEDEE",
+			20: "#D8DADD",
+			30: "#C4C8CC",
+			40: "#B0B5BB",
+			50: "#9DA2AA",
+			60: "#898F98",
+			70: "#767D88",
+			80: "#616A76",
+			90: "#4E5866",
+			100: "#3A4554",
+		},
 		error: { main: "#FB4E4E" },
 		warning: { main: "#F6A609" },
 		success: { main: "#2DAF69" },
@@ -105,7 +117,6 @@ export const theme = createTheme({
 	shape: {
 		borderRadius: 10,
 	},
-
 	components: {
 		MuiCssBaseline: {
 			styleOverrides: `

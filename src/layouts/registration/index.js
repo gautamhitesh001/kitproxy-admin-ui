@@ -1,70 +1,50 @@
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 import PropTypes from "prop-types";
-import { ui_registrationLayoutBg } from "../../config/Constants";
-import { RegistrationCard } from "./registrationCard";
+import { ui_registrationLayoutIllustration } from "../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
 		width: "100vw",
 		height: "100vh",
-		backgroundImage: "url(" + ui_registrationLayoutBg + ")",
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		backgroundRepeat: "no-repeat",
-		position: "relative",
+		background: "linear-gradient(90.77deg, #2D3948 17.47%, #3A4554 89.94%)",
 		overflow: "auto",
 	},
-	overlayContainer: {
+	contentTextWrapper: {
+		marginTop: "80px",
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	},
+	illustrationImg: {
+		maxWidth: 400,
+	},
+	card: {
+		height: "100%",
 		width: "100%",
-		minHeight: "100vh",
-		backgroundColor: "rgba(0,0,0,0.6)",
-		position: "absolute",
-		top: 0,
-		left: 0,
-		overflow: "hidden",
-		padding: "50px 150px",
-	},
-	contentHeading: {
-		marginTop: "200px !important",
-	},
-	tagsWrapper: {
-		marginTop: "64px",
+		borderRadius: "0 !important",
+		boxShadow: "none !important",
 	},
 }));
 
 export const RegistrationLayout = ({ children }) => {
 	const classes = useStyles();
 	return (
-		<Grid className={classes.layoutContainer}>
-			<Grid container className={classes.overlayContainer}>
-				<Grid container spacing={{ xs: 0, lg: 10, xl: 12 }}>
-					<Grid container item xs={12} lg={6} xl={5} paddingRight={2}>
-						<RegistrationCard displayComponent={children} />
-					</Grid>
-					<Grid item container xs={12} lg={6} xl={7} columnSpacing={1} direction="column" alignItems="center" justifyItems="flex-start">
-						<Typography className={classes.contentHeading} variant="h1" color="common.white">
-							Accelerate Your Website With Kitsune
-						</Typography>
-						<Grid container className={classes.tagsWrapper}>
-							<Grid item xs={4}>
-								<Typography variant="h5" color="text.disabled">
-									Customise
-								</Typography>
-							</Grid>
-							<Grid item xs={4}>
-								<Typography variant="h5" color="text.disabled">
-									Apply
-								</Typography>
-							</Grid>
-							<Grid item xs={4}>
-								<Typography variant="h5" color="text.disabled">
-									Get Going
-								</Typography>
-							</Grid>
-						</Grid>
-					</Grid>
-				</Grid>
+		<Grid container className={classes.layoutContainer} direction={{ xs: "column", xl: "row" }}>
+			<Grid bgcolor="common.white" item container xs={12} xl={6} justifyContent="center" pt={10}>
+				{children}
+			</Grid>
+			<Grid item container xs={0} xl={6} alignItems="center" direction="column" py={10} display={{ xs: "none", xl: "flex" }}>
+				<img className={classes.illustrationImg} src={ui_registrationLayoutIllustration} alt="illustration" />
+				<Box className={classes.contentTextWrapper}>
+					<Typography variant="h2" color="secondary.10">
+						Customise. Track. Analyse.
+					</Typography>
+					<Typography mt={4} variant="subtitle1" color="secondary.10">
+						Make the most out of your website with Kitsune
+					</Typography>
+				</Box>
 			</Grid>
 		</Grid>
 	);
