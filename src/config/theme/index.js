@@ -81,6 +81,26 @@ export const theme = createTheme({
 			lineHeight: "18px",
 			fontWeight: 600,
 		},
+		initial: {
+			fontSize: "13px",
+			lineHeight: "16px",
+			fontWeight: 600,
+		},
+		small1: {
+			fontSize: "12px",
+			lineHeight: "16px",
+			fontWeight: 500,
+		},
+		small2: {
+			fontSize: "12px",
+			lineHeight: "16px",
+			fontWeight: 400,
+		},
+		small3: {
+			fontSize: "11px",
+			lineHeight: "14px",
+			fontWeight: 400,
+		},
 	},
 	palette: {
 		common: {
@@ -101,6 +121,14 @@ export const theme = createTheme({
 			90: "#4E5866",
 			100: "#3A4554",
 		},
+		black: {
+			5: "#F9F9FA",
+			10: "#E8E8E8",
+			20: "#DBDDE0",
+			40: "#CACCCF",
+			60: "#A0A4A8",
+			80: "#52575C",
+		},
 		error: { main: "#FB4E4E" },
 		warning: { main: "#F6A609" },
 		success: { main: "#2DAF69" },
@@ -115,7 +143,7 @@ export const theme = createTheme({
 		},
 	},
 	shape: {
-		borderRadius: 10,
+		borderRadius: 4,
 	},
 	components: {
 		MuiCssBaseline: {
