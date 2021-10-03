@@ -16,14 +16,13 @@ const useStyles = makeStyles((theme) => ({
 	contentWrapper: {
 		width: "100%",
 		flexGrow: 1,
-		marginTop: 60,
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 	},
 }));
 
-export const RegistrationCard = ({ children, headingText, linkText, linkTitleText }) => {
+export const RegistrationCard = ({ children, headingText, subTextComponent, contentTopMargin }) => {
 	const classes = useStyles();
 
 	return (
@@ -33,13 +32,11 @@ export const RegistrationCard = ({ children, headingText, linkText, linkTitleTex
 				<Typography variant="h3" color="secondary.100">
 					{headingText}
 				</Typography>
-				<Typography justifySelf="self-end" variant="subtitle2" mt={2}>
-					{linkTitleText}
-					<Link color="primary" underline="none">
-						{linkText}
-					</Link>
-				</Typography>
-				<Box className={classes.contentWrapper}>{children}</Box>
+				{subTextComponent ? subTextComponent : null}
+
+				<Box marginTop={contentTopMargin || 4} className={classes.contentWrapper}>
+					{children}
+				</Box>
 			</Box>
 		</Grid>
 	);
@@ -47,7 +44,7 @@ export const RegistrationCard = ({ children, headingText, linkText, linkTitleTex
 
 RegistrationCard.propTypes = {
 	children: PropTypes.node,
+	subTextComponent: PropTypes.node,
 	headingText: PropTypes.string,
-	linkTitleText: PropTypes.string,
-	linkText: PropTypes.string,
+	contentTopMargin: PropTypes.number,
 };

@@ -9,6 +9,7 @@ import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
 import { CustomButton } from "../../../components/custom-button";
 import { icon_github, icon_google, icon_outlook } from "../../../config/Constants";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -37,12 +38,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const schema = Yup.object().shape({
-	email: Yup.string().required("Please enter email!").email("Please enter a valid email!"),
-	password: Yup.string().required("Please enter password!"),
+	email: Yup.string().required("Please enter email.").email("Please enter a valid email."),
+	password: Yup.string().required("Please enter password."),
 });
 
 export const Login = () => {
 	const classes = useStyles();
+	const history = useHistory();
 
 	const [showError, setShowError] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
@@ -57,7 +59,18 @@ export const Login = () => {
 
 	return (
 		<RegistrationLayout>
-			<RegistrationCard headingText="Welcome Back!" linkTitleText="New to Kitsune? " linkText="Create Your Account Here">
+			<RegistrationCard
+				headingText="Welcome Back!"
+				contentTopMargin={showError ? 4 : 8}
+				subTextComponent={
+					<Typography justifySelf="self-end" variant="subtitle2" mt={2}>
+						New to Kitsune?{" "}
+						<Link variant="subtitle2" component="button" color="primary" underline="none">
+							Create your Account
+						</Link>
+					</Typography>
+				}
+			>
 				{showError ? (
 					<Box display="flex" alignItems="center" justifyContent="center" color="error.main" mb={2}>
 						<AlertCircle size={18} />
@@ -112,7 +125,14 @@ export const Login = () => {
 								}}
 							/>
 							<Typography variant="initial" alignSelf="flex-end">
-								<Link color="primary" underline="none">
+								<Link
+									component="button"
+									type="button"
+									variant="initial"
+									color="primary"
+									underline="none"
+									onClick={() => history.push("/reset-password/email-verification")}
+								>
 									Forgot Password?
 								</Link>
 							</Typography>

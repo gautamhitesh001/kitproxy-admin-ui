@@ -32,10 +32,10 @@ export const RegistrationLayout = ({ children }) => {
 	const classes = useStyles();
 	return (
 		<Grid container className={classes.layoutContainer} direction={{ xs: "column", xl: "row" }}>
-			<Grid bgcolor="common.white" item container xs={12} xl={6} justifyContent="center" pt={10}>
+			<Grid bgcolor="common.white" container item xs={12} xl={6} justifyContent="center" pt={10}>
 				{children}
 			</Grid>
-			<Grid item container xs={0} xl={6} alignItems="center" direction="column" py={10} display={{ xs: "none", xl: "flex" }}>
+			<Grid item container xs={12} xl={6} alignItems="center" direction="column" py={10} display={{ xs: "none", xl: "flex" }}>
 				<img className={classes.illustrationImg} src={ui_registrationLayoutIllustration} alt="illustration" />
 				<Box className={classes.contentTextWrapper}>
 					<Typography variant="h2" color="secondary.10">

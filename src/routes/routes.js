@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch, BrowserRouter as Router } from "react-router-dom";
-import { Login } from "../pages/registration";
+import { Login, ResetPassword, ResetPasswordEmailVerification } from "../pages/registration";
 
 const NotFoundRedirect = () => <Redirect to="/" />;
 // const RestrictedRoute = ({ component: Component, location, allowedUsers, ...rest }) => {
@@ -30,6 +30,8 @@ class AppRouter extends Component {
 				<Switch>
 					<Route exact path="/" render={() => <Redirect to="/login" />} />
 					<Route exact path="/login" component={Login} />
+					<Route exact path="/reset-password" component={ResetPassword} />
+					<Route exact path="/reset-password/email-verification" component={ResetPasswordEmailVerification} />
 					<Route component={NotFoundRedirect} />
 				</Switch>
 			</Router>
