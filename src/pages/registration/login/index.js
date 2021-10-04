@@ -1,39 +1,22 @@
-import { Button, Divider, IconButton, InputAdornment, Link, TextField, Typography } from "@mui/material";
+import { Link, TextField, Typography } from "@mui/material";
 import { RegistrationCard } from "../../../components/registration-card";
 import { RegistrationLayout } from "../../../layouts/registration";
-import { AlertCircle, Eye, EyeOff } from "react-feather";
+import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
 import { CustomButton } from "../../../components/custom-button";
-import { icon_github, icon_google, icon_outlook } from "../../../config/Constants";
 import { useHistory } from "react-router";
+import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
+import { CustomPassword } from "../../../components/custom-password";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
 		width: "100%",
 		display: "flex",
 		flexDirection: "column",
-	},
-	divider: {
-		marginTop: "32px !important",
-	},
-	ctaWrapper: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		marginTop: 24,
-	},
-	btnIcon: {
-		width: 110,
-		height: 48,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		background: theme.palette.common.white,
-		border: "1px solid #CACCCF !important",
 	},
 }));
 
@@ -47,14 +30,9 @@ export const Login = () => {
 	const history = useHistory();
 
 	const [showError, setShowError] = useState(false);
-	const [showPassword, setShowPassword] = useState(false);
 
 	const onFormSubmit = ({ values }) => {
 		console.log("values", values);
-	};
-
-	const handleMouseDownPassword = (event) => {
-		event.preventDefault();
 	};
 
 	return (
@@ -95,34 +73,17 @@ export const Login = () => {
 								helperText={touched.email ? errors.email : ""}
 								margin="normal"
 							/>
-							<TextField
+							<CustomPassword
 								id="password"
 								label="Password"
-								variant="outlined"
 								fullWidth
 								onChange={handleChange}
-								onBlur={handleBlur}
+								handleOnBlur={(e) => handleBlur(e)}
 								name="password"
 								value={values.password}
 								error={touched.password && Boolean(errors.password)}
 								helperText={touched.password ? errors.password : ""}
 								margin="normal"
-								type={showPassword ? "text" : "password"}
-								InputProps={{
-									endAdornment: (
-										<InputAdornment position="end">
-											<IconButton
-												aria-label="toggle password visibility"
-												onClick={() => setShowPassword(!showPassword)}
-												onMouseDown={handleMouseDownPassword}
-												edge="end"
-												style={{ marginRight: 1 }}
-											>
-												{showPassword ? <EyeOff /> : <Eye />}
-											</IconButton>
-										</InputAdornment>
-									),
-								}}
 							/>
 							<Typography variant="initial" alignSelf="flex-end">
 								<Link
@@ -142,22 +103,7 @@ export const Login = () => {
 						</form>
 					)}
 				</Formik>
-				<Divider className={classes.divider} textAlign="center" flexItem={true}>
-					<Typography variant="small3" color="black.60">
-						or continue using
-					</Typography>
-				</Divider>
-				<Box className={classes.ctaWrapper}>
-					<Button className={classes.btnIcon} variant="outlined">
-						<img src={icon_google} />
-					</Button>
-					<Button className={classes.btnIcon} sx={{ mx: 2 }} variant="outlined">
-						<img src={icon_github} />
-					</Button>
-					<Button className={classes.btnIcon} variant="outlined">
-						<img src={icon_outlook} />
-					</Button>
-				</Box>
+				<ThirdPartyCTA />
 			</RegistrationCard>
 		</RegistrationLayout>
 	);

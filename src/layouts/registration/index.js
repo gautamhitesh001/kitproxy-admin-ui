@@ -7,7 +7,7 @@ import { ui_registrationLayoutIllustration } from "../../config/Constants";
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
 		width: "100vw",
-		height: "100vh",
+		minHeight: "100vh",
 		background: "linear-gradient(90.77deg, #2D3948 17.47%, #3A4554 89.94%)",
 		overflow: "auto",
 	},
@@ -32,10 +32,10 @@ export const RegistrationLayout = ({ children }) => {
 	const classes = useStyles();
 	return (
 		<Grid container className={classes.layoutContainer} direction={{ xs: "column", xl: "row" }}>
-			<Grid bgcolor="common.white" container item xs={12} xl={6} justifyContent="center" pt={10}>
+			<Grid flexGrow={1} bgcolor="common.white" container item xs={12} xl={6} alignItems="center" justifyContent="center" pt={10} pb={5}>
 				{children}
 			</Grid>
-			<Grid item container xs={12} xl={6} alignItems="center" direction="column" py={10} display={{ xs: "none", xl: "flex" }}>
+			<Grid alignSelf="center" item container xs={12} xl={6} alignItems="center" direction="column" py={10} display={{ xs: "none", xl: "flex" }}>
 				<img className={classes.illustrationImg} src={ui_registrationLayoutIllustration} alt="illustration" />
 				<Box className={classes.contentTextWrapper}>
 					<Typography variant="h2" color="secondary.10">
