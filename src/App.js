@@ -3,8 +3,8 @@ import { store } from "./appRedux/store";
 import "./scss/App.scss";
 import { AppRouter } from "./routes/routes";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./config/theme";
 import { CssBaseline } from "@mui/material";
+import theme from "./config/theme";
 
 function App() {
 	return (

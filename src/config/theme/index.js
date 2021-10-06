@@ -12,7 +12,7 @@ import InterBoldWoff from "../../assets/fonts/Inter/Inter-Bold.woff";
 import InterBoldWoff2 from "../../assets/fonts/Inter/Inter-Bold.woff2";
 import InterBoldTtf from "../../assets/fonts/Inter/Inter-Bold.ttf";
 
-export const theme = createTheme({
+let theme = createTheme({
 	breakpoints: {
 		values: {
 			xs: 0,
@@ -109,7 +109,7 @@ export const theme = createTheme({
 		},
 		primary: { main: "#F4672A" },
 		secondary: {
-			main: "#2D3648",
+			main: "#3A4554",
 			10: "#ECEDEE",
 			20: "#D8DADD",
 			30: "#C4C8CC",
@@ -185,5 +185,14 @@ export const theme = createTheme({
 			  }
 		  `,
 		},
+		MuiAppBar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: "#fff",
+				},
+			},
+		},
 	},
 });
+
+export default theme;

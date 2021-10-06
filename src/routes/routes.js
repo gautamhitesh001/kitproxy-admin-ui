@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch, BrowserRouter as Router } from "react-router-dom";
+import { OnboardingWelcome } from "../pages/onboarding";
 import { Login, Register, ResetPassword, ResetPasswordEmailVerification } from "../pages/registration";
 
 const NotFoundRedirect = () => <Redirect to="/" />;
@@ -33,6 +34,7 @@ class AppRouter extends Component {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/reset-password" component={ResetPassword} />
 					<Route exact path="/reset-password/email-verification" component={ResetPasswordEmailVerification} />
+					<Route exact path="/onboarding/welcome" component={OnboardingWelcome} />
 					<Route component={NotFoundRedirect} />
 				</Switch>
 			</Router>

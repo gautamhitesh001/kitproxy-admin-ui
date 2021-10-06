@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
 	btn: (props) => ({
 		paddingTop: "15px !important",
 		paddingBottom: "15px !important",
-		marginTop: props.marginTop ? props.marginTop : "32px !important",
+		marginTop: props.topMargin ? props.topMargin : "32px !important",
+		width: props.btnWidth ? props.btnWidth : "auto",
 	}),
 }));
 

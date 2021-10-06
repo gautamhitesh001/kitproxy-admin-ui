@@ -1,8 +1,8 @@
-import { Typography, Grid, Link } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
-import { ui_registrationLayoutLogo } from "../../config/Constants";
+import { ui_kitsuneLogoMain } from "../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -27,7 +27,7 @@ export const RegistrationCard = ({ children, headingText, subTextComponent, cont
 
 	return (
 		<Grid container direction="column" className={classes.container}>
-			<img className={classes.logoImg} src={ui_registrationLayoutLogo} alt="logo" />
+			<img className={classes.logoImg} src={ui_kitsuneLogoMain} alt="logo" />
 			<Box display="flex" alignItems="center" flexDirection="column" flexGrow={1} width="100%">
 				<Typography variant="h3" color="secondary.100">
 					{headingText}
