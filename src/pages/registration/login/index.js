@@ -72,6 +72,7 @@ export const Login = () => {
 								error={touched.email && Boolean(errors.email)}
 								helperText={touched.email ? errors.email : ""}
 								margin="normal"
+								size="small"
 							/>
 							<CustomPassword
 								id="password"

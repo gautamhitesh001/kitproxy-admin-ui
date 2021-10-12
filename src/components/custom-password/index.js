@@ -183,6 +183,7 @@ export const CustomPassword = (props) => {
 			<TextField
 				{...getTextFieldProps()}
 				variant="outlined"
+				size="small"
 				type={showPassword ? "text" : "password"}
 				color={isPasswordValid ? "success" : ""}
 				focused={isPasswordFocused || isPasswordValid}

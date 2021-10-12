@@ -8,7 +8,6 @@ import { ui_kitsuneLogoMain } from "../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
-		width: "100vw",
 		minHeight: "100vh",
 		backgroundColor: theme.palette.common.white,
 		overflow: "auto",

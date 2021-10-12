@@ -188,7 +188,7 @@ let theme = createTheme({
 		MuiAppBar: {
 			styleOverrides: {
 				root: {
-					backgroundColor: "#fff",
+					backgroundColor: "#FDFDFD",
 				},
 			},
 		},

@@ -92,6 +92,7 @@ export const Register = () => {
 								error={touched.name && Boolean(errors.name)}
 								helperText={touched.name ? errors.name : ""}
 								margin="normal"
+								size="small"
 							/>
 							<TextField
 								id="email"
@@ -105,6 +106,7 @@ export const Register = () => {
 								error={touched.email && Boolean(errors.email)}
 								helperText={touched.email ? errors.email : ""}
 								margin="normal"
+								size="small"
 							/>
 							<TextField
 								id="phone"
@@ -140,6 +142,7 @@ export const Register = () => {
 								isPasswordValid={isPasswordValid}
 								hasValidationPopper={true}
 								passwordValidationData={passwordValidationData}
+								size="small"
 							/>
 							<CustomButton type="submit" fullWidth={false} variant="contained">
 								Create Account

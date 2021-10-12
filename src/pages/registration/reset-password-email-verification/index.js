@@ -51,6 +51,7 @@ export const ResetPasswordEmailVerification = () => {
 						error={touched.email && Boolean(errors.email)}
 						helperText={touched.email ? errors.email : ""}
 						margin="normal"
+						size="small"
 					/>
 					<CustomButton disabled={showSuccess} type="submit" fullWidth={false} variant="contained">
 						SEND ME THE LINK
