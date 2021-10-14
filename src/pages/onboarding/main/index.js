@@ -9,7 +9,7 @@ import { Resource } from "./resource-select";
 const stepperLabelData = ["Website Analysis", "Resource", "Update DNS", "Verify DNS"];
 
 export const OnboardingMain = () => {
-	const [activeStep, setActiveStep] = useState(1);
+	const [activeStep, setActiveStep] = useState(2);
 
 	const handleNextStep = () => {
 		setActiveStep(activeStep + 1);
