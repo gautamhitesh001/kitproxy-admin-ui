@@ -12,11 +12,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CustomButton = (props) => {
-	const classes = useStyles(props);
-	const { children } = props;
+	const { btnWidth, topMargin, children } = props;
+	const classes = useStyles({ btnWidth, topMargin });
+
+	const getBtnProps = () => {
+		let tempProps = { ...props };
+		if (tempProps.btnWidth) {
+			delete tempProps.btnWidth;
+		}
+		if (tempProps.topMargin) {
+			delete tempProps.topMargin;
+		}
+
+		return { ...tempProps };
+	};
 
 	return (
-		<Button className={classes.btn} {...props}>
+		<Button className={classes.btn} {...getBtnProps()}>
 			{children}
 		</Button>
 	);
@@ -24,4 +36,6 @@ export const CustomButton = (props) => {
 
 CustomButton.propTypes = {
 	children: PropTypes.node,
+	btnWidth: PropTypes.number,
+	topMargin: PropTypes.string,
 };

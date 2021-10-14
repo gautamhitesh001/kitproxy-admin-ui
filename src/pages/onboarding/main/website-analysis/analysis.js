@@ -1,38 +1,12 @@
 import { Divider, Grid, IconButton, InputAdornment, Paper, Skeleton, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Formik } from "formik";
-import { useState } from "react";
-import { CustomButton } from "../../../components/custom-button";
-import * as Yup from "yup";
 import { Box } from "@mui/system";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import { Edit } from "react-feather";
-
-const createData = (vital, stat, setting, isError) => {
-	return { vital, stat, setting, isError };
-};
-
-const rows = [
-	createData("Page load time", ">4.5 Sec", "<3 Sec", true),
-	createData("Bounce rate", "~45.64%", "<30%", true),
-	createData("CDN Caching", "No", "Required", true),
-	createData("Browser Caching", "Yes", "Required", false),
-	createData("HTTP/2 Enabled", "No", "Required", true),
-	createData("DDoS Attack Protection", "Yes", "Required", false),
-];
-
-const schema = Yup.object().shape({
-	url: Yup.string()
-		.required("Please enter url.")
-		.matches(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/, "Please enter a valid url."),
-});
+import { CustomButton } from "../../../../components/custom-button";
 
 const useStyles = makeStyles((theme) => ({
-	formContainer: {
-		width: 350,
-		marginTop: 48,
-		display: "flex",
-		flexDirection: "column",
-	},
 	websiteInput: {
 		width: 350,
 		"& fieldset": {
@@ -75,22 +49,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const WebsiteAnalysis = () => {
+export const AnalysisSection = ({ rows }) => {
 	const classes = useStyles();
 
-	const [isWebsiteEntered, setIsWebsiteEntered] = useState(true);
-	const [isUrlEditable, setIsUrlEditable] = useState(true);
 	const [isDataLoading, setIsDataLoading] = useState(false);
-
-	const onFormSubmit = ({ values }) => {
-		setIsWebsiteEntered(true);
-	};
+	const [isUrlEditable, setIsUrlEditable] = useState(true);
 
 	const handleMouseDown = (event) => {
 		event.preventDefault();
 	};
 
-	return isWebsiteEntered ? (
+	return (
 		<>
 			<Box mt={8} />
 			<TextField
@@ -186,41 +155,14 @@ export const WebsiteAnalysis = () => {
 				</Grid>
 			</Box>
 			{!isDataLoading ? (
-				<CustomButton sx={{ mt: "80px !important" }} type="submit" btnWidth={350} variant="contained">
+				<CustomButton sx={{ mt: "80px !important" }} btnWidth={350} variant="contained">
 					CONTINUE
 				</CustomButton>
 			) : null}
 		</>
-	) : (
-		<>
-			<Typography mt={12} variant="h3" color="secondary.main">
-				Analyse your website
-			</Typography>
-			<Typography mt={2} variant="subtitle2" color="secondary.70">
-				Enter your website link below to get vital report of your website.
-			</Typography>
-			<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={{ url: "" }}>
-				{({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors, isSubmitting, setFieldValue }) => (
-					<form className={classes.formContainer} onSubmit={handleSubmit}>
-						<TextField
-							id="url"
-							label="Enter URL"
-							variant="outlined"
-							fullWidth
-							onChange={handleChange}
-							onBlur={handleBlur}
-							name="url"
-							value={values.url}
-							error={touched.url && Boolean(errors.url)}
-							helperText={touched.url ? errors.url : ""}
-							size="small"
-						/>
-						<CustomButton type="submit" fullWidth variant="contained">
-							RUN ANALYSIS
-						</CustomButton>
-					</form>
-				)}
-			</Formik>
-		</>
 	);
+};
+
+AnalysisSection.propTypes = {
+	rows: PropTypes.array,
 };

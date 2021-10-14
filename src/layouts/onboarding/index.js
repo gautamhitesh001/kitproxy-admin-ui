@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "10px !important",
 	},
 	contentWrapper: {
-		paddingTop: 100,
+		paddingTop: 140,
 		paddingBottom: 64,
 		paddingLeft: 40,
 		paddingRight: 40,
