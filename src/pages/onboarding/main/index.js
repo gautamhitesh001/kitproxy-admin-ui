@@ -5,11 +5,12 @@ import { UpdateDNS } from "./update-dns";
 import { VerifyDNS } from "./verify-dns";
 import { WebsiteAnalysis } from "./website-analysis";
 import { Resource } from "./resource-select";
+import { VerificationComplete } from "./verification-completed";
 
 const stepperLabelData = ["Website Analysis", "Resource", "Update DNS", "Verify DNS"];
 
 export const OnboardingMain = () => {
-	const [activeStep, setActiveStep] = useState(2);
+	const [activeStep, setActiveStep] = useState(3);
 
 	const handleNextStep = () => {
 		setActiveStep(activeStep + 1);
@@ -25,9 +26,8 @@ export const OnboardingMain = () => {
 				return <UpdateDNS />;
 			case 3:
 				return <VerifyDNS />;
-
 			default:
-				return null;
+				return <VerificationComplete />;
 		}
 	};
 
