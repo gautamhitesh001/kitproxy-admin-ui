@@ -9,6 +9,7 @@ import onboardingResourceActiveKitsune from "../../assets/images/onboarding_reso
 import onboardingResourceInactiveKitsune from "../../assets/images/onboarding_resource_inactive_kitsune.svg";
 import onboardingResourceDeploymentInProgress from "../../assets/images/onboarding_resource_deployment_in_progress.png";
 import onboardingResourceDeploymentCompleted from "../../assets/images/onboarding_resource_deployment_completed.png";
+import onboardingVerificationCompleted from "../../assets/images/onboarding_verification_completed.png";
 import awsLogo from "../../assets/images/aws_logo.png";
 
 import googleIcon from "../../assets/icons/google.svg";
@@ -20,6 +21,8 @@ import googleCloudIcon from "../../assets/icons/google_cloud.svg";
 import awsIconGrey from "../../assets/icons/aws_grey.svg";
 import azureIconGrey from "../../assets/icons/microsoft_azure_grey.svg";
 import googleCloudIconGrey from "../../assets/icons/google_cloud_grey.svg";
+import cloudIcon from "../../assets/icons/cloud.svg";
+import cloudDullIcon from "../../assets/icons/cloud_dull.svg";
 
 import packageJson from "../../../package.json";
 
@@ -34,6 +37,7 @@ export var ui_onboardingResourceActiveKitsune = onboardingResourceActiveKitsune;
 export var ui_onboardingResourceInactiveKitsune = onboardingResourceInactiveKitsune;
 export var ui_onboardingResourceDeploymentInProgress = onboardingResourceDeploymentInProgress;
 export var ui_onboardingResourceDeploymentCompleted = onboardingResourceDeploymentCompleted;
+export var ui_onboardingVerificationCompleted = onboardingVerificationCompleted;
 export var ui_awsLogo = awsLogo;
 
 export var icon_google = googleIcon;
@@ -45,6 +49,8 @@ export var icon_aws = awsIcon;
 export var icon_aws_grey = awsIconGrey;
 export var icon_google_cloud = googleCloudIcon;
 export var icon_google_cloud_grey = googleCloudIconGrey;
+export var icon_cloud = cloudIcon;
+export var icon_cloud_dull = cloudDullIcon;
 
 console.log(packageJson.version);
 export var app_version = "v" + packageJson.version;

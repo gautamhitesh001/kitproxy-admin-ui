@@ -31,6 +31,19 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		marginTop: 80,
 	},
+	extraContainer: {
+		marginRight: 32,
+		backgroundColor: "#f4f4f4 !important",
+		borderRadius: 4,
+		width: 330,
+		padding: "10px 24px",
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+	},
+	extraTextTitle: {
+		fontWeight: 700 + "!important",
+	},
 }));
 
 const createCtaData = (key, icon, hasTooltip, tooltipText) => {
@@ -66,7 +79,7 @@ export const SelectResource = () => {
 	};
 	return (
 		<>
-			<Typography mt={12} variant="h3" color="secondary.main">
+			<Typography mt={12} mb={5} variant="h3" color="secondary.main">
 				Select your resource
 			</Typography>
 			<OnboardingResourceCard
@@ -82,8 +95,18 @@ export const SelectResource = () => {
 				cta={<ExistingResourcesCTA isActive={activeCard === 1} ctaArray={setCtaArray(activeCard === 1)} handleAwsLogin={() => setShowAwsLoginModal(true)} />}
 				isSelected={activeCard === 1}
 				handleClick={() => setActiveCard(1)}
+				extraComponent={
+					<Box mt={2} mb={3} className={classes.extraContainer}>
+						<Typography variant="body1" className={classes.extraTextTitle} color="secondary.90">
+							Access Key ID
+						</Typography>
+						<Typography variant="body1" color="secondary.90">
+							8238502048-312
+						</Typography>
+					</Box>
+				}
 			/>
-			<CustomButton sx={{ mt: "64px !important" }} btnWidth={350} variant="contained">
+			<CustomButton btnWidth={350} variant="contained">
 				CONTINUE
 			</CustomButton>
 			{showAwsLoginModal ? (

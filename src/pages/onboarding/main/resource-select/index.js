@@ -4,8 +4,8 @@ import { DeploymentInProgress } from "./deploymentInProgress";
 import { SelectResource } from "./selectResource";
 
 export const Resource = () => {
-	const [isResourceSelected, setIsResourceSelected] = useState(true);
-	const [isDeploymentCompleted, setIsDeploymentCompleted] = useState(true);
+	const [isResourceSelected, setIsResourceSelected] = useState(false);
+	const [isDeploymentCompleted, setIsDeploymentCompleted] = useState(false);
 
 	if (isResourceSelected) {
 		if (isDeploymentCompleted) {
