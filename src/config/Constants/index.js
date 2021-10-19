@@ -22,6 +22,7 @@ import awsIconGrey from "../../assets/icons/aws_grey.svg";
 import azureIconGrey from "../../assets/icons/microsoft_azure_grey.svg";
 import googleCloudIconGrey from "../../assets/icons/google_cloud_grey.svg";
 import cloudIcon from "../../assets/icons/cloud.svg";
+import cloudDullIcon from "../../assets/icons/cloud_dull.svg";
 
 import packageJson from "../../../package.json";
 
@@ -49,6 +50,7 @@ export var icon_aws_grey = awsIconGrey;
 export var icon_google_cloud = googleCloudIcon;
 export var icon_google_cloud_grey = googleCloudIconGrey;
 export var icon_cloud = cloudIcon;
+export var icon_cloud_dull = cloudDullIcon;
 
 console.log(packageJson.version);
 export var app_version = "v" + packageJson.version;
