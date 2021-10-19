@@ -10,7 +10,7 @@ import { VerificationComplete } from "./verification-completed";
 const stepperLabelData = ["Website Analysis", "Resource", "Update DNS", "Verify DNS"];
 
 export const OnboardingMain = () => {
-	const [activeStep, setActiveStep] = useState(3);
+	const [activeStep, setActiveStep] = useState(1);
 
 	const handleNextStep = () => {
 		setActiveStep(activeStep + 1);
