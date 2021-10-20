@@ -38,11 +38,12 @@ const useStyles = makeStyles((theme) => ({
 		padding: 20,
 	},
 	skeleton: {
-		backgroundColor: "#c4c4c4",
+		backgroundColor: "#c4c4c4 !important",
 		borderRadius: 10,
 		width: "50%",
 		marginLeft: "auto",
 		marginRight: "auto",
+		height: "22px !important",
 	},
 	dividerDark: {
 		borderColor: "rgba(0, 0, 0, 0.08) !important",
@@ -52,8 +53,9 @@ const useStyles = makeStyles((theme) => ({
 export const AnalysisSection = ({ rows }) => {
 	const classes = useStyles();
 
-	const [isDataLoading, setIsDataLoading] = useState(false);
+	const [isDataLoading, setIsDataLoading] = useState(true);
 	const [isUrlEditable, setIsUrlEditable] = useState(true);
+	const [websiteUrl, setWebsiteUrl] = useState("mywebsite.com");
 
 	const handleMouseDown = (event) => {
 		event.preventDefault();
@@ -69,9 +71,10 @@ export const AnalysisSection = ({ rows }) => {
 				size="small"
 				focused
 				disabled={isUrlEditable}
-				value="mywebsite.com"
+				value={websiteUrl}
 				width={350}
 				classes={{ root: classes.websiteInput, focused: classes.websiteInput }}
+				onChange={(e) => setWebsiteUrl(e.target.value)}
 				InputProps={{
 					endAdornment: (
 						<InputAdornment position="end">

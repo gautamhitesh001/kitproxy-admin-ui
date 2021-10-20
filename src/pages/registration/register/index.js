@@ -120,6 +120,7 @@ export const Register = () => {
 								error={touched.phone && Boolean(errors.phone)}
 								helperText={touched.phone ? errors.phone : ""}
 								margin="normal"
+								size="small"
 								InputProps={{
 									startAdornment: (
 										<InputAdornment className={classes.inputAdornment} position="start">

@@ -43,7 +43,7 @@ export const Login = () => {
 				subTextComponent={
 					<Typography justifySelf="self-end" variant="subtitle2" mt={2}>
 						New to Kitsune?{" "}
-						<Link variant="subtitle2" component="button" color="primary" underline="none">
+						<Link variant="subtitle2" component="button" color="primary" underline="none" onClick={() => history.push("/register")}>
 							Create your Account
 						</Link>
 					</Typography>
