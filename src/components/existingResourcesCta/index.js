@@ -2,7 +2,7 @@ import { ButtonBase, Tooltip, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
-import { TooltipWithArrow } from "../tooltip-with-arrow";
+import { TooltipWithArrow } from "../tooltipWithArrow";
 
 const useStyles = makeStyles((theme) => ({
 	existingResourceWrapper: {

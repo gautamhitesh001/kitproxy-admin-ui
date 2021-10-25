@@ -1,8 +1,8 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { CustomButton } from "../../../../components/custom-button";
-import { TooltipWithArrow } from "../../../../components/tooltip-with-arrow";
+import { CustomButton } from "../../../../components/customButton";
+import { TooltipWithArrow } from "../../../../components/tooltipWithArrow";
 import { icon_cloud } from "../../../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({

@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Edit } from "react-feather";
-import { CustomButton } from "../../../../components/custom-button";
+import { CustomButton } from "../../../../components/customButton";
 
 const useStyles = makeStyles((theme) => ({
 	websiteInput: {

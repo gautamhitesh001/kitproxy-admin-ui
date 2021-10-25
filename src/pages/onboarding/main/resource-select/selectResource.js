@@ -1,9 +1,9 @@
 import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-import { AccessKeyModal } from "../../../../components/access-key-modal";
-import { CustomButton } from "../../../../components/custom-button";
-import { ExistingResourcesCTA } from "../../../../components/existing-resources-cta";
+import { AccessKeyModal } from "../../../../components/accessKeyModal";
+import { CustomButton } from "../../../../components/customButton";
+import { ExistingResourcesCTA } from "../../../../components/existingResourcesCta";
 import { OnboardingResourceCard } from "../../../../components/widgets";
 import {
 	icon_aws,

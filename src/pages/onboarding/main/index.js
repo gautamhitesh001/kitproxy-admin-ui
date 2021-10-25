@@ -1,6 +1,6 @@
 import { OnboardingLayout } from "../../../layouts/onboarding";
 import { useState } from "react";
-import { CustomStepper } from "../../../components/custom-stepper";
+import { CustomStepper } from "../../../components/customStepper";
 import { UpdateDNS } from "./update-dns";
 import { VerifyDNS } from "./verify-dns";
 import { WebsiteAnalysis } from "./website-analysis";

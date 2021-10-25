@@ -1,13 +1,13 @@
 import { Divider, InputAdornment, Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registration-card";
+import { RegistrationCard } from "../../../components/registrationCard";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/custom-button";
+import { CustomButton } from "../../../components/customButton";
 import { useHistory } from "react-router";
-import { CustomPassword } from "../../../components/custom-password";
+import { CustomPassword } from "../../../components/customPassword";
 import { ThirdPartyCTA } from "../../../components/widgets";
 import { checkPasswordValidation, passwordValidationArray } from "../../../utils/validatePassword";
 

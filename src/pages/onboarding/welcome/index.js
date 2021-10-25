@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { CustomButton } from "../../../components/custom-button";
+import { CustomButton } from "../../../components/customButton";
 import { ui_onboardingWelcome } from "../../../config/Constants";
 import { OnboardingLayout } from "../../../layouts/onboarding";
 

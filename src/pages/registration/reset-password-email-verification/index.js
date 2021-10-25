@@ -1,12 +1,12 @@
 import { Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registration-card";
+import { RegistrationCard } from "../../../components/registrationCard";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/custom-button";
+import { CustomButton } from "../../../components/customButton";
 import { ui_resetPasswordEmailValidation } from "../../../config/Constants";
 import { useHistory } from "react-router";
 

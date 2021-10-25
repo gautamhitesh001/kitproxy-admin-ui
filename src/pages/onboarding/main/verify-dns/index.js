@@ -2,7 +2,7 @@ import { LinearProgress, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { findIndex } from "lodash";
 import { useState } from "react";
-import { DnsStatusTable } from "../../../../components/dns-status-table";
+import { DnsStatusTable } from "../../../../components/dnsStatusTable";
 
 const useStyles = makeStyles((theme) => ({
 	progress: {

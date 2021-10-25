@@ -1,17 +1,17 @@
 import { Link, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registration-card";
+import { RegistrationCard } from "../../../components/registrationCard";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/custom-button";
+import { CustomButton } from "../../../components/customButton";
 import { ui_resetPasswordSuccess } from "../../../config/Constants";
 import { useHistory } from "react-router";
 import { findIndex } from "lodash";
 import useWindowDimensions from "../../../utils/windowDimensions";
-import { CustomPassword } from "../../../components/custom-password";
+import { CustomPassword } from "../../../components/customPassword";
 import { checkPasswordValidation, passwordValidationArray } from "../../../utils/validatePassword";
 
 const useStyles = makeStyles((theme) => ({
