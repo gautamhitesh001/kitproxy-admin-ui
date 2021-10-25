@@ -16,7 +16,7 @@ const rows = [
 ];
 
 export const WebsiteAnalysis = () => {
-	const [isWebsiteEntered, setIsWebsiteEntered] = useState(false);
+	const [isWebsiteEntered, setIsWebsiteEntered] = useState(true);
 
 	return isWebsiteEntered ? <AnalysisSection rows={rows} /> : <EnterUrlSection handleFormSubmit={() => setIsWebsiteEntered(true)} />;
 };

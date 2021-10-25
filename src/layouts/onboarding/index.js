@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { MoreVertical } from "react-feather";
+import { useHistory } from "react-router";
 import { ui_kitsuneLogoMain } from "../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const OnboardingLayout = ({ children, showWebsite, website }) => {
 	const classes = useStyles();
+	const history = useHistory();
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const showMenu = (event) => {
@@ -68,6 +70,7 @@ export const OnboardingLayout = ({ children, showWebsite, website }) => {
 	};
 	const hideMenu = () => {
 		setAnchorEl(null);
+		history.push("/dashboard");
 	};
 	return (
 		<Box className={classes.layoutContainer}>

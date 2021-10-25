@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 export const AnalysisSection = ({ rows }) => {
 	const classes = useStyles();
 
-	const [isDataLoading, setIsDataLoading] = useState(true);
+	const [isDataLoading, setIsDataLoading] = useState(false);
 	const [isUrlEditable, setIsUrlEditable] = useState(true);
 	const [websiteUrl, setWebsiteUrl] = useState("mywebsite.com");
 
