@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { CustomButton } from "../../../../components/customButton";
+import { PrimaryButton } from "../../../../components/primaryButton";
 import { ui_onboardingVerificationCompleted } from "../../../../config/Constants";
 
 export const VerificationComplete = () => {
@@ -12,9 +12,9 @@ export const VerificationComplete = () => {
 				You’re all set! It will take upto 48 hrs for the records to reflect in your project dashboard.
 			</Typography>
 			<img src={ui_onboardingVerificationCompleted} alt="deployment in progress" />
-			<CustomButton sx={{ mt: "64px !important" }} btnWidth={350} variant="contained">
+			<PrimaryButton sx={{ mt: "64px !important" }} btnWidth={350} variant="contained">
 				VIEW PROJECT DASHBOARD
-			</CustomButton>
+			</PrimaryButton>
 		</>
 	);
 };

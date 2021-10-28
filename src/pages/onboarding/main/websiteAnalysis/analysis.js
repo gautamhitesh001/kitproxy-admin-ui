@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Edit } from "react-feather";
-import { CustomButton } from "../../../../components/customButton";
+import { PrimaryButton } from "../../../../components/primaryButton";
 
 const useStyles = makeStyles((theme) => ({
 	websiteInput: {
@@ -158,9 +158,9 @@ export const AnalysisSection = ({ rows }) => {
 				</Grid>
 			</Box>
 			{!isDataLoading ? (
-				<CustomButton sx={{ mt: "80px !important" }} btnWidth={350} variant="contained">
+				<PrimaryButton sx={{ mt: "80px !important" }} btnWidth={350} variant="contained">
 					CONTINUE
-				</CustomButton>
+				</PrimaryButton>
 			) : null}
 		</>
 	);

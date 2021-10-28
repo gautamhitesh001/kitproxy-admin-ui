@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { CustomButton } from "../../../../components/customButton";
+import { PrimaryButton } from "../../../../components/primaryButton";
 import { makeStyles } from "@mui/styles";
 
 const schema = Yup.object().shape({
@@ -51,9 +51,9 @@ export const EnterUrlSection = ({ handleFormSubmit }) => {
 							helperText={touched.url ? errors.url : ""}
 							size="small"
 						/>
-						<CustomButton type="submit" fullWidth variant="contained">
+						<PrimaryButton type="submit" fullWidth variant="contained">
 							RUN ANALYSIS
-						</CustomButton>
+						</PrimaryButton>
 					</form>
 				)}
 			</Formik>

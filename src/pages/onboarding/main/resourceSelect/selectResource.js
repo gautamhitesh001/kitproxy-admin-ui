@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { AccessKeyModal } from "../../../../components/accessKeyModal";
-import { CustomButton } from "../../../../components/customButton";
+import { PrimaryButton } from "../../../../components/primaryButton";
 import { ExistingResourcesCTA } from "../../../../components/existingResourcesCta";
 import { OnboardingResourceCard } from "../../../../components/widgets";
 import {
@@ -106,9 +106,9 @@ export const SelectResource = () => {
 					</Box>
 				}
 			/>
-			<CustomButton btnWidth={350} variant="contained">
+			<PrimaryButton btnWidth={350} variant="contained">
 				CONTINUE
-			</CustomButton>
+			</PrimaryButton>
 			{showAwsLoginModal ? (
 				<AccessKeyModal
 					open={showAwsLoginModal}
@@ -153,9 +153,9 @@ export const SelectResource = () => {
 										Please recheck your keys before confirming
 									</Typography>
 								</Box>
-								<CustomButton topMargin="64px !important" type="submit" fullWidth={false} variant="contained">
+								<PrimaryButton topMargin="64px !important" type="submit" fullWidth={false} variant="contained">
 									CONFIRM
-								</CustomButton>
+								</PrimaryButton>
 							</form>
 						)}
 					</Formik>

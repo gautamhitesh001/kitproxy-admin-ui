@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 	}),
 }));
 
-export const CustomButton = (props) => {
+export const PrimaryButton = (props) => {
 	const { btnWidth, topMargin, children } = props;
 	const classes = useStyles({ btnWidth, topMargin });
 
@@ -34,7 +34,7 @@ export const CustomButton = (props) => {
 	);
 };
 
-CustomButton.propTypes = {
+PrimaryButton.propTypes = {
 	children: PropTypes.node,
 	btnWidth: PropTypes.number,
 	topMargin: PropTypes.string,

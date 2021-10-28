@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { CustomButton } from "../../../components/customButton";
+import { PrimaryButton } from "../../../components/primaryButton";
 import { ui_onboardingWelcome } from "../../../config/Constants";
 import { OnboardingLayout } from "../../../layouts/onboarding";
 
@@ -31,9 +31,9 @@ export const OnboardingWelcome = () => {
 					Run Web Vitals Analysis to get customised recommendations in four simple steps
 				</Typography>
 				<img src={ui_onboardingWelcome} alt="welcome" />
-				<CustomButton topMargin="64px !important" btnWidth={350} variant="contained">
+				<PrimaryButton topMargin="64px !important" btnWidth={350} variant="contained">
 					GET STARTED
-				</CustomButton>
+				</PrimaryButton>
 			</Box>
 		</OnboardingLayout>
 	);

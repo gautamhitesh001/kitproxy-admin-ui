@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { CustomButton } from "../../../../components/customButton";
+import { PrimaryButton } from "../../../../components/primaryButton";
 import { ui_onboardingResourceDeploymentCompleted } from "../../../../config/Constants";
 
 export const DeploymentCompleted = () => {
@@ -12,9 +12,9 @@ export const DeploymentCompleted = () => {
 				KitProxy deployment is completed, update your DNS to get going.
 			</Typography>
 			<img src={ui_onboardingResourceDeploymentCompleted} alt="deployment completed" />
-			<CustomButton sx={{ mt: "64px !important" }} btnWidth={350} variant="contained">
+			<PrimaryButton sx={{ mt: "64px !important" }} btnWidth={350} variant="contained">
 				UPDATE DNS
-			</CustomButton>
+			</PrimaryButton>
 		</>
 	);
 };

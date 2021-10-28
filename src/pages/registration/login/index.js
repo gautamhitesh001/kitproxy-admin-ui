@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/customButton";
+import { PrimaryButton } from "../../../components/primaryButton";
 import { useHistory } from "react-router";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
 import { CustomPassword } from "../../../components/customPassword";
@@ -98,9 +98,9 @@ export const Login = () => {
 									Forgot Password?
 								</Link>
 							</Typography>
-							<CustomButton type="submit" fullWidth={false} variant="contained">
+							<PrimaryButton type="submit" fullWidth={false} variant="contained">
 								LOG IN
-							</CustomButton>
+							</PrimaryButton>
 						</form>
 					)}
 				</Formik>

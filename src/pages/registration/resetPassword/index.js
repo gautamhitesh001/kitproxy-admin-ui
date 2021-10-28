@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/customButton";
+import { PrimaryButton } from "../../../components/primaryButton";
 import { ui_resetPasswordSuccess } from "../../../config/Constants";
 import { useHistory } from "react-router";
 import { findIndex } from "lodash";
@@ -89,9 +89,9 @@ export const ResetPassword = () => {
 						margin="normal"
 						handleOnBlur={(e) => handleBlur(e)}
 					/>
-					<CustomButton disabled={showSuccess} type="submit" fullWidth={false} variant="contained">
+					<PrimaryButton disabled={showSuccess} type="submit" fullWidth={false} variant="contained">
 						UPDATE MY PASSWORD
-					</CustomButton>
+					</PrimaryButton>
 				</form>
 			)}
 		</Formik>
