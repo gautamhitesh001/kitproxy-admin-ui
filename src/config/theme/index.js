@@ -189,6 +189,14 @@ let theme = createTheme({
 			styleOverrides: {
 				root: {
 					backgroundColor: "#FDFDFD",
+					color: "#25282B",
+				},
+			},
+		},
+		MuiToolbar: {
+			styleOverrides: {
+				root: {
+					minHeight: "80px !important",
 				},
 			},
 		},

@@ -1,48 +1,109 @@
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { Inbox, Mail } from "react-feather";
 import { ui_kitsuneLogoMain } from "../../config/Constants";
+
+const drawerWidth = 250;
+
+const openedMixin = (theme) => ({
+	width: drawerWidth,
+	transition: theme.transitions.create("width", {
+		easing: theme.transitions.easing.sharp,
+		duration: theme.transitions.duration.enteringScreen,
+	}),
+	overflowX: "hidden",
+});
+
+const closedMixin = (theme) => ({
+	transition: theme.transitions.create("width", {
+		easing: theme.transitions.easing.sharp,
+		duration: theme.transitions.duration.leavingScreen,
+	}),
+	overflowX: "hidden",
+	width: 80,
+});
 
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
 		minHeight: "100vh",
 		backgroundColor: theme.palette.black["5"],
 		overflow: "auto",
+		display: "flex",
 	},
-	toolBar: {
-		minHeight: "80px !important",
-		paddingLeft: "40px !important",
-		paddingRight: "40px !important",
-	},
-	contentWrapper: {
-		paddingTop: 100,
-		paddingBottom: 64,
-		paddingLeft: 40,
-		paddingRight: 40,
-		minHeight: "100vh",
-	},
+	appBar: ({ open }) => ({
+		transition: theme.transitions.create(["width", "margin"], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		marginLeft: open ? drawerWidth : 80,
+		width: open ? `calc(100% - ${drawerWidth}px) !important` : "calc(100% - 80px) !important",
+	}),
+	sideBar: ({ open }) => ({
+		width: drawerWidth,
+		flexShrink: 0,
+		whiteSpace: "nowrap",
+		boxSizing: "border-box",
+		...(open && {
+			...openedMixin(theme),
+			"& .MuiDrawer-paper": openedMixin(theme),
+		}),
+		...(!open && {
+			...closedMixin(theme),
+			"& .MuiDrawer-paper": closedMixin(theme),
+		}),
+	}),
+	contentWrapper: ({ open }) => ({
+		transition: theme.transitions.create(["width", "margin"], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		marginLeft: open ? drawerWidth : 80,
+		width: open ? `calc(100% - ${drawerWidth}px) !important` : "calc(100% - 80px) !important",
+	}),
 }));
 
-export const DashboardLayout = ({ children, showWebsite, website }) => {
-	const classes = useStyles();
+export const DashboardLayout = ({ children }) => {
+	const [open, setOpen] = useState(false);
+
+	const classes = useStyles({ open });
+
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
 
 	return (
 		<Box className={classes.layoutContainer}>
-			<AppBar elevation={0}>
-				<Toolbar classes={{ root: classes.toolBar }}>
-					<Box flex={1}>
-						<img src={ui_kitsuneLogoMain} alt="logo" />
-					</Box>
+			<AppBar classes={{ root: classes.appBar }} elevation={1}>
+				<Toolbar>
+					<h4>Toolbar Header</h4>
 				</Toolbar>
 			</AppBar>
-			<Box className={classes.contentWrapper}>{children}</Box>
+			<Drawer classes={{ root: classes.sideBar }} variant="permanent" open={open}>
+				<Toolbar />
+				<List>
+					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+						<ListItem button key={text}>
+							<ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
+							{/* <ListItemText primary={text} /> */}
+						</ListItem>
+					))}
+				</List>
+			</Drawer>
+			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+				<Toolbar />
+				<Box>{children}</Box>
+			</Box>
 		</Box>
 	);
 };
 
 DashboardLayout.propTypes = {
 	children: PropTypes.node,
-	showWebsite: PropTypes.bool,
-	website: PropTypes.string,
 };
