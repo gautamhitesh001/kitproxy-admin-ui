@@ -1,2 +1,3 @@
 export * from "./main";
-export * from "./setup";
+export * from "./dnsSetupError";
+export * from "./incompleteProjectSetup";

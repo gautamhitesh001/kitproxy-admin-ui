@@ -129,6 +129,9 @@ let theme = createTheme({
 			60: "#A0A4A8",
 			80: "#52575C",
 		},
+		grey: {
+			main: "#757575",
+		},
 		error: { main: "#FB4E4E" },
 		warning: { main: "#F6A609" },
 		success: { main: "#2DAF69" },

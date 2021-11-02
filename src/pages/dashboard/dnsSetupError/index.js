@@ -20,7 +20,7 @@ export const DnsSettingError = () => {
 	return (
 		<DashboardLayout>
 			<DashboardInfoWrapper>
-				<Typography maxWidth={maxWidth} variant="h4" textAlign="center">
+				<Typography mt={9} maxWidth={maxWidth} variant="h4" textAlign="center">
 					Complete your DNS Settings to start working on your project
 				</Typography>
 				<Typography maxWidth={maxWidth} mt={2} variant="subtitle2" textAlign="center">

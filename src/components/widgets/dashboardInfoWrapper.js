@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: "auto",
 		alignSelf: "center",
 		width: "100%",
-		paddingTop: 72,
 		paddingBottom: 72,
 		display: "flex",
 		flexDirection: "column",
