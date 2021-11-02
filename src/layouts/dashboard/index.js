@@ -29,7 +29,7 @@ const closedMixin = (theme) => ({
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
 		minHeight: "100vh",
-		backgroundColor: theme.palette.black["5"],
+		backgroundColor: "#F5F6F8",
 		overflow: "auto",
 		display: "flex",
 	},
@@ -55,14 +55,15 @@ const useStyles = makeStyles((theme) => ({
 			"& .MuiDrawer-paper": closedMixin(theme),
 		}),
 	}),
-	contentWrapper: ({ open }) => ({
-		transition: theme.transitions.create(["width", "margin"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		marginLeft: open ? drawerWidth : 80,
-		width: open ? `calc(100% - ${drawerWidth}px) !important` : "calc(100% - 80px) !important",
-	}),
+	contentWrapper: {
+		flexGrow: 1,
+		padding: 32,
+	},
+	childWrapper: {
+		display: "flex",
+		flexDirection: "column",
+		minHeight: "calc(100% - 80px) !important",
+	},
 }));
 
 export const DashboardLayout = ({ children }) => {
@@ -96,9 +97,9 @@ export const DashboardLayout = ({ children }) => {
 					))}
 				</List>
 			</Drawer>
-			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
-				<Box>{children}</Box>
+				<Box className={classes.childWrapper}>{children}</Box>
 			</Box>
 		</Box>
 	);
