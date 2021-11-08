@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Edit } from "react-feather";
-import { PrimaryButton } from "../../../../components/primaryButton";
+import { PrimaryButton } from "../../../../components/buttons";
 
 const useStyles = makeStyles((theme) => ({
 	websiteInput: {

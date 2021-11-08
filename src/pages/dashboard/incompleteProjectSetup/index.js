@@ -2,10 +2,9 @@ import { makeStyles } from "@mui/styles";
 import { DashboardLayout } from "../../../layouts/dashboard";
 import { DashboardInfoWrapper } from "../../../components/widgets/dashboardInfoWrapper";
 import { Typography } from "@mui/material";
-import { PrimaryButton } from "../../../components/primaryButton";
+import { PrimaryButton } from "../../../components/buttons";
 import { ui_sampleCompanyLogo } from "../../../config/Constants";
 import { Box } from "@mui/system";
-
 const useStyles = makeStyles((theme) => ({
 	btnLink: {
 		marginTop: "16px !important",

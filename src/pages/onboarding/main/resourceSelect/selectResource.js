@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { AccessKeyModal } from "../../../../components/accessKeyModal";
-import { PrimaryButton } from "../../../../components/primaryButton";
+import { PrimaryButton } from "../../../../components/buttons";
 import { ExistingResourcesCTA } from "../../../../components/existingResourcesCta";
 import { OnboardingResourceCard } from "../../../../components/widgets";
 import {

@@ -3,28 +3,10 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { Inbox, Mail } from "react-feather";
+import { Inbox, Mail, Menu } from "react-feather";
 import { ui_kitsuneLogoMain } from "../../config/Constants";
-
-const drawerWidth = 250;
-
-const openedMixin = (theme) => ({
-	width: drawerWidth,
-	transition: theme.transitions.create("width", {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.enteringScreen,
-	}),
-	overflowX: "hidden",
-});
-
-const closedMixin = (theme) => ({
-	transition: theme.transitions.create("width", {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.leavingScreen,
-	}),
-	overflowX: "hidden",
-	width: 80,
-});
+import { DashboardSidebar } from "./sidebar";
+import { DashboardAppbar } from "./topbar";
 
 const useStyles = makeStyles((theme) => ({
 	layoutContainer: {
@@ -38,23 +20,15 @@ const useStyles = makeStyles((theme) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		marginLeft: open ? drawerWidth : 80,
-		width: open ? `calc(100% - ${drawerWidth}px) !important` : "calc(100% - 80px) !important",
+		zIndex: theme.zIndex.drawer + 2 + " !important",
 	}),
-	sideBar: ({ open }) => ({
-		width: drawerWidth,
-		flexShrink: 0,
-		whiteSpace: "nowrap",
-		boxSizing: "border-box",
-		...(open && {
-			...openedMixin(theme),
-			"& .MuiDrawer-paper": openedMixin(theme),
-		}),
-		...(!open && {
-			...closedMixin(theme),
-			"& .MuiDrawer-paper": closedMixin(theme),
-		}),
-	}),
+	toolbar: {
+		paddingLeft: "48px !important",
+		paddingRight: "32px !important",
+		"& img": {
+			marginLeft: 32,
+		},
+	},
 	contentWrapper: {
 		flexGrow: 1,
 		padding: 32,
@@ -62,41 +36,23 @@ const useStyles = makeStyles((theme) => ({
 	childWrapper: {
 		display: "flex",
 		flexDirection: "column",
-		minHeight: "calc(100% - 80px) !important",
+		minHeight: `calc(100% - 80px) !important`,
 	},
 }));
 
 export const DashboardLayout = ({ children }) => {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	const classes = useStyles({ open });
 
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
-
-	const handleDrawerClose = () => {
-		setOpen(false);
+	const toggleSidebar = () => {
+		setOpen(!open);
 	};
 
 	return (
 		<Box className={classes.layoutContainer}>
-			<AppBar classes={{ root: classes.appBar }} elevation={1}>
-				<Toolbar>
-					<h4>Toolbar Header</h4>
-				</Toolbar>
-			</AppBar>
-			<Drawer classes={{ root: classes.sideBar }} variant="permanent" open={open}>
-				<Toolbar />
-				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-							{/* <ListItemText primary={text} /> */}
-						</ListItem>
-					))}
-				</List>
-			</Drawer>
+			<DashboardAppbar toggleSidebar={toggleSidebar} />
+			<DashboardSidebar open={open} />
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				<Box className={classes.childWrapper}>{children}</Box>

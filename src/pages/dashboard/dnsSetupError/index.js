@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 import { DashboardLayout } from "../../../layouts/dashboard";
 import { DashboardInfoWrapper } from "../../../components/widgets/dashboardInfoWrapper";
 import { Typography } from "@mui/material";
-import { PrimaryButton } from "../../../components/primaryButton";
+import { PrimaryButton } from "../../../components/buttons";
 
 const useStyles = makeStyles((theme) => ({
 	btnLink: {

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { PrimaryButton } from "../../../components/primaryButton";
+import { PrimaryButton } from "../../../components/buttons";
 import { ui_resetPasswordSuccess } from "../../../config/Constants";
 import { useHistory } from "react-router";
 import { findIndex } from "lodash";
