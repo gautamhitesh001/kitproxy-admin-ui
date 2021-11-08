@@ -134,6 +134,7 @@ let theme = createTheme({
 			main: "#757575",
 		},
 		error: { main: "#FB4E4E" },
+		badge: { main: "#FF2525" },
 		warning: { main: "#F6A609" },
 		success: { main: "#2DAF69" },
 		text: { primary: "#25282B", secondary: "#52575C", disabled: "#E8E8E8" },
