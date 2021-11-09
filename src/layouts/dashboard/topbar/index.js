@@ -17,8 +17,14 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: theme.zIndex.drawer + 2 + " !important",
 	},
 	toolbar: {
-		paddingLeft: "48px !important",
+		paddingLeft: "36px !important",
 		paddingRight: "32px !important",
+	},
+	menuToggle: {
+		padding: "0 !important",
+		"&:hover": {
+			backgroundColor: "transparent !important",
+		},
 	},
 	logoImg: {
 		marginLeft: 32,
@@ -119,8 +125,8 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 	return (
 		<AppBar classes={{ root: classes.appBar }} elevation={1}>
 			<Toolbar classes={{ root: classes.toolbar }}>
-				<IconButton disableRipple onClick={toggleSidebar}>
-					<FeatherIconMenu size={18} />
+				<IconButton classes={{ root: classes.menuToggle }} disableFocusRipple disableTouchRipple disableRipple onClick={toggleSidebar}>
+					<FeatherIconMenu size={20} />
 				</IconButton>
 				<img className={classes.logoImg} width={128} height="auto" src={ui_kitsuneLogoMain} alt="logo" />
 				<Box ml={8}>

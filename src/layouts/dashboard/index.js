@@ -1,10 +1,8 @@
-import { AppBar, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { Inbox, Mail, Menu } from "react-feather";
-import { ui_kitsuneLogoMain } from "../../config/Constants";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardAppbar } from "./topbar";
 
@@ -41,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardLayout = ({ children }) => {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 
 	const classes = useStyles({ open });
 
