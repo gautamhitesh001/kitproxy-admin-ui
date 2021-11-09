@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	childWrapper: {
 		display: "flex",
 		flexDirection: "column",
-		minHeight: `calc(100% - 80px) !important`,
+		minHeight: "calc(100% - 80px) !important",
 	},
 }));
 
