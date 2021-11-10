@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const DashboardLayout = ({ children }) => {
 	const [open, setOpen] = useState(false);
-	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
+	const [hasNetworkIssue, setHasNetworkIssue] = useState(true);
 
 	const classes = useStyles({ open });
 
