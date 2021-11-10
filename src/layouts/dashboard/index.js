@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { NetworkLostOverlay } from "../../components/overlays/networkLost";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardAppbar } from "./topbar";
 
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "#F5F6F8",
 		overflow: "auto",
 		display: "flex",
+		position: "relative",
 	},
 	appBar: ({ open }) => ({
 		transition: theme.transitions.create(["width", "margin"], {
@@ -29,17 +31,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 	contentWrapper: {
 		flexGrow: 1,
-		padding: 32,
+		position: "relative",
 	},
 	childWrapper: {
 		display: "flex",
 		flexDirection: "column",
 		minHeight: "calc(100% - 80px) !important",
+		padding: 32,
 	},
 }));
 
 export const DashboardLayout = ({ children }) => {
 	const [open, setOpen] = useState(false);
+	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
 
 	const classes = useStyles({ open });
 
@@ -54,6 +58,7 @@ export const DashboardLayout = ({ children }) => {
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				<Box className={classes.childWrapper}>{children}</Box>
+				{hasNetworkIssue ? <NetworkLostOverlay /> : null}
 			</Box>
 		</Box>
 	);
