@@ -60,10 +60,7 @@ export const DashboardLayout = ({ children }) => {
 			<DashboardSidebar open={open} />
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
-				{
-					showWelcomeNotification ?
-						<DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null
-				}
+				{showWelcomeNotification ? <DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null}
 				<Box className={classes.childWrapper}>{children}</Box>
 				{hasNetworkIssue ? <NetworkLostOverlay /> : null}
 			</Box>
