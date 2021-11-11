@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { DashboardWelcomeNotification } from "../../components/notifications";
 import { NetworkLostOverlay } from "../../components/overlays/networkLost";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardAppbar } from "./topbar";
@@ -38,12 +39,14 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		minHeight: "calc(100% - 80px) !important",
 		padding: 32,
+		position: "relative",
 	},
 }));
 
 export const DashboardLayout = ({ children }) => {
 	const [open, setOpen] = useState(false);
-	const [hasNetworkIssue, setHasNetworkIssue] = useState(true);
+	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
+	const [showWelcomeNotification, setShowWelcomeNotification] = useState(true);
 
 	const classes = useStyles({ open });
 
@@ -57,6 +60,10 @@ export const DashboardLayout = ({ children }) => {
 			<DashboardSidebar open={open} />
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
+				{
+					showWelcomeNotification ?
+						<DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null
+				}
 				<Box className={classes.childWrapper}>{children}</Box>
 				{hasNetworkIssue ? <NetworkLostOverlay /> : null}
 			</Box>
