@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { DashboardWelcomeNotification } from "../../components/notifications";
-import { NetworkLostOverlay } from "../../components/overlays/networkLost";
+import { DashboardDocumentationOverlay, NetworkLostOverlay } from "../../components/overlays";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardAppbar } from "./topbar";
 
@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
 export const DashboardLayout = ({ children }) => {
 	const [open, setOpen] = useState(false);
 	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
-	const [showWelcomeNotification, setShowWelcomeNotification] = useState(true);
+	const [showWelcomeNotification, setShowWelcomeNotification] = useState(false);
+	const [showDashboardDocumentationOverlay, setShowDashboardDocumentationOverlay] = useState(true);
 
 	const classes = useStyles({ open });
 
@@ -61,7 +62,10 @@ export const DashboardLayout = ({ children }) => {
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				{showWelcomeNotification ? <DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null}
-				<Box className={classes.childWrapper}>{children}</Box>
+				<Box className={classes.childWrapper}>
+					{children}
+					{showDashboardDocumentationOverlay ? <DashboardDocumentationOverlay /> : null}
+				</Box>
 				{hasNetworkIssue ? <NetworkLostOverlay /> : null}
 			</Box>
 		</Box>

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
 	contentWrapper: {
-		margin: "40px 30px",
+		margin: "40px 30px 0px 30px",
 		padding: "30px 30px 60px 30px",
 		backgroundColor: "#DBECFC",
 	},
