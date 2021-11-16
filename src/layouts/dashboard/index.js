@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { DashboardWelcomeNotification } from "../../components/notifications";
+import { DashboardNotificationTop } from "../../components/notifications/dashboardTop";
 import { DashboardDocumentationOverlay, NetworkLostOverlay } from "../../components/overlays";
 import { DashboardSidebar } from "./sidebar";
 import { DashboardAppbar } from "./topbar";
@@ -38,7 +39,10 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		minHeight: "calc(100% - 80px) !important",
-		padding: 32,
+		paddingTop: 32,
+		paddingBottom: 32,
+		paddingLeft: 16,
+		paddingRight: 16,
 		position: "relative",
 	},
 }));
@@ -47,7 +51,7 @@ export const DashboardLayout = ({ children }) => {
 	const [open, setOpen] = useState(false);
 	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
 	const [showWelcomeNotification, setShowWelcomeNotification] = useState(false);
-	const [showDashboardDocumentationOverlay, setShowDashboardDocumentationOverlay] = useState(true);
+	const [showDashboardDocumentationOverlay, setShowDashboardDocumentationOverlay] = useState(false);
 
 	const classes = useStyles({ open });
 
@@ -62,6 +66,7 @@ export const DashboardLayout = ({ children }) => {
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				{showWelcomeNotification ? <DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null}
+				<DashboardNotificationTop />
 				<Box className={classes.childWrapper}>
 					{children}
 					{showDashboardDocumentationOverlay ? <DashboardDocumentationOverlay /> : null}

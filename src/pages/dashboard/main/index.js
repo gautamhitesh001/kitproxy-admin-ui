@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { DashboardLayout } from "../../../layouts/dashboard";
 import { DashboardOnboardingStatus } from "../../../components/dashboardOnboardingStatus";
+import { useDispatch } from "react-redux";
+import { showDashboardInfoNotification } from "../../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	bottomContainer: {
@@ -16,8 +18,22 @@ const useStyles = makeStyles((theme) => ({
 
 export const Dashboard = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	const [showSuccess, setShowSuccess] = useState(false);
+
+	useEffect(() => {
+		// dispatch(
+		// 	showDashboardInfoNotification(
+		// 		"error",
+		// 		"There’s an unusual spike in your CPU utilisation. Please take action",
+		// 		"Open CPU Stats",
+		// 		() => {},
+		// 		"Remind me later",
+		// 		() => {}
+		// 	)
+		// );
+	}, []);
 
 	return (
 		<DashboardLayout>
