@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: "24px !important",
 	},
 	popover: {
-		background: "rgba(255, 255, 255, 0.95) !important",
 		border: "1px solid #EDEDED !important",
 		boxShadow: "8px 13px 22px rgba(0, 0, 0, 0.05) !important",
 		marginLeft: "75px !important",

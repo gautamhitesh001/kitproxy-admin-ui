@@ -13,6 +13,9 @@ import onboardingVerificationCompleted from "../../assets/images/onboarding_veri
 import awsLogo from "../../assets/images/aws_logo.png";
 import successWithTick from "../../assets/images/success.png";
 import sampleCompanyLogo from "../../assets/images/sample_company_logo.png";
+import networkError from "../../assets/images/network_error.svg";
+import deviceNotSupported from "../../assets/images/device_not_supported.png";
+import browserNotSupported from "../../assets/images/browser_not_supported.png";
 
 import googleIcon from "../../assets/icons/google.svg";
 import githubIcon from "../../assets/icons/github.svg";
@@ -43,6 +46,9 @@ export var ui_onboardingVerificationCompleted = onboardingVerificationCompleted;
 export var ui_awsLogo = awsLogo;
 export var ui_sampleCompanyLogo = sampleCompanyLogo;
 export var ui_successWithTick = successWithTick;
+export var ui_networkError = networkError;
+export var ui_deviceNotSupported = deviceNotSupported;
+export var ui_browserNotSupported = browserNotSupported;
 
 export var icon_google = googleIcon;
 export var icon_github = githubIcon;

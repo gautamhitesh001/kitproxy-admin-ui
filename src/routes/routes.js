@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch, BrowserRouter as Router } from "react-router-dom";
 import { Dashboard, DnsSettingError, IncompleteProjectSetup } from "../pages/dashboard";
+import { BrowserNotSupported, DeviceNotSupported } from "../pages/error";
 import { OnboardingMain, OnboardingWelcome } from "../pages/onboarding";
 import { Login, Register, ResetPassword, ResetPasswordEmailVerification } from "../pages/registration";
 
@@ -40,6 +41,8 @@ class AppRouter extends Component {
 					<Route exact path="/dashboard" component={Dashboard} />
 					<Route exact path="/dashboard/dns-setting-error" component={DnsSettingError} />
 					<Route exact path="/dashboard/incomplete-project-setup" component={IncompleteProjectSetup} />
+					<Route exact path="/device-not-supported" component={DeviceNotSupported} />
+					<Route exact path="/browser-not-supported" component={BrowserNotSupported} />
 					<Route component={NotFoundRedirect} />
 				</Switch>
 			</Router>
