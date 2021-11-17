@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { AlertCircle, X } from "react-feather";
-import { TooltipWithArrow } from "../tooltip-with-arrow";
+import { TooltipWithArrow } from "../tooltipWithArrow";
 
 const useStyles = makeStyles((theme) => ({
 	modalContainer: {

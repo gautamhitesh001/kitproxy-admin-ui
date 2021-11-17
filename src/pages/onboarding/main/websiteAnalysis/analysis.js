@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Edit } from "react-feather";
-import { CustomButton } from "../../../../components/custom-button";
+import { PrimaryButton } from "../../../../components/primaryButton";
 
 const useStyles = makeStyles((theme) => ({
 	websiteInput: {
@@ -38,11 +38,12 @@ const useStyles = makeStyles((theme) => ({
 		padding: 20,
 	},
 	skeleton: {
-		backgroundColor: "#c4c4c4",
+		backgroundColor: "#c4c4c4 !important",
 		borderRadius: 10,
 		width: "50%",
 		marginLeft: "auto",
 		marginRight: "auto",
+		height: "22px !important",
 	},
 	dividerDark: {
 		borderColor: "rgba(0, 0, 0, 0.08) !important",
@@ -54,6 +55,7 @@ export const AnalysisSection = ({ rows }) => {
 
 	const [isDataLoading, setIsDataLoading] = useState(false);
 	const [isUrlEditable, setIsUrlEditable] = useState(true);
+	const [websiteUrl, setWebsiteUrl] = useState("mywebsite.com");
 
 	const handleMouseDown = (event) => {
 		event.preventDefault();
@@ -69,9 +71,10 @@ export const AnalysisSection = ({ rows }) => {
 				size="small"
 				focused
 				disabled={isUrlEditable}
-				value="mywebsite.com"
+				value={websiteUrl}
 				width={350}
 				classes={{ root: classes.websiteInput, focused: classes.websiteInput }}
+				onChange={(e) => setWebsiteUrl(e.target.value)}
 				InputProps={{
 					endAdornment: (
 						<InputAdornment position="end">
@@ -155,9 +158,9 @@ export const AnalysisSection = ({ rows }) => {
 				</Grid>
 			</Box>
 			{!isDataLoading ? (
-				<CustomButton sx={{ mt: "80px !important" }} btnWidth={350} variant="contained">
+				<PrimaryButton sx={{ mt: "80px !important" }} btnWidth={350} variant="contained">
 					CONTINUE
-				</CustomButton>
+				</PrimaryButton>
 			) : null}
 		</>
 	);

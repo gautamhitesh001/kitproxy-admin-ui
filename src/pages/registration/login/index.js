@@ -1,5 +1,5 @@
 import { Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registration-card";
+import { RegistrationCard } from "../../../components/registrationCard";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
@@ -7,10 +7,10 @@ import { useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/custom-button";
+import { PrimaryButton } from "../../../components/primaryButton";
 import { useHistory } from "react-router";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
-import { CustomPassword } from "../../../components/custom-password";
+import { CustomPassword } from "../../../components/customPassword";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -43,7 +43,7 @@ export const Login = () => {
 				subTextComponent={
 					<Typography justifySelf="self-end" variant="subtitle2" mt={2}>
 						New to Kitsune?{" "}
-						<Link variant="subtitle2" component="button" color="primary" underline="none">
+						<Link variant="subtitle2" component="button" color="primary" underline="none" onClick={() => history.push("/register")}>
 							Create your Account
 						</Link>
 					</Typography>
@@ -98,9 +98,9 @@ export const Login = () => {
 									Forgot Password?
 								</Link>
 							</Typography>
-							<CustomButton type="submit" fullWidth={false} variant="contained">
+							<PrimaryButton type="submit" fullWidth={false} variant="contained">
 								LOG IN
-							</CustomButton>
+							</PrimaryButton>
 						</form>
 					)}
 				</Formik>

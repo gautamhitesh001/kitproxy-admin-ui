@@ -1,8 +1,8 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { CustomButton } from "../../../../components/custom-button";
-import { TooltipWithArrow } from "../../../../components/tooltip-with-arrow";
+import { PrimaryButton } from "../../../../components/primaryButton";
+import { TooltipWithArrow } from "../../../../components/tooltipWithArrow";
 import { icon_cloud } from "../../../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
@@ -109,9 +109,9 @@ export const UpdateDNS = () => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<CustomButton sx={{ mt: "48px !important" }} btnWidth={350} variant="contained">
+			<PrimaryButton sx={{ mt: "48px !important" }} btnWidth={350} variant="contained">
 				START VERIFICATION
-			</CustomButton>
+			</PrimaryButton>
 		</>
 	);
 };

@@ -1,16 +1,16 @@
 import { OnboardingLayout } from "../../../layouts/onboarding";
 import { useState } from "react";
-import { CustomStepper } from "../../../components/custom-stepper";
-import { UpdateDNS } from "./update-dns";
-import { VerifyDNS } from "./verify-dns";
-import { WebsiteAnalysis } from "./website-analysis";
-import { Resource } from "./resource-select";
-import { VerificationComplete } from "./verification-completed";
+import { CustomStepper } from "../../../components/customStepper";
+import { UpdateDNS } from "./updateDns";
+import { VerifyDNS } from "./verifyDns";
+import { WebsiteAnalysis } from "./websiteAnalysis";
+import { Resource } from "./resourceSelect";
+import { VerificationComplete } from "./verificationCompleted";
 
 const stepperLabelData = ["Website Analysis", "Resource", "Update DNS", "Verify DNS"];
 
 export const OnboardingMain = () => {
-	const [activeStep, setActiveStep] = useState(2);
+	const [activeStep, setActiveStep] = useState(4);
 
 	const handleNextStep = () => {
 		setActiveStep(activeStep + 1);

@@ -1,13 +1,13 @@
 import { Divider, InputAdornment, Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registration-card";
+import { RegistrationCard } from "../../../components/registrationCard";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { CustomButton } from "../../../components/custom-button";
+import { PrimaryButton } from "../../../components/primaryButton";
 import { useHistory } from "react-router";
-import { CustomPassword } from "../../../components/custom-password";
+import { CustomPassword } from "../../../components/customPassword";
 import { ThirdPartyCTA } from "../../../components/widgets";
 import { checkPasswordValidation, passwordValidationArray } from "../../../utils/validatePassword";
 
@@ -120,6 +120,7 @@ export const Register = () => {
 								error={touched.phone && Boolean(errors.phone)}
 								helperText={touched.phone ? errors.phone : ""}
 								margin="normal"
+								size="small"
 								InputProps={{
 									startAdornment: (
 										<InputAdornment className={classes.inputAdornment} position="start">
@@ -144,9 +145,9 @@ export const Register = () => {
 								passwordValidationData={passwordValidationData}
 								size="small"
 							/>
-							<CustomButton type="submit" fullWidth={false} variant="contained">
+							<PrimaryButton type="submit" fullWidth={false} variant="contained">
 								Create Account
-							</CustomButton>
+							</PrimaryButton>
 						</form>
 					)}
 				</Formik>

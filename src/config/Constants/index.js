@@ -11,6 +11,7 @@ import onboardingResourceDeploymentInProgress from "../../assets/images/onboardi
 import onboardingResourceDeploymentCompleted from "../../assets/images/onboarding_resource_deployment_completed.png";
 import onboardingVerificationCompleted from "../../assets/images/onboarding_verification_completed.png";
 import awsLogo from "../../assets/images/aws_logo.png";
+import successWithTick from "../../assets/images/success.png";
 
 import googleIcon from "../../assets/icons/google.svg";
 import githubIcon from "../../assets/icons/github.svg";
@@ -39,6 +40,7 @@ export var ui_onboardingResourceDeploymentInProgress = onboardingResourceDeploym
 export var ui_onboardingResourceDeploymentCompleted = onboardingResourceDeploymentCompleted;
 export var ui_onboardingVerificationCompleted = onboardingVerificationCompleted;
 export var ui_awsLogo = awsLogo;
+export var ui_successWithTick = successWithTick;
 
 export var icon_google = googleIcon;
 export var icon_github = githubIcon;

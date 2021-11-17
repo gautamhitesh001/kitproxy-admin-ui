@@ -2,7 +2,7 @@ import { LinearProgress, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { findIndex } from "lodash";
 import { useState } from "react";
-import { DnsStatusTable } from "../../../../components/dns-status-table";
+import { DnsStatusTable } from "../../../../components/dnsStatusTable";
 
 const useStyles = makeStyles((theme) => ({
 	progress: {
@@ -22,9 +22,9 @@ const createDnsRecordsData = (type, name, content, ttl, proxyStatus, isCompleted
 };
 
 const rows = [
-	createDnsRecordsData("A", "blog", "104.21.48.239", "Auto", "Proxied", false, true),
-	createDnsRecordsData("A", "blog", "172.67.157.1", "Auto", "Proxied", false, false),
-	createDnsRecordsData("CNAME", "example.co", "172.67.157.1", "Auto", "DNS Only", false, false),
+	createDnsRecordsData("A", "blog", "104.21.48.239", "Auto", "Proxied", true, false),
+	createDnsRecordsData("A", "blog", "172.67.157.1", "Auto", "Proxied", true, false),
+	createDnsRecordsData("CNAME", "example.co", "172.67.157.1", "Auto", "DNS Only", false, true),
 	createDnsRecordsData("A", "blog", "172.67.157.1", "Auto", "Proxied", false, false),
 	createDnsRecordsData("CNAME", "example.co", "172.67.157.1", "Auto", "DNS Only", false, false),
 	createDnsRecordsData("A", "blog", "172.67.157.1", "Auto", "Proxied", false, false),
