@@ -129,7 +129,12 @@ let theme = createTheme({
 			60: "#A0A4A8",
 			80: "#52575C",
 		},
+		grey: {
+			10: "#F8F8F8",
+			main: "#757575",
+		},
 		error: { main: "#FB4E4E" },
+		badge: { main: "#FF2525" },
 		warning: { main: "#F6A609" },
 		success: { main: "#2DAF69" },
 		text: { primary: "#25282B", secondary: "#52575C", disabled: "#E8E8E8" },
@@ -189,6 +194,14 @@ let theme = createTheme({
 			styleOverrides: {
 				root: {
 					backgroundColor: "#FDFDFD",
+					color: "#25282B",
+				},
+			},
+		},
+		MuiToolbar: {
+			styleOverrides: {
+				root: {
+					minHeight: "80px !important",
 				},
 			},
 		},

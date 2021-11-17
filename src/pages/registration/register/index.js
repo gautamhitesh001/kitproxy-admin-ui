@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { PrimaryButton } from "../../../components/primaryButton";
+import { PrimaryButton } from "../../../components/buttons";
 import { useHistory } from "react-router";
 import { CustomPassword } from "../../../components/customPassword";
 import { ThirdPartyCTA } from "../../../components/widgets";

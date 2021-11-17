@@ -8,12 +8,13 @@ const useStyles = makeStyles((theme) => ({
 		paddingBottom: "15px !important",
 		marginTop: props.topMargin ? props.topMargin : "32px !important",
 		width: props.btnWidth ? props.btnWidth : "auto",
+		textTransform: props.isTextTransformNone ? "none !important" : "uppercase",
 	}),
 }));
 
 export const PrimaryButton = (props) => {
-	const { btnWidth, topMargin, children } = props;
-	const classes = useStyles({ btnWidth, topMargin });
+	const { btnWidth, topMargin, isTextTransformNone, children } = props;
+	const classes = useStyles({ btnWidth, topMargin, isTextTransformNone });
 
 	const getBtnProps = () => {
 		let tempProps = { ...props };
@@ -23,7 +24,9 @@ export const PrimaryButton = (props) => {
 		if (tempProps.topMargin) {
 			delete tempProps.topMargin;
 		}
-
+		if (tempProps.isTextTransformNone) {
+			delete tempProps.topMargin;
+		}
 		return { ...tempProps };
 	};
 
@@ -38,4 +41,5 @@ PrimaryButton.propTypes = {
 	children: PropTypes.node,
 	btnWidth: PropTypes.number,
 	topMargin: PropTypes.string,
+	isTextTransformNone: PropTypes.bool,
 };

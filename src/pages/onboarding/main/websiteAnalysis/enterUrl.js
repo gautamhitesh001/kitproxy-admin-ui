@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { PrimaryButton } from "../../../../components/primaryButton";
+import { PrimaryButton } from "../../../../components/buttons";
 import { makeStyles } from "@mui/styles";
 
 const schema = Yup.object().shape({

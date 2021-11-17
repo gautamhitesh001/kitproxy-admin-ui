@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch, BrowserRouter as Router } from "react-router-dom";
-import { Dashboard } from "../pages/dashboard";
+import { Dashboard, DnsSettingError, IncompleteProjectSetup } from "../pages/dashboard";
 import { OnboardingMain, OnboardingWelcome } from "../pages/onboarding";
 import { Login, Register, ResetPassword, ResetPasswordEmailVerification } from "../pages/registration";
 
@@ -38,6 +38,8 @@ class AppRouter extends Component {
 					<Route exact path="/onboarding" component={OnboardingMain} />
 					<Route exact path="/onboarding/welcome" component={OnboardingWelcome} />
 					<Route exact path="/dashboard" component={Dashboard} />
+					<Route exact path="/dashboard/dns-setting-error" component={DnsSettingError} />
+					<Route exact path="/dashboard/incomplete-project-setup" component={IncompleteProjectSetup} />
 					<Route component={NotFoundRedirect} />
 				</Switch>
 			</Router>

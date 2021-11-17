@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
-import { PrimaryButton } from "../../../components/primaryButton";
+import { PrimaryButton } from "../../../components/buttons";
 import { useHistory } from "react-router";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
 import { CustomPassword } from "../../../components/customPassword";

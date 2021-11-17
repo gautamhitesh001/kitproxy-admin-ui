@@ -22,7 +22,7 @@ export const Dashboard = () => {
 	return (
 		<DashboardLayout>
 			<h1>Dashboard</h1>
-			<DashboardOnboardingStatus />
+			{/* <DashboardOnboardingStatus /> */}
 		</DashboardLayout>
 	);
 };

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { PrimaryButton } from "../../../../components/primaryButton";
+import { PrimaryButton } from "../../../../components/buttons";
 import { ui_onboardingVerificationCompleted } from "../../../../config/Constants";
 
 export const VerificationComplete = () => {
