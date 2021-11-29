@@ -48,7 +48,6 @@ export const ConfigurationPage = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
-	const [showSuccess, setShowSuccess] = useState(false);
 	const [activeTab, setActiveTab] = useState(1);
 	const [configurationTabs, setConfigurationTabs] = useState([]);
 
