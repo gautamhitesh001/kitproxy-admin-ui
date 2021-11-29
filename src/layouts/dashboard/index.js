@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const DashboardLayout = ({ children }) => {
+export const DashboardLayout = ({ children, activeMenuItem }) => {
 	const [open, setOpen] = useState(false);
 	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
 	const [showWelcomeNotification, setShowWelcomeNotification] = useState(false);
@@ -62,7 +62,7 @@ export const DashboardLayout = ({ children }) => {
 	return (
 		<Box className={classes.layoutContainer}>
 			<DashboardAppbar toggleSidebar={toggleSidebar} />
-			<DashboardSidebar open={open} />
+			<DashboardSidebar open={open} activeMenuItem={activeMenuItem} />
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				{showWelcomeNotification ? <DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null}
@@ -79,4 +79,5 @@ export const DashboardLayout = ({ children }) => {
 
 DashboardLayout.propTypes = {
 	children: PropTypes.node,
+	activeMenuItem: PropTypes.string,
 };
