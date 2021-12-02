@@ -133,6 +133,9 @@ let theme = createTheme({
 			10: "#F8F8F8",
 			main: "#757575",
 		},
+		white: {
+			main: "#FFFFFF",
+		},
 		error: { main: "#FB4E4E" },
 		badge: { main: "#FF2525" },
 		warning: { main: "#F6A609" },

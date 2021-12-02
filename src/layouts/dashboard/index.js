@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		minHeight: "calc(100% - 80px) !important",
 		paddingTop: 32,
-		paddingBottom: 32,
+		// paddingBottom: 32,
 		paddingLeft: 16,
 		paddingRight: 16,
 		position: "relative",

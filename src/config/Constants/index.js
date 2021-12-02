@@ -28,7 +28,8 @@ import azureIconGrey from "../../assets/icons/microsoft_azure_grey.svg";
 import googleCloudIconGrey from "../../assets/icons/google_cloud_grey.svg";
 import cloudIcon from "../../assets/icons/cloud.svg";
 import cloudDullIcon from "../../assets/icons/cloud_dull.svg";
-import playIcon from "../../assets/icons/play.png";
+import playIconRight from "../../assets/icons/play_right.png";
+import playIconDown from "../../assets/icons/play_down.png";
 
 import packageJson from "../../../package.json";
 
@@ -62,7 +63,8 @@ export var icon_google_cloud = googleCloudIcon;
 export var icon_google_cloud_grey = googleCloudIconGrey;
 export var icon_cloud = cloudIcon;
 export var icon_cloud_dull = cloudDullIcon;
-export var icon_play = playIcon;
+export var icon_play_right = playIconRight;
+export var icon_play_down = playIconDown;
 
 console.log(packageJson.version);
 export var app_version = "v" + packageJson.version;

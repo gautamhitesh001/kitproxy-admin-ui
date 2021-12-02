@@ -2,7 +2,7 @@ import { List, ListItemButton, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useState } from "react";
-import { icon_play } from "../../../config/Constants";
+import { icon_play_right } from "../../../config/Constants";
 import { DashboardLayout } from "../../../layouts/dashboard";
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +70,7 @@ export const DashboardDocumentation = () => {
 								selected={val.key === activeKey}
 								onClick={() => setActiveKey(val.key)}
 							>
-								{val.key === activeKey ? <img src={icon_play} alt="play" /> : null}
+								{val.key === activeKey ? <img src={icon_play_right} alt="play" /> : null}
 								<Typography ml={val.key === activeKey ? 1 : 0} fontWeight={val.key === activeKey ? 700 : 400} color="secondary.main">
 									{val.title}
 								</Typography>
