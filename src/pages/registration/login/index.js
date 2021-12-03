@@ -1,5 +1,5 @@
 import { Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registrationCard";
+import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";

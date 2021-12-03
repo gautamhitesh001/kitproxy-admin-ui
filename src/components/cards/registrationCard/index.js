@@ -2,7 +2,7 @@ import { Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
-import { ui_kitsuneLogoMain } from "../../config/Constants";
+import { ui_kitsuneLogoMain } from "../../../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
 	container: {

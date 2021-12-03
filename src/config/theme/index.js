@@ -132,6 +132,7 @@ let theme = createTheme({
 		grey: {
 			10: "#F8F8F8",
 			main: "#757575",
+			500: "#575757",
 		},
 		white: {
 			main: "#FFFFFF",

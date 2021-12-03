@@ -1,5 +1,5 @@
 import { Link, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registrationCard";
+import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";

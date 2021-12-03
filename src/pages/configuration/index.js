@@ -5,6 +5,9 @@ import { DashboardLayout } from "../../layouts/dashboard";
 import { ButtonBase, Grid, Stack, Typography } from "@mui/material";
 import { TabButton } from "../../components/buttons/tabButton";
 import { ConfigurationSidebar } from "../../components/sidebars/configurationSidebar";
+import { Box } from "@mui/system";
+import { ConfigurationCard } from "../../components/cards";
+import { ConfigInput } from "../../components/inputs/configInput";
 
 const createConfigurationTablist = (label, index) => {
 	return { label, index };
@@ -16,9 +19,16 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: 20,
 	},
 	configContainer: {
-		maxHeight: "calc(100vh - 175px)",
+		maxHeight: "calc(100vh - 250px)",
 		overflowY: "auto",
 		transition: "all 0.3s ease",
+		marginTop: 12,
+	},
+	btnDocumentation: {
+		padding: theme.spacing(2, 3, 2, 3) + " !important",
+		borderRadius: "4px !important",
+		border: "1px solid #E6E6E6 !important",
+		backgroundColor: theme.palette.white.main + " !important",
 	},
 }));
 
@@ -54,8 +64,33 @@ export const ConfigurationPage = () => {
 				<Grid item xs={3}>
 					<ConfigurationSidebar />
 				</Grid>
-				<Grid item xs={9} className={classes.configContainer}>
-					<span>Settings</span>
+				<Grid item xs={9}>
+					<Stack direction="row" alignItems="center" justifyContent="space-between">
+						<Typography variant="h5" color="secondary.90">
+							Web Application Firewall
+						</Typography>
+						<ButtonBase className={classes.btnDocumentation}>
+							<Typography color="secondary.main">Open Documentation</Typography>
+						</ButtonBase>
+					</Stack>
+					<Stack direction="column" spacing={1} className={classes.configContainer}>
+						<ConfigurationCard
+							title="Firewall Rules"
+							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
+						/>
+						<ConfigurationCard title="Rate Limiting" subText="Set a limit on the number of hits(CDN requests) over a period of time" hasSwitch={true} />
+						<ConfigurationCard
+							title="Onion Routing"
+							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
+							hasSwitch={true}
+						/>
+						<ConfigurationCard
+							title="IPv4 header request handling"
+							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
+							hasSwitch={true}
+							extra={<ConfigInput inputLabel="Header details" placeholder="eg" />}
+						/>
+					</Stack>
 				</Grid>
 			</Grid>
 		</DashboardLayout>
