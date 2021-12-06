@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { icon_play_down, icon_play_right } from "../../../config/Constants";
 import { ConfigurationSidebarSearch } from "../../search";
+import ConfigSecurityMenu from "../../../config/menu/configurationSiderbarMenu.json";
 
 const useStyles = makeStyles((theme) => ({
 	configListWrapper: {
@@ -23,66 +24,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const createMenuItemList = (name, submenu, isExpanded) => {
-	return { name, submenu, isExpanded };
-};
-
-const createSubMenuItemList = (name, href) => {
-	return { name, href };
-};
-
-const expandMenuItem = () => {};
-
 export const ConfigurationSidebar = () => {
 	const classes = useStyles();
 
 	const [configMenuList, setConfigMenuList] = useState([]);
 
 	useEffect(() => {
-		setConfigMenuList([
-			createMenuItemList(
-				"Web Application Firewall(WAF)",
-				[
-					createSubMenuItemList("Firewall Rules", "firewallRules"),
-					createSubMenuItemList("Rate Limiting", "firewallRules"),
-					createSubMenuItemList("Onion Routing", "firewallRules"),
-					createSubMenuItemList("IPv4 header request handling", "firewallRules"),
-					createSubMenuItemList("True Client IP Header", "firewallRules"),
-					createSubMenuItemList("Email address obfuscation", "firewallRules"),
-					createSubMenuItemList("DDoS", "firewallRules"),
-					createSubMenuItemList("User Agent Blocking", "firewallRules"),
-					createSubMenuItemList("DDoS", "firewallRules"),
-					createSubMenuItemList("Geo Location Locking", "firewallRules"),
-					createSubMenuItemList("HSTS", "firewallRules"),
-				],
-				false
-			),
-			createMenuItemList(
-				"SSL",
-				[
-					createSubMenuItemList("SSL Recommendation", "firewallRules"),
-					createSubMenuItemList("TLS Version Control", "firewallRules"),
-					createSubMenuItemList("Universal SSL Certificate", "firewallRules"),
-					createSubMenuItemList("Opportunistic Encryption", "firewallRules"),
-					createSubMenuItemList("Client Level Certificate", "firewallRules"),
-					createSubMenuItemList("Origin Server Certificate", "firewallRules"),
-					createSubMenuItemList("Authenticated Origin Pull Request", "firewallRules"),
-					createSubMenuItemList("Multi Tenant Certificate control", "firewallRules"),
-				],
-				false
-			),
-			createMenuItemList(
-				"Network",
-				[
-					createSubMenuItemList("Allow gRPC Connections to origin server", "firewallRules"),
-					createSubMenuItemList("Optimise routing over POPs", "firewallRules"),
-					createSubMenuItemList("Cloud based tunneling", "firewallRules"),
-					createSubMenuItemList("Server side Exclusion", "firewallRules"),
-					createSubMenuItemList("Hotlink Protection", "firewallRules"),
-				],
-				false
-			),
-		]);
+		setConfigMenuList(ConfigSecurityMenu);
 	}, []);
 
 	const toggleExpandMenuItem = (index) => {
