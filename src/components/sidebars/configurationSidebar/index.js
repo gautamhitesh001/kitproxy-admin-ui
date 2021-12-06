@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: 8,
 		backgroundColor: theme.palette.white.main,
 		padding: "24px 24px 0 24px",
-		maxHeight: "calc(100vh - 250px)",
+		maxHeight: "calc(100vh - 300px)",
 		overflowY: "auto",
 	},
 	menuItemBtn: {

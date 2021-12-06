@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: 20,
 	},
 	configContainer: {
-		maxHeight: "calc(100vh - 250px)",
+		maxHeight: "calc(100vh - 300px)",
 		overflowY: "auto",
 		transition: "all 0.3s ease",
 		marginTop: 12,
