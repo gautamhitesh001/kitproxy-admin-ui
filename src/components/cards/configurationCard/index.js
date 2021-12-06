@@ -24,12 +24,12 @@ export const ConfigurationCard = ({ title, subText, hasSwitch, extra }) => {
 			<Typography variant="h6" fontWeight={600} color="grey.500">
 				{title}
 			</Typography>
-			<Stack direction="row">
+			<Stack direction="row" justifyContent="space-between">
 				<Typography mt={2} variant="subtitle1" width="65%" color="secondary.60">
 					{subText}
 				</Typography>
 				{hasSwitch ? (
-					<Stack direction="row" justifyContent="center" flexGrow={1}>
+					<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
 						<CustomSwitch />
 					</Stack>
 				) : null}

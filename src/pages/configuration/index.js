@@ -7,7 +7,7 @@ import { TabButton } from "../../components/buttons/tabButton";
 import { ConfigurationSidebar } from "../../components/sidebars/configurationSidebar";
 import { Box } from "@mui/system";
 import { ConfigurationCard } from "../../components/cards";
-import { ConfigInput } from "../../components/inputs/configInput";
+import { ConfigAddUserAgent, ConfigGeoLocationLockingForm, ConfigIpv4, ConfigRateLimitingForm } from "../../components/forms";
 
 const createConfigurationTablist = (label, index) => {
 	return { label, index };
@@ -78,7 +78,12 @@ export const ConfigurationPage = () => {
 							title="Firewall Rules"
 							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
 						/>
-						<ConfigurationCard title="Rate Limiting" subText="Set a limit on the number of hits(CDN requests) over a period of time" hasSwitch={true} />
+						<ConfigurationCard
+							title="Rate Limiting"
+							subText="Set a limit on the number of hits(CDN requests) over a period of time"
+							hasSwitch={true}
+							extra={<ConfigRateLimitingForm />}
+						/>
 						<ConfigurationCard
 							title="Onion Routing"
 							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
@@ -88,7 +93,35 @@ export const ConfigurationPage = () => {
 							title="IPv4 header request handling"
 							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
 							hasSwitch={true}
-							extra={<ConfigInput inputLabel="Header details" placeholder="eg" />}
+							extra={<ConfigIpv4 />}
+						/>
+						<ConfigurationCard
+							title="True Client IP Header"
+							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
+							hasSwitch={true}
+						/>
+						<ConfigurationCard
+							title="Email address obfuscation"
+							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
+							hasSwitch={true}
+						/>
+						<ConfigurationCard title="DDoS Protection" subText="Recommended settings: DDoS is enabled by default" hasSwitch={true} />
+						<ConfigurationCard
+							title="User Agent Blocking"
+							subText="User Agents added here will be blacklisted"
+							hasSwitch={false}
+							extra={<ConfigAddUserAgent />}
+						/>
+						<ConfigurationCard
+							title="Geo Location Locking"
+							subText="Countries Added here will be whitelisted. "
+							hasSwitch={false}
+							extra={<ConfigGeoLocationLockingForm />}
+						/>
+						<ConfigurationCard
+							title="HSTS"
+							subText="HSTS details"
+							hasSwitch={true}
 						/>
 					</Stack>
 				</Grid>
