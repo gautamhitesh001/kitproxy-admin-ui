@@ -5,13 +5,9 @@ import { DashboardLayout } from "../../layouts/dashboard";
 import { ButtonBase, Grid, Stack, Typography } from "@mui/material";
 import { TabButton } from "../../components/buttons/tabButton";
 import { ConfigurationSidebar } from "../../components/sidebars/configurationSidebar";
-import { Box } from "@mui/system";
 import { ConfigurationCard } from "../../components/cards";
 import { ConfigAddUserAgent, ConfigGeoLocationLockingForm, ConfigIpv4, ConfigRateLimitingForm } from "../../components/forms";
-
-const createConfigurationTablist = (label, index) => {
-	return { label, index };
-};
+import configurationTabMenu from "../../config/menu/configurationTabMenu.json";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -40,13 +36,7 @@ export const ConfigurationPage = () => {
 	const [configurationTabs, setConfigurationTabs] = useState([]);
 
 	useEffect(() => {
-		setConfigurationTabs([
-			createConfigurationTablist("Security", 1),
-			createConfigurationTablist("Acceleration", 2),
-			createConfigurationTablist("Customisation", 3),
-			createConfigurationTablist("Scalability", 4),
-			createConfigurationTablist("Advanced", 5),
-		]);
+		setConfigurationTabs(configurationTabMenu);
 	}, []);
 
 	const handleTabChange = (key) => {

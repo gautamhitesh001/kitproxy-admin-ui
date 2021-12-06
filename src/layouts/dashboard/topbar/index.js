@@ -7,6 +7,7 @@ import { Bell, ChevronDown, Menu as FeatherIconMenu, Search } from "react-feathe
 import { TopbarProjectMenu } from "../../../components/menus/topbarProject";
 import { TopbarUserMenu } from "../../../components/menus/topbarUser";
 import { ui_kitsuneLogoMain, ui_sampleCompanyLogo } from "../../../config/Constants";
+import topbarUserMenu from "../../../config/menu/topbarUserMenu.json";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -89,13 +90,7 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 		createProjectMenu(3, <Avatar>BG</Avatar>, "Birla Group"),
 	];
 
-	const userMenuItems = [
-		createUserMenu(1, "My Account"),
-		createUserMenu(2, "Billings"),
-		createUserMenu(3, "Settings"),
-		createUserMenu(4, "Support"),
-		createUserMenu(5, "Log out"),
-	];
+	const userMenuItems = topbarUserMenu;
 
 	const [projectMenuAnchor, setProjectMenuAnchor] = useState(null);
 	const [userMenuAnchor, setUserMenuAnchor] = useState(null);

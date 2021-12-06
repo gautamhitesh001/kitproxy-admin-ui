@@ -47,7 +47,7 @@ export const ConfigurationSidebar = () => {
 					<div key={val.name + index}>
 						<ButtonBase classes={{ root: classes.menuItemBtn }} disableRipple disableTouchRipple onClick={() => toggleExpandMenuItem(index)}>
 							<Stack direction="row" alignItems="center">
-								<Typography fontWeight={700} color="secondary.90" marginRight="4px">
+								<Typography textAlign="left" fontWeight={700} color="secondary.90" marginRight="4px">
 									{val.name}
 								</Typography>
 								<img src={val.isExpanded ? icon_play_down : icon_play_right} alt="arrow-icon" />
