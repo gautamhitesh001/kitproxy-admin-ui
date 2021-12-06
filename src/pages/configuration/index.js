@@ -106,23 +106,14 @@ export const ConfigurationPage = () => {
 							hasSwitch={true}
 						/>
 						<ConfigurationCard title="DDoS Protection" subText="Recommended settings: DDoS is enabled by default" hasSwitch={true} />
-						<ConfigurationCard
-							title="User Agent Blocking"
-							subText="User Agents added here will be blacklisted"
-							hasSwitch={false}
-							extra={<ConfigAddUserAgent />}
-						/>
+						<ConfigurationCard title="User Agent Blocking" subText="User Agents added here will be blacklisted" hasSwitch={false} extra={<ConfigAddUserAgent />} />
 						<ConfigurationCard
 							title="Geo Location Locking"
 							subText="Countries Added here will be whitelisted. "
 							hasSwitch={false}
 							extra={<ConfigGeoLocationLockingForm />}
 						/>
-						<ConfigurationCard
-							title="HSTS"
-							subText="HSTS details"
-							hasSwitch={true}
-						/>
+						<ConfigurationCard title="HSTS" subText="HSTS details" hasSwitch={true} />
 					</Stack>
 				</Grid>
 			</Grid>
