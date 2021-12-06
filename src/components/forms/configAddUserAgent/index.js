@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 	},
+	btn: {
+		textTransform: "none !important",
+		"&:hover": {
+			backgroundColor: "transparent !important",
+		},
+	},
 }));
 
 export const ConfigAddUserAgent = () => {
@@ -50,7 +56,9 @@ export const ConfigAddUserAgent = () => {
 						</Stack>
 						<ConfigSaveButton disabled={!isActive} isActive={isActive} type="submit" btnText="Save" />
 					</Stack>
-					<Button sx={{ textTransform: "none" }}>Add more</Button>
+					<Button classes={{ root: classes.btn }} disableFocusRipple disableRipple disableTouchRipple>
+						Add more
+					</Button>
 				</form>
 			)}
 		</Formik>

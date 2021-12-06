@@ -2,7 +2,7 @@ import { ButtonBase, Collapse, Divider, Stack, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import { icon_play_down, icon_play_right } from "../../../config/Constants";
+import { icon_play_right } from "../../../config/Constants";
 import { ConfigurationSidebarSearch } from "../../search";
 import ConfigSecurityMenu from "../../../config/menu/configurationSiderbarMenu.json";
 
@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
 	anchorTag: {
 		color: theme.palette.secondary["90"] + " !important",
 		textDecoration: "none !important",
+	},
+	hideIcon: {
+		transform: "rotate(0deg)",
+	},
+	expandIcon: {
+		transform: "rotate(90deg)",
 	},
 }));
 
@@ -50,7 +56,7 @@ export const ConfigurationSidebar = () => {
 								<Typography textAlign="left" fontWeight={700} color="secondary.90" marginRight="4px">
 									{val.name}
 								</Typography>
-								<img src={val.isExpanded ? icon_play_down : icon_play_right} alt="arrow-icon" />
+								<img className={val.isExpanded ? classes.expandIcon : classes.hideIcon} src={icon_play_right} alt="arrow-icon" />
 							</Stack>
 						</ButtonBase>
 						<Box my={3}>
