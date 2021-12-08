@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: "20px !important",
 		paddingBottom: "20px !important",
 		color: theme.palette.secondary.main,
+		borderRadius: 4,
 	},
 	activeTabBtn: {
 		flex: 1,
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: "20px !important",
 		paddingBottom: "20px !important",
 		color: theme.palette.primary.main,
+		borderRadius: 4,
 	},
 }));
 

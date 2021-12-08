@@ -46,13 +46,13 @@ export const ConfigGeoLocationLockingForm = () => {
 					<Stack direction="row" alignItems="flex-end" justifyContent="space-between">
 						<Stack direction="row" alignItems="center" flexGrow={1} maxWidth="65%">
 							<ConfigInput
-								id="addLOcations"
+								id="addLocations"
 								onChange={handleChange}
 								onBlur={handleBlur}
-								name="addLOcations"
-								value={values.addLOcations}
-								error={touched.addLOcations && Boolean(errors.addLOcations)}
-								helperText={touched.addLOcations ? errors.addLOcations : ""}
+								name="addLocations"
+								value={values.addLocations}
+								error={touched.addLocations && Boolean(errors.addLocations)}
+								helperText={touched.addLocations ? errors.addLocations : ""}
 								inputLabel="Add Locations"
 								// inputWidth={225}
 								placeholder="eg"

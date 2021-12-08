@@ -7,24 +7,33 @@ import { TabButton } from "../../components/buttons/tabButton";
 import { ConfigurationSidebar } from "../../components/sidebars/configurationSidebar";
 import { ConfigurationCard } from "../../components/cards";
 import { ConfigAddUserAgent, ConfigGeoLocationLockingForm, ConfigIpv4, ConfigRateLimitingForm } from "../../components/forms";
-import configurationTabMenu from "../../config/menu/configurationTabMenu.json";
+import { Box } from "@mui/system";
+import { configurationSchema } from "../../config/schema/configuration";
+import { findIndex } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
 		flexGrow: 1,
-		marginTop: 20,
+		marginTop: 8,
 	},
 	configContainer: {
-		maxHeight: "calc(100vh - 300px)",
+		maxHeight: "calc(100vh - 265px)",
 		overflowY: "auto",
 		transition: "all 0.3s ease",
 		marginTop: 12,
+		paddingBottom: 100,
 	},
 	btnDocumentation: {
 		padding: theme.spacing(2, 3, 2, 3) + " !important",
 		borderRadius: "4px !important",
 		border: "1px solid #E6E6E6 !important",
 		backgroundColor: theme.palette.white.main + " !important",
+	},
+	titleContainer: {
+		padding: "16px 24px",
+		backgroundColor: theme.palette.white.main,
+		borderRadius: 8,
+		marginTop: 8,
 	},
 }));
 
@@ -34,76 +43,59 @@ export const ConfigurationPage = () => {
 
 	const [activeTab, setActiveTab] = useState(1);
 	const [configurationTabs, setConfigurationTabs] = useState([]);
+	const [tabContent, setTabContent] = useState([]);
 
 	useEffect(() => {
-		setConfigurationTabs(configurationTabMenu);
+		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
 	}, []);
+
+	useEffect(() => {
+		getTabContent();
+	}, [activeTab]);
 
 	const handleTabChange = (key) => {
 		setActiveTab(key);
 	};
 
+	const getTabContent = () => {
+		let index = findIndex(configurationSchema, { index: activeTab });
+		setTabContent(configurationSchema[index].settingGroups);
+	};
+
 	return (
 		<DashboardLayout activeMenuItem="Configurations">
-			<Stack margin="-30px -14px 0 -14px" direction="row" spacing="2px">
-				{configurationTabs.map((val, index) => (
-					<TabButton index={val.index} handleTabChange={handleTabChange} label={val.label} isTabActive={val.index === activeTab} key={val + index} />
-				))}
+			<Stack direction="row" alignItems="center" justifyContent="space-between">
+				<Typography variant="h4" color="secondary.main">
+					Configuration
+				</Typography>
+				<ButtonBase className={classes.btnDocumentation}>
+					<Typography color="secondary.main">Open Documentation</Typography>
+				</ButtonBase>
 			</Stack>
 			<Grid columnSpacing="20px" container direction="row" classes={{ root: classes.contentContainer }}>
 				<Grid item xs={3}>
-					<ConfigurationSidebar />
+					<ConfigurationSidebar content={tabContent} />
 				</Grid>
 				<Grid item xs={9}>
-					<Stack direction="row" alignItems="center" justifyContent="space-between">
-						<Typography variant="h5" color="secondary.90">
-							Web Application Firewall
-						</Typography>
-						<ButtonBase className={classes.btnDocumentation}>
-							<Typography color="secondary.main">Open Documentation</Typography>
-						</ButtonBase>
+					<Stack direction="row" spacing="2px">
+						{configurationTabs.map((val, index) => (
+							<TabButton index={val.index} handleTabChange={handleTabChange} label={val.label} isTabActive={val.index === activeTab} key={val + index} />
+						))}
 					</Stack>
+
 					<Stack direction="column" spacing={1} className={classes.configContainer}>
-						<ConfigurationCard
-							title="Firewall Rules"
-							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
-						/>
-						<ConfigurationCard
-							title="Rate Limiting"
-							subText="Set a limit on the number of hits(CDN requests) over a period of time"
-							hasSwitch={true}
-							extra={<ConfigRateLimitingForm />}
-						/>
-						<ConfigurationCard
-							title="Onion Routing"
-							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
-							hasSwitch={true}
-						/>
-						<ConfigurationCard
-							title="IPv4 header request handling"
-							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
-							hasSwitch={true}
-							extra={<ConfigIpv4 />}
-						/>
-						<ConfigurationCard
-							title="True Client IP Header"
-							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
-							hasSwitch={true}
-						/>
-						<ConfigurationCard
-							title="Email address obfuscation"
-							subText="Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description Firewall Rules Description"
-							hasSwitch={true}
-						/>
-						<ConfigurationCard title="DDoS Protection" subText="Recommended settings: DDoS is enabled by default" hasSwitch={true} />
-						<ConfigurationCard title="User Agent Blocking" subText="User Agents added here will be blacklisted" hasSwitch={false} extra={<ConfigAddUserAgent />} />
-						<ConfigurationCard
-							title="Geo Location Locking"
-							subText="Countries Added here will be whitelisted. "
-							hasSwitch={false}
-							extra={<ConfigGeoLocationLockingForm />}
-						/>
-						<ConfigurationCard title="HSTS" subText="HSTS details" hasSwitch={true} />
+						{tabContent.map((value, index) => (
+							<>
+								<Box id={value.id} key={value.id + index} className={classes.titleContainer}>
+									<Typography variant="h6" color="secondary.90">
+										{value.label}
+									</Typography>
+								</Box>
+								{value.settings.map((val, index) => {
+									return <ConfigurationCard id={val.id} key={val.id + index} title={val.title} subText={val.subtext} hasSwitch={val.hasSwitch} />;
+								})}
+							</>
+						))}
 					</Stack>
 				</Grid>
 			</Grid>

@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationCard = ({ title, subText, hasSwitch, extra }) => {
+export const ConfigurationCard = ({ id, title, subText, hasSwitch, extra }) => {
 	const classes = useStyles();
 
 	return (
-		<Stack direction="column" className={classes.container}>
+		<Stack id={id} direction="column" className={classes.container}>
 			<Typography variant="h6" fontWeight={600} color="grey.500">
 				{title}
 			</Typography>
@@ -44,5 +44,6 @@ ConfigurationCard.propTypes = {
 	title: PropTypes.string,
 	subText: PropTypes.string,
 	hasSwitch: PropTypes.bool,
+	id: PropTypes.string,
 	extra: PropTypes.node,
 };
