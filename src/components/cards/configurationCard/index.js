@@ -1,6 +1,7 @@
 import { Typography, Stack, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
+import { ConfigurationSettingForm } from "../../forms";
 import { CustomSwitch } from "../../switches";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 	divider: {
 		marginTop: "24px !important",
-		marginBottom: "20px !important",
+		marginBottom: "24px !important",
 	},
 }));
 
-export const ConfigurationCard = ({ id, title, subText, hasSwitch, extra }) => {
+export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, formContent, doesHeaderHaveFormEdit }) => {
 	const classes = useStyles();
 
 	return (
@@ -34,8 +35,14 @@ export const ConfigurationCard = ({ id, title, subText, hasSwitch, extra }) => {
 					</Stack>
 				) : null}
 			</Stack>
-			{!extra ? null : <Divider className={classes.divider} />}
-			{!extra ? null : extra}
+			{!hasDivider ? null : <Divider className={classes.divider} />}
+			{!formContent ? null : (
+				<Stack spacing="32px" direction="column">
+					{formContent.map((value) => (
+						<ConfigurationSettingForm key={value.id} formContent={value} />
+					))}
+				</Stack>
+			)}
 		</Stack>
 	);
 };
@@ -44,6 +51,8 @@ ConfigurationCard.propTypes = {
 	title: PropTypes.string,
 	subText: PropTypes.string,
 	hasSwitch: PropTypes.bool,
+	hasDivider: PropTypes.bool,
+	doesHeaderHaveFormEdit: PropTypes.bool,
 	id: PropTypes.string,
-	extra: PropTypes.node,
+	formContent: PropTypes.array,
 };

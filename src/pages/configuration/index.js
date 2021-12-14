@@ -92,7 +92,18 @@ export const ConfigurationPage = () => {
 									</Typography>
 								</Box>
 								{value.settings.map((val, index) => {
-									return <ConfigurationCard id={val.id} key={val.id + index} title={val.title} subText={val.subtext} hasSwitch={val.hasSwitch} />;
+									return (
+										<ConfigurationCard
+											id={val.id}
+											key={val.id + index}
+											title={val.title}
+											subText={val.subtext}
+											hasSwitch={val.hasSwitch}
+											hasDivider={val.hasDivider}
+											formContent={val.form}
+											doesHeaderHaveFormEdit={val.doesHeaderHaveFormEdit}
+										/>
+									);
 								})}
 							</>
 						))}

@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 export const configurationSchema = [
 	{
 		tabTitle: "Security",
@@ -12,6 +14,8 @@ export const configurationSchema = [
 						title: "Include Query Params for Cache Key",
 						subtext: "Examples of Firewall Rules",
 						hasSwitch: true,
+						doesHeaderHaveFormEdit: false,
+						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -20,6 +24,8 @@ export const configurationSchema = [
 						title: "Override No Cache Header",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						hasSwitch: true,
+						doesHeaderHaveFormEdit: false,
+						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -28,7 +34,30 @@ export const configurationSchema = [
 						title: "Cache Control Max Age",
 						subtext: "Desc Max Age Range",
 						hasSwitch: true,
-						form: null,
+						hasDivider: true,
+						form: [
+							{
+								id: "maxAgeForm",
+								handleSubmit: () => {},
+								initialValues: {},
+								validationSchema: {
+									maxAge: Yup.string().required("Please enter max age."),
+								},
+								isFormSingleField: true,
+								hasSaveCancelBtn: false,
+								hasEdit: true,
+								formType: "singleField",
+								formLabel: "Max Age",
+								fields: [
+									{
+										id: "maxAge",
+										label: "Max Age",
+										placeholder: "eg 50",
+										type: "text",
+									},
+								],
+							},
+						],
 						subSettings: [],
 					},
 					{
@@ -36,7 +65,53 @@ export const configurationSchema = [
 						title: "Cache Origin Custom Headers",
 						subtext: "Strict Transport Security",
 						hasSwitch: true,
-						form: null,
+						doesHeaderHaveFormEdit: false,
+						hasDivider: true,
+						form: [
+							{
+								id: "cacheOriginCustomHeadersForm",
+								handleSubmit: () => {},
+								initialValues: {},
+								validationSchema: {},
+								isFormSingleField: true,
+								hasSaveCancelBtn: true,
+								hasEdit: true,
+								formType: "multipleCheckbox",
+								formLabel: "Select headers",
+								fields: [
+									{
+										id: "xFrameOptions",
+										label: "X-Frame-Options",
+										type: "checkbox",
+									},
+									{
+										id: "contentSecurtyPolicy",
+										label: "Content-Securty-Policy",
+										type: "checkbox",
+									},
+									{
+										id: "referrerPolicy",
+										label: "Referrer-Policy",
+										type: "checkbox",
+									},
+									{
+										id: "pragma",
+										label: "Pragma",
+										type: "checkbox",
+									},
+									{
+										id: "xContentSecurityPolicy",
+										label: "X-Content-Security-Policy",
+										type: "checkbox",
+									},
+									{
+										id: "xXSSProtection",
+										label: "X-XSS-Protection",
+										type: "checkbox",
+									},
+								],
+							},
+						],
 						subSettings: [],
 					},
 				],
@@ -50,6 +125,8 @@ export const configurationSchema = [
 						title: "WAF Status",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						hasSwitch: true,
+						doesHeaderHaveFormEdit: false,
+						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -58,6 +135,8 @@ export const configurationSchema = [
 						title: "WAF Configuration",
 						subtext: "",
 						hasSwitch: true,
+						doesHeaderHaveFormEdit: false,
+						hasDivider: false,
 						form: null,
 						subSettings: [
 							{
@@ -73,7 +152,7 @@ export const configurationSchema = [
 								form: null,
 							},
 							{
-								id: "geolocation Configuration",
+								id: "geolocationConfiguration",
 								title: "Geolocation Configuration",
 								subtext: "Desc of Geolocation Configuration",
 								form: null,

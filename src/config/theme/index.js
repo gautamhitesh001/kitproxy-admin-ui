@@ -137,6 +137,9 @@ let theme = createTheme({
 		white: {
 			main: "#FFFFFF",
 		},
+		blue: {
+			main: "#5797EC",
+		},
 		error: { main: "#FB4E4E" },
 		badge: { main: "#FF2525" },
 		warning: { main: "#F6A609" },
