@@ -63,7 +63,9 @@ export const ConfigurationSettingForm = ({ formContent }) => {
 			formContent.fields.forEach((val) => {
 				resetObj[val.id] = "";
 			});
-			setSettingTags([...settingTags, values[valueId]]);
+			if (values[valueId]) {
+				setSettingTags([...settingTags, values[valueId]]);
+			}
 			resetForm({
 				values: resetObj,
 			});
