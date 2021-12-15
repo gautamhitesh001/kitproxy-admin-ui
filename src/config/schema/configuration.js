@@ -143,7 +143,46 @@ export const configurationSchema = [
 								id: "illegalFileTypeandPath",
 								title: "Illegal File Type and Path",
 								subtext: "Desc Illegal File Type",
-								form: null,
+								form: [
+									{
+										id: "illegalFileTypeForm",
+										handleSubmit: () => {},
+										initialValues: {},
+										validationSchema: {},
+										isFormSingleField: true,
+										hasSaveCancelBtn: true,
+										hasEdit: true,
+										formType: "singleFieldWithTags",
+										formLabel: "Illegal File Type",
+										fields: [
+											{
+												id: "illegalFileType",
+												label: "",
+												placeholder: "",
+												type: "textWithTags",
+											},
+										],
+									},
+									{
+										id: "illegalFilePathForm",
+										handleSubmit: () => {},
+										initialValues: {},
+										validationSchema: {},
+										isFormSingleField: true,
+										hasSaveCancelBtn: true,
+										hasEdit: true,
+										formType: "singleFieldWithTags",
+										formLabel: "Illegal File Path",
+										fields: [
+											{
+												id: "illegalFilePath",
+												label: "",
+												placeholder: "",
+												type: "textWithTags",
+											},
+										],
+									},
+								],
 							},
 							{
 								id: "whitelistPath",

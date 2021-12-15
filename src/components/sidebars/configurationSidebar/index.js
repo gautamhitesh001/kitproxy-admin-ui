@@ -57,7 +57,6 @@ export const ConfigurationSidebar = ({ content }) => {
 			})
 		);
 	}, [content]);
-	console.log(configMenuList);
 
 	const toggleExpandMenuItem = (menuIndex, submenuIndex, isSubmenuItem) => {
 		let tempMenuList = [...configMenuList];

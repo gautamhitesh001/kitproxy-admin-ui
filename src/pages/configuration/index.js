@@ -102,6 +102,7 @@ export const ConfigurationPage = () => {
 											hasDivider={val.hasDivider}
 											formContent={val.form}
 											doesHeaderHaveFormEdit={val.doesHeaderHaveFormEdit}
+											subSettings={val.subSettings}
 										/>
 									);
 								})}

@@ -1,5 +1,6 @@
 import { Typography, Stack, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 import PropTypes from "prop-types";
 import { ConfigurationSettingForm } from "../../forms";
 import { CustomSwitch } from "../../switches";
@@ -17,17 +18,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, formContent, doesHeaderHaveFormEdit }) => {
+export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, formContent, subSettings }) => {
 	const classes = useStyles();
 
 	return (
 		<Stack id={id} direction="column" className={classes.container}>
-			<Typography variant="h6" fontWeight={600} color="grey.500">
-				{title}
-			</Typography>
 			<Stack direction="row" justifyContent="space-between">
-				<Typography mt={2} variant="subtitle1" width="65%" color="secondary.60">
-					{subText}
+				<Typography variant="h6" width="65%" fontWeight={600} color="grey.500">
+					{title}
 				</Typography>
 				{hasSwitch ? (
 					<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
@@ -35,6 +33,9 @@ export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, f
 					</Stack>
 				) : null}
 			</Stack>
+			<Typography variant="subtitle1" color="secondary.60">
+				{subText}
+			</Typography>
 			{!hasDivider ? null : <Divider className={classes.divider} />}
 			{!formContent ? null : (
 				<Stack spacing="32px" direction="column">
@@ -43,6 +44,28 @@ export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, f
 					))}
 				</Stack>
 			)}
+			{subSettings.length > 0
+				? subSettings.map((setting, index) => (
+						<Box id={setting.id} key={setting.id}>
+							<Stack direction="column">
+								<Typography variant="h6" fontWeight={600} color="grey.500">
+									{setting.title}
+								</Typography>
+								<Typography mt={2} variant="subtitle1" color="secondary.60">
+									{setting.subtext}
+								</Typography>
+								{!setting.form ? null : (
+									<Stack mt={3} spacing="32px" direction="column">
+										{setting.form.map((value) => (
+											<ConfigurationSettingForm key={value.id} formContent={value} />
+										))}
+									</Stack>
+								)}
+							</Stack>
+							{index < subSettings.length - 1 ? <Divider className={classes.divider} /> : null}
+						</Box>
+				  )) // eslint-disable-line no-mixed-spaces-and-tabs
+				: null}
 		</Stack>
 	);
 };
@@ -52,7 +75,7 @@ ConfigurationCard.propTypes = {
 	subText: PropTypes.string,
 	hasSwitch: PropTypes.bool,
 	hasDivider: PropTypes.bool,
-	doesHeaderHaveFormEdit: PropTypes.bool,
 	id: PropTypes.string,
 	formContent: PropTypes.array,
+	subSettings: PropTypes.array,
 };

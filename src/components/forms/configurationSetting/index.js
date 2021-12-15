@@ -1,10 +1,10 @@
 import { ButtonBase, Stack, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Field, Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
-import { ConfigInput } from "../../inputs/configInput";
+import { ConfigInput, ConfigInputWithTags } from "../../inputs";
 import PropTypes from "prop-types";
 import { Box } from "@mui/system";
 
@@ -42,10 +42,40 @@ export const ConfigurationSettingForm = ({ formContent }) => {
 	const schema = Yup.object().shape();
 
 	const [isActive, setIsActive] = useState(false);
+	const [settingTags, setSettingTags] = useState([]);
 
-	const onFormSubmit = ({ values }) => {
+	useEffect(() => {
+		return () => {
+			setSettingTags([]);
+			setIsActive(false);
+		};
+	}, []);
+
+	useEffect(() => {
+		console.log(settingTags);
+	}, [settingTags]);
+
+	const onFormSubmit = (values, { resetForm }) => {
 		// handleFormSubmit();
+		if (formContent.formType === "singleFieldWithTags") {
+			let valueId = formContent.fields[0].id;
+			let resetObj = {};
+			formContent.fields.forEach((val) => {
+				resetObj[val.id] = "";
+			});
+			setSettingTags([...settingTags, values[valueId]]);
+			resetForm({
+				values: resetObj,
+			});
+		}
+
 		setIsActive(false);
+	};
+
+	const removeTag = (index) => {
+		let tempArr = [...settingTags];
+		tempArr.splice(index, 1);
+		setSettingTags(tempArr);
 	};
 
 	const handleCancel = () => {
@@ -53,17 +83,17 @@ export const ConfigurationSettingForm = ({ formContent }) => {
 	};
 
 	return (
-		<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={{ url: "" }}>
-			{({ handleChange, handleBlur, values, touched, isValid, errors, isSubmitting, setFieldValue }) => {
+		<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={{}}>
+			{({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors, isSubmitting, setFieldValue }) => {
 				return (
-					<Form>
-						{formContent.formType === "singleField" ? (
+					<form onSubmit={handleSubmit}>
+						{formContent.formType === "singleField" || formContent.formType === "singleFieldWithTags" ? (
 							<Stack
 								direction={formContent.hasSaveCancelBtn ? "column" : "row"}
 								alignItems={formContent.hasSaveCancelBtn ? "flex-start" : "flex-end"}
 								justifyContent="space-between"
 							>
-								<Stack direction="row" alignItems="center" flexGrow={1} width="100%" maxWidth="65%">
+								<Stack direction="row" alignItems="center" flexGrow={1} width="100%">
 									{formContent.fields.map((val) => (
 										<Stack key={val.id} width="100%" direction="column">
 											<Stack direction="row">
@@ -94,11 +124,38 @@ export const ConfigurationSettingForm = ({ formContent }) => {
 													placeholder={val.placeholder}
 													disabled={!isActive}
 												/>
+											) : val.type === "textWithTags" ? (
+												<ConfigInputWithTags
+													id={val.id}
+													onChange={handleChange}
+													onBlur={handleBlur}
+													name={val.id}
+													value={values[val.id]}
+													error={touched[val.id] && Boolean(errors[val.id])}
+													helperText={touched[val.id] ? errors[val.id] : ""}
+													placeholder={val.placeholder}
+													disabled={!isActive}
+													tagsArray={settingTags}
+													removeTag={removeTag}
+													isActive={isActive}
+												/>
 											) : null}
 										</Stack>
 									))}
 								</Stack>
-								<ConfigSaveButton variant="contained" disabled={!isActive} type="submit" btnText="Save" />
+								<Box mr={3} />
+
+								{formContent.hasSaveCancelBtn ? (
+									isActive ? (
+										<Stack width="100%" mt={2} direction="row" justifyContent="right">
+											<ConfigSaveButton variant="outlined" onClick={handleCancel} btnText="cancel" />
+											<Box mr={2} />
+											<ConfigSaveButton variant="contained" type="submit" btnText="Save" />
+										</Stack>
+									) : null
+								) : (
+									<ConfigSaveButton variant="contained" disabled={!isActive} type="submit" btnText="Save" />
+								)}
 							</Stack>
 						) : formContent.formType === "multipleCheckbox" ? (
 							<Stack
@@ -143,7 +200,7 @@ export const ConfigurationSettingForm = ({ formContent }) => {
 								) : null}
 							</Stack>
 						) : null}
-					</Form>
+					</form>
 				);
 			}}
 		</Formik>
