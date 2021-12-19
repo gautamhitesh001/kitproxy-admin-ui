@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.white.main,
 		borderRadius: 8,
 		marginTop: 8,
+		marginBottom: 8,
 	},
 }));
 
@@ -79,14 +80,14 @@ export const ConfigurationPage = () => {
 				<Grid item xs={9}>
 					<Stack direction="row" spacing="2px">
 						{configurationTabs.map((val, index) => (
-							<TabButton index={val.index} handleTabChange={handleTabChange} label={val.label} isTabActive={val.index === activeTab} key={val + index} />
+							<TabButton index={val.index} handleTabChange={handleTabChange} label={val.label} isTabActive={val.index === activeTab} key={val.index + index} />
 						))}
 					</Stack>
 
 					<Stack direction="column" spacing={1} className={classes.configContainer}>
 						{tabContent.map((value, index) => (
-							<>
-								<Box id={value.id} key={value.id + index} className={classes.titleContainer}>
+							<div key={value.id + index}>
+								<Box id={value.id} className={classes.titleContainer}>
 									<Typography variant="h6" color="secondary.90">
 										{value.label}
 									</Typography>
@@ -98,15 +99,12 @@ export const ConfigurationPage = () => {
 											key={val.id + index}
 											title={val.title}
 											subText={val.subtext}
-											hasSwitch={val.hasSwitch}
-											hasDivider={val.hasDivider}
 											formContent={val.form}
-											doesHeaderHaveFormEdit={val.doesHeaderHaveFormEdit}
 											subSettings={val.subSettings}
 										/>
 									);
 								})}
-							</>
+							</div>
 						))}
 					</Stack>
 				</Grid>

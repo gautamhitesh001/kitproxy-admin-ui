@@ -2,7 +2,6 @@ import { Typography, Stack, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import PropTypes from "prop-types";
-import { ConfigurationSettingForm } from "../../forms";
 import { CustomSwitch } from "../../switches";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: 24,
 		backgroundColor: theme.palette.white.main,
 		borderRadius: 8,
+		marginBottom: 8,
 	},
 	divider: {
 		marginTop: "24px !important",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, formContent, subSettings }) => {
+export const ConfigurationCard = ({ id, title, subText, formContent, subSettings }) => {
 	const classes = useStyles();
 
 	return (
@@ -27,23 +27,23 @@ export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, f
 				<Typography variant="h6" width="65%" fontWeight={600} color="grey.500">
 					{title}
 				</Typography>
-				{hasSwitch ? (
-					<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
-						<CustomSwitch />
-					</Stack>
-				) : null}
+				<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
+					<CustomSwitch />
+				</Stack>
 			</Stack>
 			<Typography variant="subtitle1" color="secondary.60">
 				{subText}
 			</Typography>
-			{!hasDivider ? null : <Divider className={classes.divider} />}
 			{!formContent ? null : (
-				<Stack spacing="32px" direction="column">
-					{formContent.map((value) => (
-						<ConfigurationSettingForm key={value.id} formContent={value} />
-					))}
-				</Stack>
+				<Box mt={3}>
+					<Stack spacing="32px" direction="column">
+						{formContent.map((value) => (
+							<Box key={value.id}>{value.form}</Box>
+						))}
+					</Stack>
+				</Box>
 			)}
+
 			{subSettings.length > 0
 				? subSettings.map((setting, index) => (
 						<Box id={setting.id} key={setting.id}>
@@ -57,7 +57,7 @@ export const ConfigurationCard = ({ id, title, subText, hasSwitch, hasDivider, f
 								{!setting.form ? null : (
 									<Stack mt={3} spacing="32px" direction="column">
 										{setting.form.map((value) => (
-											<ConfigurationSettingForm key={value.id} formContent={value} />
+											<Box key={value.id}>{value.form}</Box>
 										))}
 									</Stack>
 								)}

@@ -73,7 +73,7 @@ export const ConfigurationSidebar = ({ content }) => {
 			<ConfigurationSidebarSearch />
 			<Stack direction="column" spacing={3} className={classes.configListWrapper}>
 				{configMenuList.map((val, index) => (
-					<div key={val.name + index}>
+					<Box key={val.name + index}>
 						<ButtonBase onClick={() => toggleExpandMenuItem(index, null, false)} classes={{ root: classes.menuItemBtn }} disableRipple disableTouchRipple>
 							<a className={classes.anchorTag} href={"#" + val.id}>
 								<Stack direction="row" alignItems="center">
@@ -90,8 +90,8 @@ export const ConfigurationSidebar = ({ content }) => {
 									{val.submenu.map((item, itemIndex) => {
 										if (item.submenuItems.length > 0) {
 											return (
-												<>
-													<a key={item.id + index} className={classes.anchorTag}>
+												<div key={item.id + index}>
+													<a className={classes.anchorTag}>
 														<ButtonBase
 															onClick={() => toggleExpandMenuItem(index, itemIndex, true)}
 															classes={{ root: classes.menuItemBtn }}
@@ -107,7 +107,7 @@ export const ConfigurationSidebar = ({ content }) => {
 														</ButtonBase>
 													</a>
 													<Collapse in={item.isExpanded} timeout="auto" unmountOnExit>
-														<Stack paddingLeft={3} direction="column" spacing={3}>
+														<Stack mt={3} paddingLeft={3} direction="column" spacing={3}>
 															{item.submenuItems.map((subitem) => (
 																<a className={classes.anchorTag} key={subitem.id + index} href={"#" + subitem.id}>
 																	<Typography variant="subtitle1">{subitem.name}</Typography>
@@ -115,7 +115,7 @@ export const ConfigurationSidebar = ({ content }) => {
 															))}
 														</Stack>
 													</Collapse>
-												</>
+												</div>
 											);
 										}
 										return (
@@ -128,7 +128,7 @@ export const ConfigurationSidebar = ({ content }) => {
 							</Collapse>
 						</Box>
 						{index < configMenuList.length - 1 ? <Divider /> : null}
-					</div>
+					</Box>
 				))}
 			</Stack>
 		</div>

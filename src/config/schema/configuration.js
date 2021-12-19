@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { ConfigurationMultiCheckboxForm, ConfigurationSingleTextFieldForm, ConfigurationSingleTextFieldWithTagsForm } from "../../components/forms";
 
 export const configurationSchema = [
 	{
@@ -13,9 +14,6 @@ export const configurationSchema = [
 						id: "queryParamsCacheKey",
 						title: "Include Query Params for Cache Key",
 						subtext: "Examples of Firewall Rules",
-						hasSwitch: true,
-						doesHeaderHaveFormEdit: false,
-						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -23,9 +21,6 @@ export const configurationSchema = [
 						id: "overrideNoCacheHeader",
 						title: "Override No Cache Header",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
-						hasSwitch: true,
-						doesHeaderHaveFormEdit: false,
-						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -33,29 +28,21 @@ export const configurationSchema = [
 						id: "cacheControlMaxAge",
 						title: "Cache Control Max Age",
 						subtext: "Desc Max Age Range",
-						hasSwitch: true,
-						hasDivider: true,
 						form: [
 							{
 								id: "maxAgeForm",
-								handleSubmit: () => {},
-								initialValues: {},
-								validationSchema: {
-									maxAge: Yup.string().required("Please enter max age."),
-								},
-								isFormSingleField: true,
-								hasSaveCancelBtn: false,
-								hasEdit: true,
-								formType: "singleField",
-								formLabel: "Max Age",
-								fields: [
-									{
-										id: "maxAge",
-										label: "Max Age",
-										placeholder: "eg 50",
-										type: "text",
-									},
-								],
+								form: (
+									<ConfigurationSingleTextFieldForm
+										inputId="maxAge"
+										inputLabel="Max Age"
+										inputPlaceholder="eg 50"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											maxAge: Yup.string().required("Please enter max age."),
+										}}
+									/>
+								),
 							},
 						],
 						subSettings: [],
@@ -64,54 +51,52 @@ export const configurationSchema = [
 						id: "cacheOriginCustomHeaders",
 						title: "Cache Origin Custom Headers",
 						subtext: "Strict Transport Security",
-						hasSwitch: true,
-						doesHeaderHaveFormEdit: false,
-						hasDivider: true,
 						form: [
 							{
 								id: "cacheOriginCustomHeadersForm",
-								handleSubmit: () => {},
-								initialValues: {},
-								validationSchema: {},
-								isFormSingleField: true,
-								hasSaveCancelBtn: true,
-								hasEdit: true,
-								formType: "multipleCheckbox",
-								formLabel: "Select headers",
-								fields: [
-									{
-										id: "xFrameOptions",
-										label: "X-Frame-Options",
-										type: "checkbox",
-									},
-									{
-										id: "contentSecurtyPolicy",
-										label: "Content-Securty-Policy",
-										type: "checkbox",
-									},
-									{
-										id: "referrerPolicy",
-										label: "Referrer-Policy",
-										type: "checkbox",
-									},
-									{
-										id: "pragma",
-										label: "Pragma",
-										type: "checkbox",
-									},
-									{
-										id: "xContentSecurityPolicy",
-										label: "X-Content-Security-Policy",
-										type: "checkbox",
-									},
-									{
-										id: "xXSSProtection",
-										label: "X-XSS-Protection",
-										type: "checkbox",
-									},
-								],
+								form: (
+									<ConfigurationMultiCheckboxForm
+										inputLabel="Select headers"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{}}
+										checkboxFields={[
+											{
+												id: "xFrameOptions",
+												label: "X-Frame-Options",
+												type: "checkbox",
+											},
+											{
+												id: "contentSecurtyPolicy",
+												label: "Content-Securty-Policy",
+												type: "checkbox",
+											},
+											{
+												id: "referrerPolicy",
+												label: "Referrer-Policy",
+												type: "checkbox",
+											},
+											{
+												id: "pragma",
+												label: "Pragma",
+												type: "checkbox",
+											},
+											{
+												id: "xContentSecurityPolicy",
+												label: "X-Content-Security-Policy",
+												type: "checkbox",
+											},
+											{
+												id: "xXSSProtection",
+												label: "X-XSS-Protection",
+												type: "checkbox",
+											},
+										]}
+									/>
+								),
 							},
 						],
+
 						subSettings: [],
 					},
 				],
@@ -124,9 +109,6 @@ export const configurationSchema = [
 						id: "wafStatus",
 						title: "WAF Status",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
-						hasSwitch: true,
-						doesHeaderHaveFormEdit: false,
-						hasDivider: false,
 						form: null,
 						subSettings: [],
 					},
@@ -134,9 +116,6 @@ export const configurationSchema = [
 						id: "wafConfiguration",
 						title: "WAF Configuration",
 						subtext: "",
-						hasSwitch: true,
-						doesHeaderHaveFormEdit: false,
-						hasDivider: false,
 						form: null,
 						subSettings: [
 							{
@@ -146,41 +125,33 @@ export const configurationSchema = [
 								form: [
 									{
 										id: "illegalFileTypeForm",
-										handleSubmit: () => {},
-										initialValues: {},
-										validationSchema: {},
-										isFormSingleField: true,
-										hasSaveCancelBtn: true,
-										hasEdit: true,
-										formType: "singleFieldWithTags",
-										formLabel: "Illegal File Type",
-										fields: [
-											{
-												id: "illegalFileType",
-												label: "",
-												placeholder: "",
-												type: "textWithTags",
-											},
-										],
+										form: (
+											<ConfigurationSingleTextFieldWithTagsForm
+												inputId="illegalFileType"
+												inputLabel="Illegal File Type"
+												inputPlaceholder=""
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													illegalFileType: Yup.string().required("Please enter value."),
+												}}
+											/>
+										),
 									},
 									{
 										id: "illegalFilePathForm",
-										handleSubmit: () => {},
-										initialValues: {},
-										validationSchema: {},
-										isFormSingleField: true,
-										hasSaveCancelBtn: true,
-										hasEdit: true,
-										formType: "singleFieldWithTags",
-										formLabel: "Illegal File Path",
-										fields: [
-											{
-												id: "illegalFilePath",
-												label: "",
-												placeholder: "",
-												type: "textWithTags",
-											},
-										],
+										form: (
+											<ConfigurationSingleTextFieldWithTagsForm
+												inputId="illegalFilePath"
+												inputLabel="Illegal File Path"
+												inputPlaceholder=""
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													illegalFilePath: Yup.string().required("Please enter value."),
+												}}
+											/>
+										),
 									},
 								],
 							},
