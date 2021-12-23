@@ -50,7 +50,7 @@ export const configurationSchema = [
 					{
 						id: "cacheOriginCustomHeaders",
 						title: "Cache Origin Custom Headers",
-						subtext: "Strict Transport Security",
+						subtext: "",
 						form: [
 							{
 								id: "cacheOriginCustomHeadersForm",
@@ -61,36 +61,13 @@ export const configurationSchema = [
 										submitFunc={() => {}}
 										validationSchema={{}}
 										checkboxFields={[
-											{
-												id: "xFrameOptions",
-												label: "X-Frame-Options",
-												type: "checkbox",
-											},
-											{
-												id: "contentSecurtyPolicy",
-												label: "Content-Securty-Policy",
-												type: "checkbox",
-											},
-											{
-												id: "referrerPolicy",
-												label: "Referrer-Policy",
-												type: "checkbox",
-											},
-											{
-												id: "pragma",
-												label: "Pragma",
-												type: "checkbox",
-											},
-											{
-												id: "xContentSecurityPolicy",
-												label: "X-Content-Security-Policy",
-												type: "checkbox",
-											},
-											{
-												id: "xXSSProtection",
-												label: "X-XSS-Protection",
-												type: "checkbox",
-											},
+											"Strict-Transport-Security",
+											"X-Frame-Options",
+											"Content-Securty-Policy",
+											"Referrer-Policy",
+											"Pragma",
+											"X-Content-Security-Policy",
+											"X-XSS-Protection",
 										]}
 									/>
 								),

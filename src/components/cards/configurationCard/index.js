@@ -31,9 +31,12 @@ export const ConfigurationCard = ({ id, title, subText, formContent, subSettings
 					<CustomSwitch />
 				</Stack>
 			</Stack>
-			<Typography variant="subtitle1" color="secondary.60">
-				{subText}
-			</Typography>
+			{subText !== "" ? (
+				<Typography variant="subtitle1" color="secondary.60">
+					{subText}
+				</Typography>
+			) : null}
+
 			{!formContent ? null : (
 				<Box mt={3}>
 					<Stack spacing="32px" direction="column">

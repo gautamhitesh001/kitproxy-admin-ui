@@ -22,7 +22,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 
 	const onFormSubmit = (values, { resetForm }) => {
 		if (values[inputId]) {
-			setSettingTags([...settingTags, values[inputId]]);
+			setSettingTags(values[inputId].split(",").map((val) => val.trim()));
 		}
 		resetForm({
 			values: { [inputId]: "" },
@@ -35,6 +35,12 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 		let tempArr = [...settingTags];
 		tempArr.splice(index, 1);
 		setSettingTags(tempArr);
+	};
+
+	const handleEdit = (setFieldValue) => {
+		setIsActive(true);
+		setFieldValue(inputId, settingTags.join(","));
+		setSettingTags([]);
 	};
 
 	return (
@@ -51,7 +57,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 									disableRipple
 									disableTouchRipple
 									onClick={() => {
-										setIsActive(true);
+										handleEdit(setFieldValue);
 									}}
 								>
 									<Typography ml={2} fontWeight={700} color="blue.main">

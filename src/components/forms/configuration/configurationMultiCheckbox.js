@@ -38,6 +38,10 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 		};
 	}, []);
 
+	const getCheckboxId = (name) => {
+		return name.split("-").join("");
+	};
+
 	const onFormSubmit = (values) => {
 		submitFunc();
 		setIsActive(false);
@@ -71,11 +75,11 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 							</Stack>
 							<Grid spacing={2} container mt={1}>
 								{checkboxFields.map((value) => (
-									<Grid key={value.id} item xs={6}>
+									<Grid key={getCheckboxId(value)} item xs={6}>
 										<Stack className={classes.checkboxWrapper} alignItems="center" direction="row">
-											<Field disabled={!isActive} className={classes.checkBox} type={value.type} name={value.id} />
+											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} />
 											<Typography color="grey.500" ml={2}>
-												{value.label}
+												{value}
 											</Typography>
 										</Stack>
 									</Grid>
