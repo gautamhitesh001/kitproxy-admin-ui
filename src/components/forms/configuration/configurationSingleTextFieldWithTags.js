@@ -22,7 +22,12 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 
 	const onFormSubmit = (values, { resetForm }) => {
 		if (values[inputId]) {
-			setSettingTags(values[inputId].split(",").map((val) => val.trim()));
+			setSettingTags(
+				values[inputId]
+					.split(",")
+					.map((val) => val.trim())
+					.filter((val) => val)
+			);
 		}
 		resetForm({
 			values: { [inputId]: "" },
@@ -74,7 +79,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 									name={inputId}
 									value={values[inputId]}
 									error={Boolean(errors[inputId])}
-									helperText={errors[inputId] ? errors[inputId] : ""}
+									helperText={errors[inputId] ? errors[inputId] : "Please seperate values with commas"}
 									placeholder={inputPlaceholder}
 									disabled={!isActive}
 									tagsArray={settingTags}

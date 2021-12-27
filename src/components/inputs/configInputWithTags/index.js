@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
 				"-webkit-text-fill-color": "#898F98 !important",
 			},
 		},
+		"& MuiFormHelperText-root.Mui-disabled": {
+			color: "#52575C",
+		},
 	},
 	tagWrapper: {
 		backgroundColor: "#F5F9FE",
