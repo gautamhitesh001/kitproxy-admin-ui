@@ -88,6 +88,7 @@ export const Login = () => {
 							/>
 							<Typography variant="initial" alignSelf="flex-end">
 								<Link
+									id="forgotPasswordRedirect"
 									component="button"
 									type="button"
 									variant="initial"
