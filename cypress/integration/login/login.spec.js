@@ -26,9 +26,9 @@ describe("login Page", () => {
 
 	it("check redirect to signup", () => {
 		cy.get("#signupRedirect").click();
-		console.log("path",cy.location("pathname"))
-		cy.location().should((loc)=>{
-			expect(loc.pathname).to.eq("/register")
-		})
+		console.log("path", cy.location("pathname"));
+		cy.location().should((loc) => {
+			expect(loc.pathname).to.eq("/register");
+		});
 	});
 });
