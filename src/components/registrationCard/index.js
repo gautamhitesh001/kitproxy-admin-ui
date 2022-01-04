@@ -26,10 +26,10 @@ export const RegistrationCard = ({ children, headingText, subTextComponent, cont
 	const classes = useStyles();
 
 	return (
-		<Grid container direction="column" className={classes.container}>
+		<Grid id="registerationLayoutPage" container direction="column" className={classes.container}>
 			<img className={classes.logoImg} src={ui_kitsuneLogoMain} alt="logo" />
 			<Box display="flex" alignItems="center" flexDirection="column" flexGrow={1} width="100%">
-				<Typography variant="h3" color="secondary.100">
+				<Typography id="headingText" variant="h3" color="secondary.100">
 					{headingText}
 				</Typography>
 				{subTextComponent ? subTextComponent : null}
