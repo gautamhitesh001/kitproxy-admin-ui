@@ -95,7 +95,7 @@ export const ConfigurationMultiselectWithTags = ({ inputId, extraHeader, inputPl
 					<form onSubmit={handleSubmit}>
 						<Stack width="100%" direction="column">
 							<Stack direction="row" alignItems="flex-start" justifyContent="space-between" flexWrap="wrap" width="100%">
-								<FormControl sx={{width:600 }}>
+								<FormControl sx={{ width: 600 }}>
 									<ConfigMultiSelect
 										multiple
 										fullWidth
