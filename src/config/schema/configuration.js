@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import { ConfigurationMultiCheckboxForm, ConfigurationSingleTextFieldForm, ConfigurationSingleTextFieldWithTagsForm } from "../../components/forms";
+import { ConfigurationMultiselectWithTags } from "../../components/forms/configuration/configurationMultiselectWithTags";
 
 export const configurationSchema = [
 	{
@@ -142,7 +143,26 @@ export const configurationSchema = [
 								id: "geolocationConfiguration",
 								title: "Geolocation Configuration",
 								subtext: "Desc of Geolocation Configuration",
-								form: null,
+								form: [
+									{
+										id: "geoLocationForm",
+										form: (
+											<ConfigurationMultiselectWithTags
+												inputId="countryInput"
+												inputLabel=""
+												inputPlaceholder="Add Countries"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={
+													{
+														// illegalFileType: Yup.string().required("Please enter value."),
+													}
+												}
+												extraHeader="Countries Added"
+											/>
+										),
+									},
+								],
 							},
 						],
 					},
