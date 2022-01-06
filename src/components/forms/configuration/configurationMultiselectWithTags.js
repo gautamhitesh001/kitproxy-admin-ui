@@ -1,4 +1,4 @@
-import { ButtonBase, FormControl, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
+import { ButtonBase, Chip, FormControl, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 import { Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -116,7 +116,13 @@ export const ConfigurationMultiselectWithTags = ({ inputId, extraHeader, inputPl
 												);
 											}
 
-											return selected.join(",");
+											return (
+												<Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+													{
+														selected.map((value) => <Chip key={value} label={value} />)
+													}
+												</Box>
+											);
 										}}
 										error={Boolean(errors[inputId])}
 										helperText={errors[inputId] ? errors[inputId] : ""}
