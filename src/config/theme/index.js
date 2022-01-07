@@ -139,6 +139,7 @@ let theme = createTheme({
 			main: "#FFFFFF",
 		},
 		blue: {
+			50: "#F5F9FE",
 			main: "#5797EC",
 		},
 		error: { main: "#FB4E4E" },

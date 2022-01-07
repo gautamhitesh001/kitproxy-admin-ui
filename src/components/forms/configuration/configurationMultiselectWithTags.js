@@ -25,7 +25,7 @@ const MenuProps = {
 
 const useStyles = makeStyles((theme) => ({
 	tagWrapper: {
-		backgroundColor: "#F5F9FE",
+		backgroundColor: theme.palette.blue["50"],
 		borderRadius: 4,
 		padding: 8,
 		marginRight: 4,
