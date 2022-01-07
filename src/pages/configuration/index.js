@@ -6,7 +6,6 @@ import { ButtonBase, Grid, Stack, Typography } from "@mui/material";
 import { TabButton } from "../../components/buttons/tabButton";
 import { ConfigurationSidebar } from "../../components/sidebars/configurationSidebar";
 import { ConfigurationCard } from "../../components/cards";
-import { ConfigAddUserAgent, ConfigGeoLocationLockingForm, ConfigIpv4, ConfigRateLimitingForm } from "../../components/forms";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";

@@ -1,5 +1,10 @@
 import * as Yup from "yup";
-import { ConfigurationMultiCheckboxForm, ConfigurationSingleTextFieldForm, ConfigurationSingleTextFieldWithTagsForm } from "../../components/forms";
+import {
+	ConfigurationMultiCheckboxForm,
+	ConfigurationSingleTextFieldForm,
+	ConfigurationSingleTextFieldwithListForm,
+	ConfigurationSingleTextFieldWithTagsForm,
+} from "../../components/forms";
 import { ConfigurationMultiselectWithTags } from "../../components/forms/configuration/configurationMultiselectWithTags";
 
 export const configurationSchema = [
@@ -135,9 +140,24 @@ export const configurationSchema = [
 							},
 							{
 								id: "whitelistPath",
-								title: "Whitelist Path",
-								subtext: "Desc Whitelist Path",
-								form: null,
+								title: "Whitelisted Paths",
+								subtext: "Description for Whitelisted Paths comes here",
+								form: [
+									{
+										id: "whitelistedPathForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												inputId="pathName"
+												inputPlaceholder="Add path"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
 							},
 							{
 								id: "geolocationConfiguration",
