@@ -147,6 +147,7 @@ export const configurationSchema = [
 										id: "whitelistedPathForm",
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
 												inputId="pathName"
 												inputPlaceholder="Add path"
 												initValues={{}}

@@ -8,6 +8,7 @@ import { Box, width } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { icon_trash } from "../../../config/Constants";
 import { useState } from "react";
+import { ConfigurationModal } from "../../modals";
 
 const useStyles = makeStyles((theme) => ({
 	listItem: {
@@ -27,6 +28,9 @@ const WhiteListedPathListItem = ({ value, index, removeWhiteListPath }) => {
 	const [isEditable, setIsEditable] = useState(false);
 	return (
 		<Stack direction="row" alignItems="center" className={classes.listItem}>
+			<Typography mr={3} color="black.90">
+				{("0" + (index + 1).toString()).slice(-2)}
+			</Typography>
 			{isEditable ? (
 				<ConfigInput autoFocus={true} onBlur={() => setIsEditable(false)} fullWidth defaultValue={value} />
 			) : (
@@ -44,10 +48,11 @@ const WhiteListedPathListItem = ({ value, index, removeWhiteListPath }) => {
 	);
 };
 
-export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceholder, submitFunc, initValues, validationSchema }) => {
+export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceholder, title, submitFunc, initValues, validationSchema }) => {
 	const schema = Yup.object().shape(validationSchema);
 
 	const [whiteListedPaths, setWhiteListedPaths] = useState([]);
+	const [showlistModal, setShowlistModal] = useState(false);
 
 	const onFormSubmit = (values, { resetForm, setSubmitting }) => {
 		setWhiteListedPaths([...whiteListedPaths, values[inputId]]);
@@ -87,9 +92,38 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 							</Stack>
 						</Stack>
 						<Stack mt={2} spacing={1} direction="column">
-							{whiteListedPaths.map((val, index) => (
-								<WhiteListedPathListItem key={val} value={val} index={index} removeWhiteListPath={removeWhiteListPath} />
-							))}
+							{whiteListedPaths
+								.filter((val, index) => index < 3)
+								.map((val, index) => (
+									<WhiteListedPathListItem key={val} value={val} index={index} removeWhiteListPath={removeWhiteListPath} />
+								))}
+							<Stack direction="row">
+								<Typography flexGrow={1} color="grey.500">
+									{"Showing " + whiteListedPaths.filter((val, index) => index < 3).length + "/" + whiteListedPaths.length}
+								</Typography>
+								{whiteListedPaths.length > 3 ? (
+									<ButtonBase
+										disableRipple
+										disableTouchRipple
+										onClick={() => {
+											setShowlistModal(true);
+										}}
+									>
+										<Typography ml={2} fontWeight={700} color="blue.main">
+											View all
+										</Typography>
+									</ButtonBase>
+								) : null}
+							</Stack>
+							{showlistModal ? (
+								<ConfigurationModal title={title} open={showlistModal} handleClose={() => setShowlistModal(false)}>
+									<Stack mt={2} spacing={1} direction="column">
+										{whiteListedPaths.map((val, index) => (
+											<WhiteListedPathListItem key={val} value={val} index={index} removeWhiteListPath={removeWhiteListPath} />
+										))}
+									</Stack>
+								</ConfigurationModal>
+							) : null}
 						</Stack>
 					</form>
 				);
@@ -106,6 +140,7 @@ WhiteListedPathListItem.propTypes = {
 
 ConfigurationSingleTextFieldwithListForm.propTypes = {
 	inputId: PropTypes.string,
+	title: PropTypes.string,
 	inputPlaceholder: PropTypes.string,
 	submitFunc: PropTypes.func,
 	validationSchema: PropTypes.object,
