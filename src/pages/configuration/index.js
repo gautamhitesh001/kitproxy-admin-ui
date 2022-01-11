@@ -9,6 +9,7 @@ import { ConfigurationCard } from "../../components/cards";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
+import { getConfigurationSettings } from "../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -47,6 +48,7 @@ export const ConfigurationPage = () => {
 
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
+		dispatch(getConfigurationSettings());
 	}, []);
 
 	useEffect(() => {
