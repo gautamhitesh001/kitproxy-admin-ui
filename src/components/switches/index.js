@@ -67,8 +67,8 @@ const Root = styled("span")`
 	}
 `;
 
-export const CustomSwitch = () => {
+export const CustomSwitch = (props) => {
 	const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
-	return <SwitchUnstyled component={Root} {...label} />;
+	return <SwitchUnstyled component={Root} {...label} {...props} />;
 };

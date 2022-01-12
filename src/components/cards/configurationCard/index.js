@@ -1,7 +1,11 @@
 import { Typography, Stack, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
+import { get } from "lodash";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateConfigurationSetting } from "../../../appRedux/actions";
 import { CustomSwitch } from "../../switches";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,17 +22,51 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationCard = ({ id, title, subText, formContent, subSettings }) => {
+export const ConfigurationCard = ({ id, parentId, switchId, title, subText, formContent, subSettings, isSwitchBoolean, hasSettingParent, settingParentId }) => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+
+	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+
+	const handleSwitchChange = (e) => {
+		let data = hasSettingParent ? get(configurationSettings, [settingParentId]) : get(configurationSettings, [parentId]);
+		let switchValue = isSwitchBoolean ? e.target.checked : e.target.checked ? "enabled" : "disabled";
+		if (hasSettingParent) {
+			data[parentId][switchId] = switchValue;
+		} else {
+			data[switchId] = switchValue;
+		}
+
+		dispatch(updateConfigurationSetting(configurationSettings, hasSettingParent ? settingParentId : parentId, data));
+	};
+
+	const showSwitch = () => {
+		return hasSettingParent
+			? configurationSettings &&
+					configurationSettings[settingParentId] &&
+					configurationSettings[settingParentId][parentId] &&
+					configurationSettings[settingParentId][parentId][switchId]
+			: configurationSettings && configurationSettings[parentId] && configurationSettings[parentId][switchId];
+	};
+
+	const getSwitchValue = () => {
+		return hasSettingParent
+			? isSwitchBoolean
+				? configurationSettings[settingParentId][parentId][switchId]
+				: configurationSettings[settingParentId][parentId][switchId] === "enabled"
+			: isSwitchBoolean
+			? configurationSettings[parentId][switchId]
+			: configurationSettings[parentId][switchId] === "enabled";
+	};
 
 	return (
 		<Stack id={id} direction="column" className={classes.container}>
 			<Stack direction="row" justifyContent="space-between">
-				<Typography variant="h6" width="65%" fontWeight={600} color="grey.500">
+				<Typography mb={3} variant="h6" width="65%" fontWeight={600} color="grey.500">
 					{title}
 				</Typography>
 				<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
-					<CustomSwitch />
+					{showSwitch() ? <CustomSwitch onChange={handleSwitchChange} checked={getSwitchValue()} /> : null}
 				</Stack>
 			</Stack>
 			{subText !== "" ? (
@@ -76,9 +114,13 @@ export const ConfigurationCard = ({ id, title, subText, formContent, subSettings
 ConfigurationCard.propTypes = {
 	title: PropTypes.string,
 	subText: PropTypes.string,
-	hasSwitch: PropTypes.bool,
 	hasDivider: PropTypes.bool,
 	id: PropTypes.string,
+	parentId: PropTypes.string,
+	switchId: PropTypes.string,
+	isSwitchBoolean: PropTypes.bool,
 	formContent: PropTypes.array,
 	subSettings: PropTypes.array,
+	hasSettingParent: PropTypes.bool,
+	settingParentId: PropTypes.string,
 };

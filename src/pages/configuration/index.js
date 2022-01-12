@@ -86,17 +86,22 @@ export const ConfigurationPage = () => {
 					</Stack>
 
 					<Stack direction="column" spacing={1} className={classes.configContainer}>
-						{tabContent.map((value, index) => (
-							<div key={value.id + index}>
-								<Box id={value.id} className={classes.titleContainer}>
+						{tabContent.map((settingGroup, index) => (
+							<div key={settingGroup.id + index}>
+								<Box id={settingGroup.id} className={classes.titleContainer}>
 									<Typography variant="h6" color="secondary.90">
-										{value.label}
+										{settingGroup.label}
 									</Typography>
 								</Box>
-								{value.settings.map((val, index) => {
+								{settingGroup.settings.map((val, index) => {
 									return (
 										<ConfigurationCard
+											hasSettingParent={settingGroup.hasParent}
+											settingParentId={settingGroup.parentId}
+											parentId={settingGroup.id}
 											id={val.id}
+											switchId={val.switchId}
+											isSwitchBoolean={val.isSwitchBoolean}
 											key={val.id + index}
 											title={val.title}
 											subText={val.subtext}
