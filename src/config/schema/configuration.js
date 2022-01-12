@@ -85,11 +85,13 @@ export const configurationSchema = [
 				],
 			},
 			{
-				id: "originalFirewallConfiguration",
+				id: "firewallConfiguration",
 				label: "Origin Firewall Configuration",
 				settings: [
 					{
 						id: "wafStatus",
+						switchId: "wafStatus",
+						isSwitchBoolean: false,
 						title: "WAF Status",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -110,7 +112,7 @@ export const configurationSchema = [
 										id: "illegalFileTypeForm",
 										form: (
 											<ConfigurationSingleTextFieldWithTagsForm
-												inputId="illegalFileType"
+												inputId="illegalFileTypeRegex"
 												inputLabel="Illegal File Type"
 												inputPlaceholder=""
 												initValues={{}}
@@ -125,7 +127,7 @@ export const configurationSchema = [
 										id: "illegalFilePathForm",
 										form: (
 											<ConfigurationSingleTextFieldWithTagsForm
-												inputId="illegalFilePath"
+												inputId="illegalFilePathRegex"
 												inputLabel="Illegal File Path"
 												inputPlaceholder=""
 												initValues={{}}
@@ -359,9 +361,13 @@ export const configurationSchema = [
 			{
 				id: "optimizationConfig",
 				label: "Optmization Configuration",
+				hasParent: true,
+				parentId: "assetsControl",
 				settings: [
 					{
 						id: "minifyJS",
+						switchId: "minifyJs",
+						isSwitchBoolean: true,
 						title: "Minify JS",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -369,6 +375,8 @@ export const configurationSchema = [
 					},
 					{
 						id: "minifyCSS",
+						switchId: "minifyCss",
+						isSwitchBoolean: true,
 						title: "Minify CSS",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -376,6 +384,8 @@ export const configurationSchema = [
 					},
 					{
 						id: "minifyHTML",
+						switchId: "minifyHtml",
+						isSwitchBoolean: true,
 						title: "Minify HTML",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -383,6 +393,8 @@ export const configurationSchema = [
 					},
 					{
 						id: "minifyInlineCSS",
+						switchId: "minifyInlineCss",
+						isSwitchBoolean: true,
 						title: "Minify Inline CSS",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -390,6 +402,8 @@ export const configurationSchema = [
 					},
 					{
 						id: "minifyInlineJS",
+						switchId: "minifyInlineJs",
+						isSwitchBoolean: true,
 						title: "Minify Inline JS",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
