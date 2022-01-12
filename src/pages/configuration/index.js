@@ -98,6 +98,8 @@ export const ConfigurationPage = () => {
 										<ConfigurationCard
 											hasSettingParent={settingGroup.hasParent}
 											settingParentId={settingGroup.parentId}
+											hasConfig={settingGroup.hasConfig}
+											configKey={settingGroup.configKey}
 											parentId={settingGroup.id}
 											id={val.id}
 											switchId={val.switchId}

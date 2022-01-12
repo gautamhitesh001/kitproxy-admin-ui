@@ -89,7 +89,7 @@
 			"minifyStaticAssets": true,
 			"minifyJs": true,
 			"minifyCss": true,
-			"minifyHtml": true,
+			"minifyHtml": false,
 			"minifyInlineCss": true,
 			"minifyInlineJs": true,
 			"imageOptimization": {

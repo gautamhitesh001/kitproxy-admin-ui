@@ -13,78 +13,6 @@ export const configurationSchema = [
 		index: 1,
 		settingGroups: [
 			{
-				id: "accessControl",
-				label: "Asset Control",
-				settings: [
-					{
-						id: "queryParamsCacheKey",
-						title: "Include Query Params for Cache Key",
-						subtext: "Examples of Firewall Rules",
-						form: null,
-						subSettings: [],
-					},
-					{
-						id: "overrideNoCacheHeader",
-						title: "Override No Cache Header",
-						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
-						form: null,
-						subSettings: [],
-					},
-					{
-						id: "cacheControlMaxAge",
-						title: "Cache Control Max Age",
-						subtext: "Desc Max Age Range",
-						form: [
-							{
-								id: "maxAgeForm",
-								form: (
-									<ConfigurationSingleTextFieldForm
-										inputId="maxAge"
-										inputLabel="Max Age"
-										inputPlaceholder="eg 50"
-										initValues={{}}
-										submitFunc={() => {}}
-										validationSchema={{
-											maxAge: Yup.string().required("Please enter max age."),
-										}}
-									/>
-								),
-							},
-						],
-						subSettings: [],
-					},
-					{
-						id: "cacheOriginCustomHeaders",
-						title: "Cache Origin Custom Headers",
-						subtext: "",
-						form: [
-							{
-								id: "cacheOriginCustomHeadersForm",
-								form: (
-									<ConfigurationMultiCheckboxForm
-										inputLabel="Select headers"
-										initValues={{}}
-										submitFunc={() => {}}
-										validationSchema={{}}
-										checkboxFields={[
-											"Strict-Transport-Security",
-											"X-Frame-Options",
-											"Content-Securty-Policy",
-											"Referrer-Policy",
-											"Pragma",
-											"X-Content-Security-Policy",
-											"X-XSS-Protection",
-										]}
-									/>
-								),
-							},
-						],
-
-						subSettings: [],
-					},
-				],
-			},
-			{
 				id: "firewallConfiguration",
 				label: "Origin Firewall Configuration",
 				settings: [
@@ -198,11 +126,17 @@ export const configurationSchema = [
 		index: 2,
 		settingGroups: [
 			{
-				id: "cacheControl",
+				id: "cacheConfig",
 				label: "Cache Control",
+				hasParent: true,
+				parentId: "assetsControl",
+				hasConfig: true,
+				configKey: "configs",
 				settings: [
 					{
 						id: "queryParamsCacheKey",
+						switchId: "includeQueryParamsForCacheKey",
+						isSwitchBoolean: true,
 						title: "Include Query Params for Cache Key",
 						subtext: "Examples of Firewall Rules",
 						form: null,
@@ -210,6 +144,8 @@ export const configurationSchema = [
 					},
 					{
 						id: "overrideNoCacheHeader",
+						switchId: "overrideNoCacheHeader",
+						isSwitchBoolean: true,
 						title: "Override No Cache Header",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -236,6 +172,35 @@ export const configurationSchema = [
 								),
 							},
 						],
+						subSettings: [],
+					},
+					{
+						id: "cacheOriginCustomHeaders",
+						title: "Cache Origin Custom Headers",
+						subtext: "",
+						form: [
+							{
+								id: "cacheOriginCustomHeadersForm",
+								form: (
+									<ConfigurationMultiCheckboxForm
+										inputLabel="Select headers"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{}}
+										checkboxFields={[
+											"Strict-Transport-Security",
+											"X-Frame-Options",
+											"Content-Securty-Policy",
+											"Referrer-Policy",
+											"Pragma",
+											"X-Content-Security-Policy",
+											"X-XSS-Protection",
+										]}
+									/>
+								),
+							},
+						],
+
 						subSettings: [],
 					},
 				],
@@ -491,6 +456,10 @@ export const configurationSchema = [
 			{
 				id: "compressionConfig",
 				label: "Compression Config",
+				hasParent: true,
+				parentId: "assetsControl",
+				hasConfig: true,
+				configKey: "config",
 				settings: [
 					{
 						id: "excludeCompressionConfig",
@@ -518,12 +487,16 @@ export const configurationSchema = [
 					{
 						id: "brotilCompression",
 						title: "Brotli Compression",
+						switchId: "brotliCompression",
+						isSwitchBoolean: true,
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
 						subSettings: [],
 					},
 					{
 						id: "gzipCompression",
+						switchId: "gzipCompression",
+						isSwitchBoolean: true,
 						title: "Gzip Compression",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -538,7 +511,7 @@ export const configurationSchema = [
 		index: 3,
 		settingGroups: [
 			{
-				id: "originConfiguration",
+				id: "origin",
 				label: "Origin Configuration",
 				settings: [
 					{
@@ -580,6 +553,8 @@ export const configurationSchema = [
 					{
 						id: "overrideOriginHostHeaders",
 						title: "Override Origin Host Headers",
+						switchId: "overrideOriginHostHeaders",
+						isSwitchBoolean: true,
 						subtext: "Here will come the description",
 						form: null,
 						subSettings: [],
@@ -587,6 +562,8 @@ export const configurationSchema = [
 					{
 						id: "bypassSSLValidation",
 						title: "Bypass SSL Validation",
+						switchId: "bypassSSLValidation",
+						isSwitchBoolean: true,
 						subtext: "Here will come the description",
 						form: null,
 						subSettings: [],
