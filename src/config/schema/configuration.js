@@ -85,11 +85,13 @@ export const configurationSchema = [
 				],
 			},
 			{
-				id: "originalFirewallConfiguration",
+				id: "firewallConfiguration",
 				label: "Origin Firewall Configuration",
 				settings: [
 					{
 						id: "wafStatus",
+						switchId: "wafStatus",
+						isSwitchBoolean: false,
 						title: "WAF Status",
 						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
 						form: null,
@@ -110,7 +112,7 @@ export const configurationSchema = [
 										id: "illegalFileTypeForm",
 										form: (
 											<ConfigurationSingleTextFieldWithTagsForm
-												inputId="illegalFileType"
+												inputId="illegalFileTypeRegex"
 												inputLabel="Illegal File Type"
 												inputPlaceholder=""
 												initValues={{}}
@@ -125,7 +127,7 @@ export const configurationSchema = [
 										id: "illegalFilePathForm",
 										form: (
 											<ConfigurationSingleTextFieldWithTagsForm
-												inputId="illegalFilePath"
+												inputId="illegalFilePathRegex"
 												inputLabel="Illegal File Path"
 												inputPlaceholder=""
 												initValues={{}}
@@ -194,11 +196,579 @@ export const configurationSchema = [
 	{
 		tabTitle: "Acceleration",
 		index: 2,
-		settingGroups: [],
+		settingGroups: [
+			{
+				id: "cacheControl",
+				label: "Cache Control",
+				settings: [
+					{
+						id: "queryParamsCacheKey",
+						title: "Include Query Params for Cache Key",
+						subtext: "Examples of Firewall Rules",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "overrideNoCacheHeader",
+						title: "Override No Cache Header",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "cacheControlMaxAge",
+						title: "Cache Control Max Age",
+						subtext: "Desc Max Age Range",
+						form: [
+							{
+								id: "maxAgeForm",
+								form: (
+									<ConfigurationSingleTextFieldForm
+										inputId="maxAge"
+										inputLabel="Max Age"
+										inputPlaceholder="eg 50"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											maxAge: Yup.string().required("Please enter max age."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+				],
+			},
+			{
+				id: "pathIdentification",
+				label: "Path Identification",
+				settings: [
+					{
+						id: "requestMethodIdentifier",
+						title: "Request Method Identifier",
+						subtext: "",
+						form: [
+							{
+								id: "requestMethodIdentifierForm",
+								form: (
+									<ConfigurationMultiCheckboxForm
+										inputLabel="Here will come the description"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{}}
+										checkboxFields={["GET", "POST", "PUT", "DELETE"]}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "staticAssetIdentifier",
+						title: "Static Asset Identifier",
+						subtext: "Here will come the description",
+						form: [
+							{
+								id: "staticAssetIndentifierForm",
+								form: (
+									<ConfigurationSingleTextFieldWithTagsForm
+										inputId="illegalFileType"
+										inputLabel="Illegal File Type"
+										inputPlaceholder=""
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											illegalFileType: Yup.string().required("Please enter value."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "htmlAssetIdentifier",
+						title: "HTML Asset Identifier",
+						subtext: "Here will come the description",
+						form: [
+							{
+								id: "htmlAssetIdentifierForm",
+								form: (
+									<ConfigurationSingleTextFieldwithListForm
+										title="Whitelisted Paths"
+										inputId="pathName"
+										inputPlaceholder="eg50"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											pathName: Yup.string().required("Please enter whitelist path."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "homePageIdentifier",
+						title: "Home Page Identifier",
+						subtext: "Here will come the description",
+						form: [
+							{
+								id: "homePageIdentifierForm",
+								form: (
+									<ConfigurationSingleTextFieldForm
+										inputId="maxAge"
+										inputLabel="Set Home Page"
+										inputPlaceholder="index.html"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											maxAge: Yup.string().required("Please enter max age."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "excludeStaticURL",
+						title: "Exclude static URL",
+						subtext: "Here will come the description",
+						form: [
+							{
+								id: "excludeStaticURLForm",
+								form: (
+									<ConfigurationSingleTextFieldwithListForm
+										title="Whitelisted Paths"
+										inputId="pathName"
+										inputPlaceholder="eg50"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											pathName: Yup.string().required("Please enter whitelist path."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+				],
+			},
+			{
+				id: "optimizationConfig",
+				label: "Optmization Configuration",
+				hasParent: true,
+				parentId: "assetsControl",
+				settings: [
+					{
+						id: "minifyJS",
+						switchId: "minifyJs",
+						isSwitchBoolean: true,
+						title: "Minify JS",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "minifyCSS",
+						switchId: "minifyCss",
+						isSwitchBoolean: true,
+						title: "Minify CSS",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "minifyHTML",
+						switchId: "minifyHtml",
+						isSwitchBoolean: true,
+						title: "Minify HTML",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "minifyInlineCSS",
+						switchId: "minifyInlineCss",
+						isSwitchBoolean: true,
+						title: "Minify Inline CSS",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "minifyInlineJS",
+						switchId: "minifyInlineJs",
+						isSwitchBoolean: true,
+						title: "Minify Inline JS",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "imageOptimization",
+						title: "Image Optmization ",
+						subtext: "Allowed Relative Max Total Size: numeric value, size, Eg: 1000000 / 1 MB",
+						form: null,
+						subSettings: [
+							{
+								id: "includeImageOptimization",
+								title: "Include Image Optmization",
+								subtext: "Allowed Relative Max Total Size: numeric value, size, Eg: 1000000 / 1 MB",
+								form: [
+									{
+										id: "includeImageOptimizationForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="Path or Domain"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "excludeImageOptimization",
+								title: "Exclude Image Optmization",
+								subtext: "Allowed Relative Max Total Size: numeric value, size, Eg: 1000000 / 1 MB",
+								form: [
+									{
+										id: "excludeImageOptimizationForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="Path or Domain"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "allowedReleativeSize",
+								title: "Allowed Relative Max Size",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "allowedReleativeSizeForm",
+										form: (
+											<ConfigurationSingleTextFieldForm
+												inputId="maxAge"
+												inputLabel="Max Age"
+												inputPlaceholder="eg 50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													maxAge: Yup.string().required("Please enter max age."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+						],
+					},
+				],
+			},
+			{
+				id: "compressionConfig",
+				label: "Compression Config",
+				settings: [
+					{
+						id: "excludeCompressionConfig",
+						title: "Exclude Compression Paths",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: [
+							{
+								id: "excludeCompressionConfigForm",
+								form: (
+									<ConfigurationSingleTextFieldwithListForm
+										title="Whitelisted Paths"
+										inputId="pathName"
+										inputPlaceholder="Path"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											pathName: Yup.string().required("Please enter whitelist path."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "brotilCompression",
+						title: "Brotli Compression",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "gzipCompression",
+						title: "Gzip Compression",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+				],
+			},
+		],
 	},
 	{
 		tabTitle: "Custom Configuration",
 		index: 3,
-		settingGroups: [],
+		settingGroups: [
+			{
+				id: "originConfiguration",
+				label: "Origin Configuration",
+				settings: [
+					{
+						id: "originProtocol",
+						title: "Origin Protocol",
+						subtext: "Examples of Firewall Rules",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "originKeepAliveTimeout",
+						title: "Origin Keep-Alive Timeout",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "maxAge",
+						title: "Set Max Age",
+						form: [
+							{
+								id: "maxAgeForm",
+								form: (
+									<ConfigurationSingleTextFieldForm
+										inputId="maxAge"
+										inputLabel="Max Age"
+										inputPlaceholder="eg 50"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{
+											maxAge: Yup.string().required("Please enter max age."),
+										}}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					},
+					{
+						id: "overrideOriginHostHeaders",
+						title: "Override Origin Host Headers",
+						subtext: "Here will come the description",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "bypassSSLValidation",
+						title: "Bypass SSL Validation",
+						subtext: "Here will come the description",
+						form: null,
+						subSettings: [],
+					},
+					{
+						id: "originConfiguration",
+						title: "Origin Configuration",
+						subtext: "Here will come the description",
+						form: null,
+						subSettings: [
+							{
+								id: "rootURL",
+								title: "Root URL",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "whitelistedPathForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="eg50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "proxyHostName",
+								title: "Proxy Host Name",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "whitelistedPathForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="eg50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "targetProxyDomain",
+								title: "Target Proxy Domain",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "targetProxyDomainForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="eg50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "targetProxyPort",
+								title: "Target Proxy Port",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "targetProxyPortForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="eg50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+							{
+								id: "targetProxyProtocol",
+								title: "Target Proxy Protocol",
+								subtext: "Here will come the description",
+								form: null,
+								subSettings: [],
+							},
+							{
+								id: "proxySubdomain",
+								title: "Proxy Sub-Domain",
+								subtext: "Here will come the description",
+								form: [
+									{
+										id: "proxySubdomainForm",
+										form: (
+											<ConfigurationSingleTextFieldwithListForm
+												title="Whitelisted Paths"
+												inputId="pathName"
+												inputPlaceholder="eg50"
+												initValues={{}}
+												submitFunc={() => {}}
+												validationSchema={{
+													pathName: Yup.string().required("Please enter whitelist path."),
+												}}
+											/>
+										),
+									},
+								],
+								subSettings: [],
+							},
+						],
+					},
+				],
+			},
+			{
+				id: "proxySubdomain",
+				label: "Email Notification",
+				subtext: "Here will come the description",
+				form: [
+					{
+						id: "proxySubdomainForm",
+						form: (
+							<ConfigurationSingleTextFieldwithListForm
+								title="Whitelisted Paths"
+								inputId="pathName"
+								inputPlaceholder="eg50"
+								initValues={{}}
+								submitFunc={() => {}}
+								validationSchema={{
+									pathName: Yup.string().required("Please enter whitelist path."),
+								}}
+							/>
+						),
+					},
+				],
+				settings: [],
+			},
+			{
+				id: "proxySubdomain",
+				label: "SEO Optimization",
+				subtext: "Here will come the description",
+				form: [
+					{
+						id: "proxySubdomainForm",
+						form: (
+							<ConfigurationSingleTextFieldwithListForm
+								title="Whitelisted Paths"
+								inputId="pathName"
+								inputPlaceholder="eg50"
+								initValues={{}}
+								submitFunc={() => {}}
+								validationSchema={{
+									pathName: Yup.string().required("Please enter whitelist path."),
+								}}
+							/>
+						),
+					},
+				],
+				settings: [],
+			},
+		],
 	},
 ];
