@@ -128,10 +128,19 @@ let theme = createTheme({
 			40: "#CACCCF",
 			60: "#A0A4A8",
 			80: "#52575C",
+			90: "#373737",
 		},
 		grey: {
 			10: "#F8F8F8",
 			main: "#757575",
+			500: "#575757",
+		},
+		white: {
+			main: "#FFFFFF",
+		},
+		blue: {
+			50: "#F5F9FE",
+			main: "#5797EC",
 		},
 		error: { main: "#FB4E4E" },
 		badge: { main: "#FF2525" },

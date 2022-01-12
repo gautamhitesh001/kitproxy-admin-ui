@@ -1,5 +1,5 @@
 import { Divider, InputAdornment, Link, TextField, Typography } from "@mui/material";
-import { RegistrationCard } from "../../../components/registrationCard";
+import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { useEffect, useState } from "react";
 import { Formik } from "formik";

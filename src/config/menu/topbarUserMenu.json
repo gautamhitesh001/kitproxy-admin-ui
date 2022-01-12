@@ -1,0 +1,22 @@
+[
+	{
+		"key": 1,
+		"title": "My Account"
+	},
+	{
+		"key": 2,
+		"title": "Billings"
+	},
+	{
+		"key": 1,
+		"title": "Settings"
+	},
+	{
+		"key": 1,
+		"title": "Support"
+	},
+	{
+		"key": 1,
+		"title": "Logout"
+	}
+]

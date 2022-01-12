@@ -1,7 +1,6 @@
 import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-import { AccessKeyModal } from "../../../../components/accessKeyModal";
 import { PrimaryButton } from "../../../../components/buttons";
 import { ExistingResourcesCTA } from "../../../../components/existingResourcesCta";
 import { OnboardingResourceCard } from "../../../../components/widgets";
@@ -20,6 +19,7 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
+import { AccessKeyModal } from "../../../../components/modals";
 
 const useStyles = makeStyles((theme) => ({
 	logoImg: {

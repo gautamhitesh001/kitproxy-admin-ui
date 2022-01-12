@@ -1,5 +1,5 @@
-import { Divider, Drawer, Icon, List, ListItem, ListItemIcon, ListItemText, Popover, Toolbar, Typography } from "@mui/material";
-import { DollarSign, Inbox, Layers, Mail, Settings, Sliders, Tool, TrendingUp, Users } from "react-feather";
+import { Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Popover, Toolbar, Typography } from "@mui/material";
+import { DollarSign, Layers, Settings, Sliders, Tool, TrendingUp, Users } from "react-feather";
 import PropTypes from "prop-types";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
@@ -160,13 +160,16 @@ const SideBarMenuItem = ({ isActive, open, icon, title, isLastItem, setActiveKey
 	);
 };
 
-export const DashboardSidebar = ({ open }) => {
+export const DashboardSidebar = ({ open, activeMenuItem }) => {
 	const classes = useStyles({ open });
 	const [activeKey, setActiveKey] = useState("Analytics");
 
 	const onMenuItemClick = (key) => {
 		setActiveKey(key);
 	};
+	useEffect(() => {
+		setActiveKey("Configurations");
+	}, []);
 
 	return (
 		<Drawer classes={{ root: classes.sideBar }} variant="permanent" open={open}>
@@ -184,6 +187,7 @@ export const DashboardSidebar = ({ open }) => {
 
 DashboardSidebar.propTypes = {
 	open: PropTypes.bool,
+	activeMenuItem: PropTypes.string,
 };
 
 SideBarMenuItem.propTypes = {

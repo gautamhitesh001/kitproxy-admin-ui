@@ -40,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		minHeight: "calc(100% - 80px) !important",
 		paddingTop: 32,
-		paddingBottom: 32,
+		// paddingBottom: 32,
 		paddingLeft: 16,
 		paddingRight: 16,
 		position: "relative",
 	},
 }));
 
-export const DashboardLayout = ({ children }) => {
+export const DashboardLayout = ({ children, activeMenuItem }) => {
 	const [open, setOpen] = useState(false);
 	const [hasNetworkIssue, setHasNetworkIssue] = useState(false);
 	const [showWelcomeNotification, setShowWelcomeNotification] = useState(false);
@@ -62,7 +62,7 @@ export const DashboardLayout = ({ children }) => {
 	return (
 		<Box className={classes.layoutContainer}>
 			<DashboardAppbar toggleSidebar={toggleSidebar} />
-			<DashboardSidebar open={open} />
+			<DashboardSidebar open={open} activeMenuItem={activeMenuItem} />
 			<Box component="main" className={classes.contentWrapper}>
 				<Toolbar />
 				{showWelcomeNotification ? <DashboardWelcomeNotification handleClose={() => setShowWelcomeNotification(false)} /> : null}
@@ -79,4 +79,5 @@ export const DashboardLayout = ({ children }) => {
 
 DashboardLayout.propTypes = {
 	children: PropTypes.node,
+	activeMenuItem: PropTypes.string,
 };
