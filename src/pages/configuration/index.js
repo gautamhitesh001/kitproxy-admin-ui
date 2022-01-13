@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 		overflowY: "auto",
 		transition: "all 0.3s ease",
 		marginTop: 12,
-		paddingBottom: 100,
+		paddingBottom: 150,
 	},
 	btnDocumentation: {
 		padding: theme.spacing(2, 3, 2, 3) + " !important",

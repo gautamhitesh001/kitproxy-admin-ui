@@ -13,7 +13,7 @@ export const ConfigMultiSelect = (props) => {
 	};
 
 	return (
-		<Select {...getSelectProps()}>
+		<Select {...getSelectProps()} onOpen={() => (window.location = `#${props.sectionId}`)}>
 			<MenuItem disabled value="">
 				<em>Placeholder</em>
 			</MenuItem>
@@ -28,4 +28,5 @@ export const ConfigMultiSelect = (props) => {
 
 ConfigMultiSelect.propTypes = {
 	optionsArray: PropTypes.array,
+	sectionId: PropTypes.string,
 };

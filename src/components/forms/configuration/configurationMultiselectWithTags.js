@@ -52,7 +52,7 @@ const Tag = ({ value, index, removeTag, isActive }) => {
 	);
 };
 
-export const ConfigurationMultiselectWithTags = ({ inputId, extraHeader, inputPlaceholder, submitFunc, initValues, validationSchema }) => {
+export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHeader, inputPlaceholder, submitFunc, initValues, validationSchema }) => {
 	const schema = Yup.object().shape(validationSchema);
 
 	const [selectValue, setSelectValue] = useState(null);
@@ -97,6 +97,7 @@ export const ConfigurationMultiselectWithTags = ({ inputId, extraHeader, inputPl
 							<Stack direction="row" alignItems="flex-start" justifyContent="space-between" flexWrap="wrap" width="100%">
 								<FormControl sx={{ width: 600 }}>
 									<ConfigMultiSelect
+										sectionId={sectionId}
 										multiple
 										fullWidth
 										displayEmpty
@@ -162,6 +163,7 @@ export const ConfigurationMultiselectWithTags = ({ inputId, extraHeader, inputPl
 };
 
 ConfigurationMultiselectWithTags.propTypes = {
+	sectionId: PropTypes.string,
 	inputId: PropTypes.string,
 	inputPlaceholder: PropTypes.string,
 	submitFunc: PropTypes.func,
