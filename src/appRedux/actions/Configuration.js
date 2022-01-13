@@ -1,24 +1,27 @@
 import { configurationConstants } from "../constants";
 import configurationData from "../../config/data/configurationPageSample.json";
+import { getConfigurationData, updateConfigurationData } from "../../services";
 
-export const getConfigurationSettings = (organizationId, onSuccess) => {
+export const getConfigurationSettings = (token, onSuccess) => {
 	return (dispatch) => {
 		dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_REQUEST });
-		dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: configurationData });
-		if (onSuccess) {
-			onSuccess();
-		}
-		// call login service
+		getConfigurationData(token).then((response) => {
+			dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: response.config });
+			if (onSuccess) {
+				onSuccess();
+			}
+		});
 	};
 };
 
-export const updateConfigurationSetting = (originalObj, objId, data, onSuccess) => {
+export const updateConfigurationSetting = (token, id, data, onSuccess) => {
 	return (dispatch) => {
 		dispatch({ type: configurationConstants.UPDATE_CONFIGURATION_SETTINGS_REQUEST });
+		updateConfigurationData(token, { [id]: data }).then((response) => {
+			dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: response.config });
+		});
 
-		let settingsData = { ...originalObj };
-		settingsData[objId] = data;
 		dispatch({ type: configurationConstants.UPDATE_CONFIGURATION_SETTINGS_SUCCESS });
-		dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: settingsData });
+		// dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: settingsData });
 	};
 };

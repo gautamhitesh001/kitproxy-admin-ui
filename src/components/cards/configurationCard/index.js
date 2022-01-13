@@ -40,6 +40,7 @@ export const ConfigurationCard = ({
 	const dispatch = useDispatch();
 
 	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { loginInfo } = useSelector(({ authentication }) => authentication);
 
 	const handleSwitchChange = (e) => {
 		let data = hasSettingParent ? get(configurationSettings, [settingParentId]) : get(configurationSettings, [parentId]);
@@ -53,8 +54,7 @@ export const ConfigurationCard = ({
 		} else {
 			data[switchId] = switchValue;
 		}
-
-		dispatch(updateConfigurationSetting(configurationSettings, hasSettingParent ? settingParentId : parentId, data));
+		dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, hasSettingParent ? settingParentId : parentId, data));
 	};
 
 	const showSwitch = () => {
