@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DashboardLayout } from "../../layouts/dashboard";
 import { ButtonBase, Grid, Stack, Typography } from "@mui/material";
 import { TabButton } from "../../components/buttons/tabButton";
@@ -9,7 +9,7 @@ import { ConfigurationCard } from "../../components/cards";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
-import { getConfigurationSettings } from "../../appRedux/actions";
+import { getConfigurationSettings, userLogin } from "../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -48,7 +48,7 @@ export const ConfigurationPage = () => {
 
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
-		dispatch(getConfigurationSettings());
+		dispatch(userLogin((loginInfo) => dispatch(getConfigurationSettings(loginInfo.tokens.access.token))));
 	}, []);
 
 	useEffect(() => {

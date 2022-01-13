@@ -2,6 +2,7 @@ import { authConstants } from "../constants";
 
 const initialSettings = {
 	isUserLoggedIn: false,
+	loginInfo: {},
 };
 
 const Authentication = (state = initialSettings, action) => {
@@ -15,6 +16,7 @@ const Authentication = (state = initialSettings, action) => {
 			return {
 				...state,
 				isUserLoggedIn: true,
+				loginInfo: action.data,
 			};
 		case authConstants.LOGIN_FAILURE:
 			return {
