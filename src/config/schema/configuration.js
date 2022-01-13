@@ -46,7 +46,7 @@ export const configurationSchema = [
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													illegalFileType: Yup.string().required("Please enter value."),
+													illegalFileTypeRegex: Yup.string().required("Please enter value."),
 												}}
 											/>
 										),
@@ -61,7 +61,7 @@ export const configurationSchema = [
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													illegalFilePath: Yup.string().required("Please enter value."),
+													illegalFilePathRegex: Yup.string().required("Please enter value."),
 												}}
 											/>
 										),
@@ -106,7 +106,7 @@ export const configurationSchema = [
 												submitFunc={() => {}}
 												validationSchema={
 													{
-														// illegalFileType: Yup.string().required("Please enter value."),
+														// countryInput: Yup.string().required("Please enter value."),
 													}
 												}
 												extraHeader="Countries Added"
