@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
 import PropTypes from "prop-types";
 import { Box } from "@mui/system";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	checkboxWrapper: {
@@ -32,6 +33,8 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 
 	const [isActive, setIsActive] = useState(false);
 
+	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+
 	useEffect(() => {
 		return () => {
 			setIsActive(false);
@@ -50,6 +53,10 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 	const handleCancel = () => {
 		setIsActive(false);
 	};
+
+	const getCheckedValue = (value) => {
+		return true;
+	}
 
 	return (
 		<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={initValues}>
@@ -77,7 +84,7 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 								{checkboxFields.map((value) => (
 									<Grid key={getCheckboxId(value)} item xs={6}>
 										<Stack className={classes.checkboxWrapper} alignItems="center" direction="row">
-											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} />
+											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} checked={getCheckedValue(value)} />
 											<Typography color="grey.500" ml={2}>
 												{value}
 											</Typography>

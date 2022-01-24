@@ -65,7 +65,9 @@ export const ConfigurationCard = ({
 			: !hasSettingParent && hasConfig
 			? configurationSettings[parentId][configKey] && has(configurationSettings[parentId][configKey], switchId)
 			: configurationSettings[parentId] && has(configurationSettings[parentId], switchId); */
-			return true;
+			console.log(id, parentId, switchId, settingParentId);
+			console.log(configurationSettings[id], configurationSettings[parentId], configurationSettings[switchId], configurationSettings[settingParentId]);
+			return configurationSettings[switchId];
 	};
 
 	const getSwitchValue = () => {
