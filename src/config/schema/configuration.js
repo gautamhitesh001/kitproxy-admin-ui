@@ -78,12 +78,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="whitelistedPathRegex"
 												inputPlaceholder="Add path"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													whitelistedPathRegex: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -161,13 +161,13 @@ export const configurationSchema = [
 								id: "maxAgeForm",
 								form: (
 									<ConfigurationSingleTextFieldForm
-										inputId="maxAge"
+										inputId="cacheControlMaxAge"
 										inputLabel="Max Age"
 										inputPlaceholder="eg 50"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											maxAge: Yup.string().required("Please enter max age."),
+											cacheControlMaxAge: Yup.string().required("Please enter max age."),
 										}}
 									/>
 								),
@@ -241,13 +241,13 @@ export const configurationSchema = [
 								id: "staticAssetIndentifierForm",
 								form: (
 									<ConfigurationSingleTextFieldWithTagsForm
-										inputId="illegalFileType"
+										inputId="staticAssetIdentifierRegex"
 										inputLabel="Illegal File Type"
 										inputPlaceholder=""
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											illegalFileType: Yup.string().required("Please enter value."),
+											staticAssetIdentifierRegex: Yup.string().required("Please enter value."),
 										}}
 									/>
 								),
@@ -265,12 +265,12 @@ export const configurationSchema = [
 								form: (
 									<ConfigurationSingleTextFieldwithListForm
 										title="Whitelisted Paths"
-										inputId="pathName"
+										inputId="htmlAssetIdentifierRegex"
 										inputPlaceholder="eg50"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											pathName: Yup.string().required("Please enter whitelist path."),
+											htmlAssetIdentifierRegex: Yup.string().required("Please enter whitelist path."),
 										}}
 									/>
 								),
@@ -287,13 +287,13 @@ export const configurationSchema = [
 								id: "homePageIdentifierForm",
 								form: (
 									<ConfigurationSingleTextFieldForm
-										inputId="maxAge"
+										inputId="homePageIdentifierRegex"
 										inputLabel="Set Home Page"
 										inputPlaceholder="index.html"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											maxAge: Yup.string().required("Please enter max age."),
+											homePageIdentifierRegex: Yup.string().required("Please enter max age."),
 										}}
 									/>
 								),
@@ -311,12 +311,12 @@ export const configurationSchema = [
 								form: (
 									<ConfigurationSingleTextFieldwithListForm
 										title="Whitelisted Paths"
-										inputId="pathName"
+										inputId="excludeStaticUrlRegex"
 										inputPlaceholder="eg50"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											pathName: Yup.string().required("Please enter whitelist path."),
+											excludeStaticUrlRegex: Yup.string().required("Please enter whitelist path."),
 										}}
 									/>
 								),
@@ -393,12 +393,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="imageOptimization_config_includeImageOptimizationPathRegex"
 												inputPlaceholder="Path or Domain"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													imageOptimization_config_includeImageOptimizationPathRegex: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -416,12 +416,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="imageOptimization_config_excludeImageOptimizationPathRegex"
 												inputPlaceholder="Path or Domain"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													imageOptimization_config_excludeImageOptimizationPathRegex: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -438,13 +438,13 @@ export const configurationSchema = [
 										id: "allowedReleativeSizeForm",
 										form: (
 											<ConfigurationSingleTextFieldForm
-												inputId="maxAge"
+												inputId="allowedRelativeMaxTotalSize"
 												inputLabel="Max Age"
 												inputPlaceholder="eg 50"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													maxAge: Yup.string().required("Please enter max age."),
+													allowedRelativeMaxTotalSize: Yup.string().required("Please enter max age."),
 												}}
 											/>
 										),
@@ -474,12 +474,12 @@ export const configurationSchema = [
 								form: (
 									<ConfigurationSingleTextFieldwithListForm
 										title="Whitelisted Paths"
-										inputId="pathName"
+										inputId="compressionConfig_config_excludeCompressionPathRegex"
 										inputPlaceholder="Path"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{
-											pathName: Yup.string().required("Please enter whitelist path."),
+											compressionConfig_config_excludeCompressionPathRegex: Yup.string().required("Please enter whitelist path."),
 										}}
 									/>
 								),
@@ -587,12 +587,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="rootURL"
 												inputPlaceholder="eg50"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													rootURL: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -610,12 +610,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="proxyHostName"
 												inputPlaceholder="eg50"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													proxyHostName: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -633,12 +633,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="targetProxyDomain"
 												inputPlaceholder="eg50"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													targetProxyDomain: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
@@ -656,12 +656,12 @@ export const configurationSchema = [
 										form: (
 											<ConfigurationSingleTextFieldwithListForm
 												title="Whitelisted Paths"
-												inputId="pathName"
+												inputId="targetProxyPort"
 												inputPlaceholder="eg50"
 												initValues={{}}
 												submitFunc={() => {}}
 												validationSchema={{
-													pathName: Yup.string().required("Please enter whitelist path."),
+													targetProxyPort: Yup.string().required("Please enter whitelist path."),
 												}}
 											/>
 										),
