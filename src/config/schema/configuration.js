@@ -185,6 +185,7 @@ export const configurationSchema = [
 								form: (
 									<ConfigurationMultiCheckboxForm
 										inputLabel="Select headers"
+										id="cacheOriginCustomHeader"
 										initValues={{}}
 										submitFunc={() => {}}
 										validationSchema={{}}
@@ -219,6 +220,7 @@ export const configurationSchema = [
 								id: "requestMethodIdentifierForm",
 								form: (
 									<ConfigurationMultiCheckboxForm
+										id="requestMethodIdentifier"
 										inputLabel="Here will come the description"
 										initValues={{}}
 										submitFunc={() => {}}

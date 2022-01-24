@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initValues, validationSchema, checkboxFields }) => {
+export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initValues, validationSchema, checkboxFields, id }) => {
 	const classes = useStyles();
 	const schema = Yup.object().shape(validationSchema);
 
@@ -55,7 +55,7 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 	};
 
 	const getCheckedValue = (value) => {
-		return true;
+		return configurationSettings[id] && configurationSettings[id].includes(value);
 	}
 
 	return (
@@ -113,4 +113,5 @@ ConfigurationMultiCheckboxForm.propTypes = {
 	validationSchema: PropTypes.object,
 	initValues: PropTypes.object,
 	checkboxFields: PropTypes.array,
+	id: PropTypes.string,
 };
