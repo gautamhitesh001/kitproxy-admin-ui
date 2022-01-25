@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
 		padding: 8,
 		marginRight: 4,
 	},
+	tagText: {
+		maxWidth: 300,
+		overflow: "hidden",
+		whiteSpace: "nowrap",
+		textOverflow: "ellipsis",
+	},
 }));
 
 const Tag = ({ value, index, removeTag, isActive }) => {
@@ -38,7 +44,7 @@ const Tag = ({ value, index, removeTag, isActive }) => {
 	return (
 		<Box className={classes.tagWrapper}>
 			<Stack direction="row">
-				<Typography color="black.90" mr="4px">
+				<Typography className={classes.tagText} maxWidth={250} color="black.90" mr="4px">
 					{value}
 				</Typography>
 				{isActive ? (
@@ -71,22 +77,23 @@ export const ConfigInputWithTags = (props) => {
 	};
 
 	return (
-		<Box flexGrow={1}>
-			<TextField
-				InputProps={{
-					startAdornment: (
-						<InputAdornment position="start">
-							{tagsArray.map((val, index) => (
-								<Tag isActive={isActive} removeTag={removeTag} value={val} key={val + index} index={index} />
-							))}
-						</InputAdornment>
-					),
-				}}
-				fullWidth
-				classes={{ root: classes.input }}
-				{...getInputProps()}
-			/>
-		</Box>
+		// <Box flexGrow={1}>
+		<TextField
+			InputProps={{
+				startAdornment: (
+					<InputAdornment position="start">
+						{tagsArray.map((val, index) => (
+							<Tag isActive={isActive} removeTag={removeTag} value={val} key={val + index} index={index} />
+						))}
+					</InputAdornment>
+				),
+			}}
+			fullWidth
+			multiline
+			classes={{ root: classes.input }}
+			{...getInputProps()}
+		/>
+		// </Box>
 	);
 };
 

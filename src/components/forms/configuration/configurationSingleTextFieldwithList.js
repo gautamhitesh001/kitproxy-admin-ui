@@ -4,11 +4,14 @@ import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
 import { ConfigInput } from "../../inputs";
 import PropTypes from "prop-types";
-import { Box, width } from "@mui/system";
+import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { icon_trash } from "../../../config/Constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConfigurationModal } from "../../modals";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataArray } from "../../../utils/dataManipulation";
+import { updateConfigurationSetting } from "../../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	listItem: {
@@ -50,12 +53,19 @@ const WhiteListedPathListItem = ({ value, index, removeWhiteListPath }) => {
 
 export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceholder, title, submitFunc, initValues, validationSchema }) => {
 	const schema = Yup.object().shape(validationSchema);
+	const dispatch = useDispatch();
+
+	const { configurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const [whiteListedPaths, setWhiteListedPaths] = useState([]);
 	const [showlistModal, setShowlistModal] = useState(false);
 
+	useEffect(() => {
+		setWhiteListedPaths(configurationSettings[inputId] ? getDataArray(configurationSettings[inputId]) : []);
+	}, [configurationSettings]);
+
 	const onFormSubmit = (values, { resetForm, setSubmitting }) => {
-		setWhiteListedPaths([...whiteListedPaths, values[inputId]]);
+		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: configurationSettings[inputId] + "|" + values[inputId] }));
 		resetForm({
 			values: { [inputId]: "" },
 		});
@@ -66,7 +76,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	const removeWhiteListPath = (index) => {
 		let tempArr = [...whiteListedPaths];
 		tempArr.splice(index, 1);
-		setWhiteListedPaths(tempArr);
+		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }));
 	};
 
 	return (

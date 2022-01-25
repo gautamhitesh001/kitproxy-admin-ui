@@ -54,7 +54,7 @@ export const ConfigurationCard = ({
 		} else {
 			data[switchId] = switchValue;
 		}
-		dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, hasSettingParent ? settingParentId : parentId, data));
+		// dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, hasSettingParent ? settingParentId : parentId, data));
 	};
 
 	const showSwitch = () => {
@@ -65,9 +65,9 @@ export const ConfigurationCard = ({
 			: !hasSettingParent && hasConfig
 			? configurationSettings[parentId][configKey] && has(configurationSettings[parentId][configKey], switchId)
 			: configurationSettings[parentId] && has(configurationSettings[parentId], switchId); */
-			console.log(id, parentId, switchId, settingParentId);
-			console.log(configurationSettings[id], configurationSettings[parentId], configurationSettings[switchId], configurationSettings[settingParentId]);
-			return configurationSettings[switchId];
+		// console.log(id, parentId, switchId, settingParentId);
+		// console.log(configurationSettings[id], configurationSettings[parentId], configurationSettings[switchId], configurationSettings[settingParentId]);
+		return configurationSettings[switchId];
 	};
 
 	const getSwitchValue = () => {
@@ -86,7 +86,7 @@ export const ConfigurationCard = ({
 			: isSwitchBoolean
 			? configurationSettings[parentId][switchId]
 			: configurationSettings[parentId][switchId] === "enabled"; */
-			return true;
+		return true;
 	};
 
 	return (

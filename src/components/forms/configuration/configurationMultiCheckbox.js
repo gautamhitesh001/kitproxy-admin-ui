@@ -56,7 +56,7 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 
 	const getCheckedValue = (value) => {
 		return configurationSettings[id] && configurationSettings[id].includes(value);
-	}
+	};
 
 	return (
 		<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={initValues}>
