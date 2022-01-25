@@ -16,5 +16,5 @@ export const updateConfigurationData = (token, data) => {
         body: JSON.stringify(data),
     };
 
-    return fetch(`${process.env.REACT_APP_API_END_POINT}/config/61cae2657707075d2aba7423`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_END_POINT}/configFrontend/www.example1.com`, requestOptions).then(handleResponse);
 };

@@ -14,11 +14,10 @@ export const getConfigurationSettings = (token, onSuccess) => {
     };
 };
 
-export const updateConfigurationSetting = (token, id, data, onSuccess) => {
+export const updateConfigurationSetting = (token, data, onSuccess) => {
     return (dispatch) => {
         dispatch({ type: configurationConstants.UPDATE_CONFIGURATION_SETTINGS_REQUEST });
-        updateConfigurationData(token, {
-            [id]: data }).then((response) => {
+        updateConfigurationData(token, data).then((response) => {
             dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: response.config });
         });
 

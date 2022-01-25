@@ -9,7 +9,7 @@ import { ConfigurationCard } from "../../components/cards";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
-import { getConfigurationSettings, userLogin } from "../../appRedux/actions";
+import { getConfigurationSettings, userLogin, updateConfigurationSetting } from "../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -29,6 +29,14 @@ const useStyles = makeStyles((theme) => ({
 		border: "1px solid #E6E6E6 !important",
 		backgroundColor: theme.palette.white.main + " !important",
 	},
+	btnDeploy: {
+		padding: theme.spacing(2, 3, 2, 3) + " !important",
+		margin: theme.spacing(0, 1) + " !important",
+		borderRadius: "4px !important",
+		border: "1px solid #E6E6E6 !important",
+		backgroundColor: "#249F5C" + " !important",
+		color: "#FFFFFF" + " !important",
+	},
 	titleContainer: {
 		padding: "16px 24px",
 		backgroundColor: theme.palette.white.main,
@@ -46,6 +54,7 @@ export const ConfigurationPage = () => {
 	const [configurationTabs, setConfigurationTabs] = useState([]);
 	const [tabContent, setTabContent] = useState([]);
 
+	const { configurationSettings } = useSelector(({ configuration }) => configuration);
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
 		dispatch(userLogin((loginInfo) => dispatch(getConfigurationSettings(loginInfo.tokens.access.token))));
@@ -64,15 +73,24 @@ export const ConfigurationPage = () => {
 		setTabContent(configurationSchema[index].settingGroups);
 	};
 
+	const handleDeployment = () => {
+		dispatch(userLogin((loginInfo) => dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, configurationSettings))));
+	}
+
 	return (
 		<DashboardLayout activeMenuItem="Configurations">
 			<Stack direction="row" alignItems="center" justifyContent="space-between">
 				<Typography variant="h4" color="secondary.main">
 					Configuration
 				</Typography>
-				<ButtonBase className={classes.btnDocumentation}>
-					<Typography color="secondary.main">Open Documentation</Typography>
-				</ButtonBase>
+				<div>
+					<ButtonBase className={classes.btnDeploy} onClick={handleDeployment}>
+						<Typography color="#FFFFFF">Deploy</Typography>
+					</ButtonBase>
+					<ButtonBase className={classes.btnDocumentation}>
+						<Typography color="secondary.main">Open Documentation</Typography>
+					</ButtonBase>
+				</div>
 			</Stack>
 			<Grid columnSpacing="20px" container direction="row" classes={{ root: classes.contentContainer }}>
 				<Grid item xs={3}>

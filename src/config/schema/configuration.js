@@ -13,6 +13,41 @@ export const configurationSchema = [
 		index: 1,
 		settingGroups: [
 			{
+				id: "cacheOriginCustomHeaders",
+				label: "Custom Security Headers",
+				subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+				settings: [
+					{
+						id: "cacheOriginCustomHeaders",
+						title: "Custom Security Headers",
+						form: [
+							{
+								id: "cacheOriginCustomHeadersForm",
+								form: (
+									<ConfigurationMultiCheckboxForm
+										inputLabel="Select headers"
+										id="cacheOriginCustomHeader"
+										initValues={{}}
+										submitFunc={() => {}}
+										validationSchema={{}}
+										checkboxFields={[
+											"Strict-Transport-Security",
+											"X-Frame-Options",
+											"Content-Securty-Policy",
+											"Referrer-Policy",
+											"Pragma",
+											"X-Content-Security-Policy",
+											"X-XSS-Protection",
+										]}
+									/>
+								),
+							},
+						],
+						subSettings: [],
+					}
+				]
+			},
+			{
 				id: "firewallConfiguration",
 				label: "Origin Firewall Configuration",
 				settings: [
@@ -127,13 +162,22 @@ export const configurationSchema = [
 		index: 2,
 		settingGroups: [
 			{
-				id: "cacheConfig",
+				id: "cacheConfig_status",
 				label: "Cache Control",
 				hasParent: true,
 				parentId: "assetsControl",
 				hasConfig: true,
 				configKey: "configs",
 				settings: [
+					{
+						id: "cacheConfig_status",
+						switchId: "cacheConfig_status",
+						isSwitchBoolean: false,
+						title: "Cache Config Status",
+						subtext: "Set a limit on the number of hits(CDN requests) over a period of time",
+						form: null,
+						subSettings: [],
+					},
 					{
 						id: "queryParamsCacheKey",
 						switchId: "includeQueryParamsForCacheKey",
@@ -173,36 +217,6 @@ export const configurationSchema = [
 								),
 							},
 						],
-						subSettings: [],
-					},
-					{
-						id: "cacheOriginCustomHeaders",
-						title: "Cache Origin Custom Headers",
-						subtext: "",
-						form: [
-							{
-								id: "cacheOriginCustomHeadersForm",
-								form: (
-									<ConfigurationMultiCheckboxForm
-										inputLabel="Select headers"
-										id="cacheOriginCustomHeader"
-										initValues={{}}
-										submitFunc={() => {}}
-										validationSchema={{}}
-										checkboxFields={[
-											"Strict-Transport-Security",
-											"X-Frame-Options",
-											"Content-Securty-Policy",
-											"Referrer-Policy",
-											"Pragma",
-											"X-Content-Security-Policy",
-											"X-XSS-Protection",
-										]}
-									/>
-								),
-							},
-						],
-
 						subSettings: [],
 					},
 				],

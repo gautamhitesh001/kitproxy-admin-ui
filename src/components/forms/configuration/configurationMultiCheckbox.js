@@ -58,6 +58,10 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 		return configurationSettings[id] && configurationSettings[id].includes(value);
 	}
 
+	const handleOnChange = (evt, value) => {
+		console.log(evt.target.checked, value)
+	}
+
 	return (
 		<Formik onSubmit={onFormSubmit} validationSchema={schema} initialValues={initValues}>
 			{({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors, isSubmitting, setFieldValue }) => {
@@ -84,7 +88,7 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 								{checkboxFields.map((value) => (
 									<Grid key={getCheckboxId(value)} item xs={6}>
 										<Stack className={classes.checkboxWrapper} alignItems="center" direction="row">
-											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} checked={getCheckedValue(value)} />
+											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} checked={getCheckedValue(value)} onChange={(evt) => handleOnChange(evt, value)} />
 											<Typography color="grey.500" ml={2}>
 												{value}
 											</Typography>
