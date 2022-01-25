@@ -14,7 +14,7 @@ export const getConfigurationSettings = (token, onSuccess) => {
 	};
 };
 
-export const updateConfigurationSetting = (data, onSuccess) => {
+export const updateConfigurationSetting = (data) => {
 	return (dispatch) => {
 		dispatch({ type: configurationConstants.UPDATE_CONFIGURATION_SETTINGS_REQUEST });
 		dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: data });
