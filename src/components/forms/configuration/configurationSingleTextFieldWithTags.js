@@ -40,7 +40,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 	const schema = Yup.object().shape(validationSchema);
 	const dispatch = useDispatch();
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const [isActive, setIsActive] = useState(false);
 	const [settingTags, setSettingTags] = useState([]);
@@ -63,7 +63,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 				.filter((val) => val)
 				.join("|");
 
-			dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: finalValue }));
+			dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: finalValue }, { ...updatedConfigurationSettings, [inputId]: finalValue }));
 		}
 		resetForm({
 			values: { [inputId]: "" },

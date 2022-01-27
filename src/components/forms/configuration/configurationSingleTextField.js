@@ -13,7 +13,7 @@ export const ConfigurationSingleTextFieldForm = ({ inputId, inputLabel, inputPla
 	const schema = Yup.object().shape(validationSchema);
 	const dispatch = useDispatch();
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const [isActive, setIsActive] = useState(false);
 
@@ -24,7 +24,7 @@ export const ConfigurationSingleTextFieldForm = ({ inputId, inputLabel, inputPla
 
 	const onFormSubmit = (values) => {
 		submitFunc();
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: values[inputId] }));
+		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: values[inputId] }, { ...updatedConfigurationSettings, [inputId]: values[inputId] }));
 		setIsActive(false);
 	};
 

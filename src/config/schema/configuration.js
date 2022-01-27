@@ -44,8 +44,8 @@ export const configurationSchema = [
 							},
 						],
 						subSettings: [],
-					}
-				]
+					},
+				],
 			},
 			{
 				id: "firewallConfiguration",
