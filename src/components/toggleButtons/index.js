@@ -31,22 +31,15 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 	},
 }));
 
-export default function ToggleButtons({ defaultValue, children }) {
-	const [selected, setSelected] = useState(defaultValue);
-
-	const handleChange = (event, newValue) => {
-		setSelected(newValue);
-	};
-
+export default function ToggleButtons({ children, handleChange, selected }) {
 	return (
 		<StyledToggleButtonGroup value={selected} exclusive onChange={handleChange}>
 			{children}
-			{/* <ToggleButton disableRipple disableFocusRipple value="HTTP">HTTP</ToggleButton>
-			<ToggleButton disableRipple disableFocusRipple value="HTTPS">HTTP</ToggleButton> */}
 		</StyledToggleButtonGroup>
 	);
 }
 ToggleButtons.propTypes = {
-	defaultValue: PropTypes.string,
 	children: PropTypes.node,
+	handleChange: PropTypes.func,
+	selected: PropTypes.string,
 };

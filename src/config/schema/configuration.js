@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import {
 	ConfigurationMultiCheckboxForm,
+	ConfigurationSingleRadioOptions,
 	ConfigurationSingleTextFieldForm,
 	ConfigurationSingleTextFieldwithListForm,
 	ConfigurationSingleTextFieldWithTagsForm,
@@ -44,8 +45,8 @@ export const configurationSchema = [
 							},
 						],
 						subSettings: [],
-					}
-				]
+					},
+				],
 			},
 			{
 				id: "firewallConfiguration",
@@ -535,7 +536,22 @@ export const configurationSchema = [
 						id: "originProtocol",
 						title: "Origin Protocol",
 						subtext: "Examples of Firewall Rules",
-						form: null,
+						form: [
+							{
+								id: "originProtocolForm",
+								form: (
+									<ConfigurationSingleRadioOptions
+										inputId="originProtocol"
+										initValues={{}}
+										submitFunc={() => {}}
+										options={['HTTP', 'HTTPS']}
+										validationSchema={{
+											originProtocol: Yup.string().required("Please select an origin protocol."),
+										}}
+									/>
+								),
+							},
+						],
 						subSettings: [],
 					},
 					{
@@ -687,7 +703,22 @@ export const configurationSchema = [
 								id: "targetProxyProtocol",
 								title: "Target Proxy Protocol",
 								subtext: "Here will come the description",
-								form: null,
+								form: [
+									{
+										id: "targetProxyProtocolForm",
+										form: (
+											<ConfigurationSingleRadioOptions
+												inputId="targetProxyProtocol"
+												initValues={{}}
+												submitFunc={() => {}}
+												options={['HTTP', 'HTTPS']}
+												validationSchema={{
+													targetProxyProtocol: Yup.string().required("Please select a target proxy protocol."),
+												}}
+											/>
+										),
+									},
+								],
 								subSettings: [],
 							},
 							{
