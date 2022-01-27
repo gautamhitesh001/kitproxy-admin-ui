@@ -20,10 +20,11 @@ const Configuration = (state = initialSettings, action) => {
 			return {
 				...state,
 			};
-		case configurationConstants.UPDATE_CONFIGURATION_SETTINGS:
+		case configurationConstants.CONFIGURATION_CHANGE_REQUEST:
 			return {
-				...state,
-				configurationSettings: action.data,
+				// ...state,
+				configurationSettings: {...state.configurationSettings, ...action.data},
+				updatedConfigurationSettings: {...state.updatedConfigurationSettings, ...action.data},
 			};
 
 		default:

@@ -39,22 +39,24 @@ export const ConfigurationCard = ({
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 	const { loginInfo } = useSelector(({ authentication }) => authentication);
 
 	const handleSwitchChange = (e) => {
-		let data = hasSettingParent ? get(configurationSettings, [settingParentId]) : get(configurationSettings, [parentId]);
+		// let data = hasSettingParent ? get(configurationSettings, [settingParentId]) : get(configurationSettings, [parentId]);
 		let switchValue = isSwitchBoolean ? e.target.checked : e.target.checked ? "enabled" : "disabled";
-		if (hasSettingParent && hasConfig) {
-			data[parentId][configKey][switchId] = switchValue;
-		} else if (hasSettingParent && !hasConfig) {
-			data[parentId][switchId] = switchValue;
-		} else if (!hasSettingParent && hasConfig) {
-			data[configKey][switchId] = switchValue;
-		} else {
-			data[switchId] = switchValue;
-		}
-		// dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, hasSettingParent ? settingParentId : parentId, data));
+		// if (hasSettingParent && hasConfig) {
+		// 	data[parentId][configKey][switchId] = switchValue;
+		// } else if (hasSettingParent && !hasConfig) {
+		// 	data[parentId][switchId] = switchValue;
+		// } else if (!hasSettingParent && hasConfig) {
+		// 	data[configKey][switchId] = switchValue;
+		// } else {
+		// 	data[switchId] = switchValue;
+		// }
+		// let val = e?.target?.checked;
+		let payload = { [switchId]: switchValue };
+		dispatch(updateConfigurationSetting(payload));
 	};
 
 	const showSwitch = () => {
@@ -67,6 +69,7 @@ export const ConfigurationCard = ({
 			: configurationSettings[parentId] && has(configurationSettings[parentId], switchId); */
 		// console.log(id, parentId, switchId, settingParentId);
 		// console.log(configurationSettings[id], configurationSettings[parentId], configurationSettings[switchId], configurationSettings[settingParentId]);
+		console.log(switchId);
 		return configurationSettings[switchId];
 	};
 
@@ -86,7 +89,7 @@ export const ConfigurationCard = ({
 			: isSwitchBoolean
 			? configurationSettings[parentId][switchId]
 			: configurationSettings[parentId][switchId] === "enabled"; */
-		return true;
+		return configurationSettings[switchId];
 	};
 
 	return (
@@ -96,7 +99,7 @@ export const ConfigurationCard = ({
 					{title}
 				</Typography>
 				<Stack direction="row" justifyContent="center" maxWidth={150} flexGrow={1}>
-					{showSwitch() ? <CustomSwitch onChange={handleSwitchChange} checked={getSwitchValue()} /> : null}
+					<CustomSwitch onChange={handleSwitchChange} checked={getSwitchValue()} />
 				</Stack>
 			</Stack>
 			{subText !== "" ? (

@@ -14,10 +14,10 @@ export const getConfigurationSettings = (token, onSuccess) => {
 	};
 };
 
-export const updateConfigurationSetting = (allData, updatedFieldsData) => {
+export const updateConfigurationSetting = (updatedFieldsData) => {
 	return (dispatch) => {
-		dispatch({ type: configurationConstants.DEPLOY_CONFIGURATION_SETTINGS, data: updatedFieldsData });
-		dispatch({ type: configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS, data: allData });
+		// dispatch({ type: configurationConstants.DEPLOY_CONFIGURATION_SETTINGS, data: updatedFieldsData });
+		dispatch({ type: configurationConstants.CONFIGURATION_CHANGE_REQUEST, data: updatedFieldsData });
 	};
 };
 
