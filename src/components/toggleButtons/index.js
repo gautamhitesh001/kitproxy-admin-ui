@@ -15,6 +15,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 		fontSize: "16px",
 		justifyContent: "flex-start",
 		paddingLeft: 25,
+		paddingRight:27
 	},
 	"& .MuiToggleButton-root.Mui-selected": {
 		backgroundColor: "#F4672A !important",

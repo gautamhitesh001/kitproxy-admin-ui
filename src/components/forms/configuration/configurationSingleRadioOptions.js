@@ -1,14 +1,12 @@
-import { ButtonBase, Stack, ToggleButton, Typography } from "@mui/material";
+import { Grid, ToggleButton } from "@mui/material";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { ConfigSaveButton } from "../../buttons/configSaveButton";
-import { ConfigInput } from "../../inputs";
 import PropTypes from "prop-types";
-import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { updateConfigurationSetting } from "../../../appRedux/actions";
 import ToggleButtons from "../../toggleButtons";
+import Tick from "../../../assets/images/tick.png";
 
 export const ConfigurationSingleRadioOptions = ({ inputId, submitFunc, initValues, validationSchema, options }) => {
 	const schema = Yup.object().shape(validationSchema);
@@ -40,7 +38,10 @@ export const ConfigurationSingleRadioOptions = ({ inputId, submitFunc, initValue
 						<ToggleButtons selected={selected} handleChange={toggleOption}>
 							{options?.map((option, index) => (
 								<ToggleButton key={index} disableRipple disableFocusRipple value={option}>
-									{option}
+									<Grid container justifyContent={"space-between"}>
+										<Grid item>{option}</Grid>
+										<Grid item>{selected === option ? <img src={Tick} /> : ""}</Grid>
+									</Grid>
 								</ToggleButton>
 							))}
 						</ToggleButtons>
