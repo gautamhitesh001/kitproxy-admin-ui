@@ -1,4 +1,4 @@
-import { ButtonBase, IconButton, Stack, TextField, Typography } from "@mui/material";
+import { ButtonBase, IconButton, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
@@ -6,7 +6,7 @@ import { ConfigInput } from "../../inputs";
 import PropTypes from "prop-types";
 import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
-import { icon_trash } from "../../../config/Constants";
+import { more_options } from "../../../config/Constants";
 import { useEffect, useState } from "react";
 import { ConfigurationModal } from "../../modals";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,17 +25,36 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "flex-start !important",
 	},
 }));
+const ITEM_HEIGHT = 48;
 
-const WhiteListedPathListItem = ({ value, index, removeWhiteListPath }) => {
+const WhiteListedPathListItem = ({ value, index, removeWhiteListPath, values, handleChange, handleSave }) => {
 	const classes = useStyles();
 	const [isEditable, setIsEditable] = useState(false);
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	return (
 		<Stack direction="row" alignItems="center" className={classes.listItem}>
 			<Typography mr={3} color="black.90">
 				{("0" + (index + 1).toString()).slice(-2)}
 			</Typography>
 			{isEditable ? (
-				<ConfigInput autoFocus={true} onBlur={() => setIsEditable(false)} fullWidth defaultValue={value} />
+				<ConfigInput
+					autoFocus={true}
+					fullWidth
+					defaultValue={value}
+					onChange={handleChange}
+					name={index}
+					value={values[index]}
+				/>
 			) : (
 				<ButtonBase className={classes.whiteListPathWrapper} disableRipple disableTouchRipple onClick={() => setIsEditable(true)}>
 					<Typography mr={2} color="black.90">
@@ -43,10 +62,76 @@ const WhiteListedPathListItem = ({ value, index, removeWhiteListPath }) => {
 					</Typography>
 				</ButtonBase>
 			)}
-
-			<IconButton disableRipple disableTouchRipple disableFocusRipple onClick={() => removeWhiteListPath(index)}>
-				<img src={icon_trash} alt="trash" />
-			</IconButton>
+			{isEditable ? (
+				<ButtonBase
+					disableRipple
+					disableTouchRipple
+					onClick={() => {
+						handleSave(values, index);
+						setIsEditable(false);
+					}}
+					disabled={!values[index] && values[index] == value}
+				>
+					<Typography ml={2} fontWeight={700} color="primary.main">
+						Save
+					</Typography>
+				</ButtonBase>
+			) : (
+				<>
+					<IconButton
+						disableRipple
+						disableTouchRipple
+						disableFocusRipple
+						aria-controls={open ? "long-menu" : undefined}
+						aria-expanded={open ? "true" : undefined}
+						onClick={handleClick}
+						aria-haspopup="true"
+					>
+						<img src={more_options} alt="more options" />
+					</IconButton>
+					<Menu
+						id="long-menu"
+						MenuListProps={{
+							"aria-labelledby": "long-button",
+						}}
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}
+						PaperProps={{
+							style: {
+								maxHeight: ITEM_HEIGHT * 4.5,
+								width: "163px",
+							},
+						}}
+						transformOrigin={{
+							horizontal: "right",
+						}}
+						anchorOrigin={{
+							vertical: "center",
+							horizontal: "left",
+						}}
+					>
+						<MenuItem
+							key={"edit"}
+							onClick={() => {
+								setIsEditable(true);
+								setAnchorEl(null);
+							}}
+						>
+							Edit
+						</MenuItem>
+						<MenuItem
+							key={"del"}
+							onClick={() => {
+								removeWhiteListPath(index);
+								setAnchorEl(null);
+							}}
+						>
+							Delete
+						</MenuItem>
+					</Menu>
+				</>
+			)}
 		</Stack>
 	);
 };
@@ -78,6 +163,15 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 		tempArr.splice(index, 1);
 		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
 	};
+	const saveWhiteListPathChanges = (values, index) => {
+		let tempArr = [...whiteListedPaths];
+		tempArr.map((item, item_index) => {
+			if (item_index == index) {
+				tempArr[item_index] = values[index];
+			}
+		});
+		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
+	};
 
 	return (
 		<Formik validateOnChange={false} validateOnBlur={false} onSubmit={onFormSubmit} validationSchema={schema} initialValues={initValues}>
@@ -105,7 +199,15 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 							{whiteListedPaths
 								.filter((val, index) => index < 3)
 								.map((val, index) => (
-									<WhiteListedPathListItem key={val} value={val} index={index} removeWhiteListPath={removeWhiteListPath} />
+									<WhiteListedPathListItem
+										key={val}
+										value={val}
+										index={index}
+										removeWhiteListPath={removeWhiteListPath}
+										handleChange={handleChange}
+										values={values}
+										handleSave={saveWhiteListPathChanges}
+									/>
 								))}
 							<Stack direction="row">
 								<Typography flexGrow={1} color="grey.500">
@@ -129,7 +231,15 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 								<ConfigurationModal title={title} open={showlistModal} handleClose={() => setShowlistModal(false)}>
 									<Stack mt={2} spacing={1} direction="column">
 										{whiteListedPaths.map((val, index) => (
-											<WhiteListedPathListItem key={val} value={val} index={index} removeWhiteListPath={removeWhiteListPath} />
+											<WhiteListedPathListItem
+												key={val}
+												value={val}
+												index={index}
+												removeWhiteListPath={removeWhiteListPath}
+												handleChange={handleChange}
+												values={values}
+												handleSave={saveWhiteListPathChanges}
+											/>
 										))}
 									</Stack>
 								</ConfigurationModal>
@@ -146,6 +256,9 @@ WhiteListedPathListItem.propTypes = {
 	value: PropTypes.string,
 	removeWhiteListPath: PropTypes.func,
 	index: PropTypes.number,
+	handleChange: PropTypes.func,
+	values: PropTypes.object,
+	handleSave: PropTypes.func,
 };
 
 ConfigurationSingleTextFieldwithListForm.propTypes = {
