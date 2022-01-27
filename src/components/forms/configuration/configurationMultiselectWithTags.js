@@ -61,7 +61,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 	const [settingTags, setSettingTags] = useState([]);
 	const [isActive, setIsActive] = useState(false);
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const dispatch = useDispatch();
 
@@ -86,7 +86,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 	const updateGlobalState = (countryNameArray) => {
 		let settingTagsCode = getCountryCodesArray(countryNameArray);
 		let payload = { ...configurationSettings, [inputId]: settingTagsCode };
-		dispatch(updateConfigurationSetting(payload));
+		dispatch(updateConfigurationSetting(payload, { ...updatedConfigurationSettings, [inputId]: settingTagsCode }));
 	};
 
 	//onSave

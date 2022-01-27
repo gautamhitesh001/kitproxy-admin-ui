@@ -9,7 +9,7 @@ import { ConfigurationCard } from "../../components/cards";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
-import { getConfigurationSettings, userLogin, updateConfigurationSetting } from "../../appRedux/actions";
+import { getConfigurationSettings, userLogin, updateConfigurationSetting, deployConfigurationSetting } from "../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -54,7 +54,7 @@ export const ConfigurationPage = () => {
 	const [configurationTabs, setConfigurationTabs] = useState([]);
 	const [tabContent, setTabContent] = useState([]);
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
 		dispatch(userLogin((loginInfo) => dispatch(getConfigurationSettings(loginInfo.tokens.access.token))));
@@ -74,8 +74,8 @@ export const ConfigurationPage = () => {
 	};
 
 	const handleDeployment = () => {
-		dispatch(userLogin((loginInfo) => dispatch(updateConfigurationSetting(loginInfo.tokens.access.token, configurationSettings))));
-	}
+		dispatch(userLogin((loginInfo) => dispatch(deployConfigurationSetting(loginInfo.tokens.access.token, updatedConfigurationSettings))));
+	};
 
 	return (
 		<DashboardLayout activeMenuItem="Configurations">

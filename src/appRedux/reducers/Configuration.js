@@ -2,6 +2,7 @@ import { configurationConstants } from "../constants";
 
 const initialSettings = {
 	configurationSettings: {},
+	updatedConfigurationSettings: {},
 };
 
 const Configuration = (state = initialSettings, action) => {
@@ -18,6 +19,11 @@ const Configuration = (state = initialSettings, action) => {
 		case configurationConstants.GET_CONFIGURATION_SETTINGS_FAILURE:
 			return {
 				...state,
+			};
+		case configurationConstants.UPDATE_CONFIGURATION_SETTINGS:
+			return {
+				...state,
+				configurationSettings: action.data,
 			};
 
 		default:

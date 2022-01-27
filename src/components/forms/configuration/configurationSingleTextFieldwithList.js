@@ -55,7 +55,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	const schema = Yup.object().shape(validationSchema);
 	const dispatch = useDispatch();
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const [whiteListedPaths, setWhiteListedPaths] = useState([]);
 	const [showlistModal, setShowlistModal] = useState(false);
@@ -76,7 +76,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	const removeWhiteListPath = (index) => {
 		let tempArr = [...whiteListedPaths];
 		tempArr.splice(index, 1);
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }));
+		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
 	};
 
 	return (
