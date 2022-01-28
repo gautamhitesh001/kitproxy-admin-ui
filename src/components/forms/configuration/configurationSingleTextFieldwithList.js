@@ -61,7 +61,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	const [showlistModal, setShowlistModal] = useState(false);
 
 	useEffect(() => {
-		setWhiteListedPaths(configurationSettings[inputId] ? getDataArray(configurationSettings[inputId]) : []);
+		setWhiteListedPaths(configurationSettings && configurationSettings[inputId] ? getDataArray(configurationSettings[inputId]) : []);
 	}, [configurationSettings]);
 
 	const onFormSubmit = (values, { resetForm, setSubmitting }) => {

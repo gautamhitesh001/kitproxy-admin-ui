@@ -59,37 +59,9 @@ export const ConfigurationCard = ({
 		dispatch(updateConfigurationSetting(payload));
 	};
 
-	const showSwitch = () => {
-		/* return hasSettingParent && hasConfig
-			? configurationSettings[settingParentId][parentId][configKey] && has(configurationSettings[settingParentId][parentId][configKey], switchId)
-			: hasSettingParent && !hasConfig
-			? configurationSettings[settingParentId][parentId] && has(configurationSettings[settingParentId][parentId], switchId)
-			: !hasSettingParent && hasConfig
-			? configurationSettings[parentId][configKey] && has(configurationSettings[parentId][configKey], switchId)
-			: configurationSettings[parentId] && has(configurationSettings[parentId], switchId); */
-		// console.log(id, parentId, switchId, settingParentId);
-		// console.log(configurationSettings[id], configurationSettings[parentId], configurationSettings[switchId], configurationSettings[settingParentId]);
-		console.log(switchId);
-		return configurationSettings[switchId];
-	};
 
 	const getSwitchValue = () => {
-		/* return hasSettingParent && hasConfig
-			? isSwitchBoolean
-				? configurationSettings[settingParentId][parentId][configKey][switchId]
-				: configurationSettings[settingParentId][parentId][configKey][switchId] === "enabled"
-			: hasSettingParent && !hasConfig
-			? isSwitchBoolean
-				? configurationSettings[settingParentId][parentId][switchId]
-				: configurationSettings[settingParentId][parentId][switchId] === "enabled"
-			: !hasSettingParent && hasConfig
-			? isSwitchBoolean
-				? configurationSettings[parentId][configKey][switchId]
-				: configurationSettings[parentId][configKey][switchId] === "enabled"
-			: isSwitchBoolean
-			? configurationSettings[parentId][switchId]
-			: configurationSettings[parentId][switchId] === "enabled"; */
-		return configurationSettings[switchId];
+		return configurationSettings && configurationSettings[switchId];
 	};
 
 	return (

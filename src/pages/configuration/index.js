@@ -49,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: 8,
 		marginBottom: 8,
 	},
+	modal: {
+		height: "80vh",
+		overflow: "auto",
+	}
 }));
 
 const style = {
@@ -129,7 +133,7 @@ export const ConfigurationPage = () => {
 	};
 
 	const onFormSubmit = (values) => {
-		dispatch(createOrg(values, loginInfo.tokens.access.token, (res) => console.log(res)));
+		dispatch(createOrg(values, loginInfo.tokens.access.token, (res) => setIsModalOpen(false)));
 	};
 
 	const handleDeployment = () => {
@@ -191,8 +195,9 @@ export const ConfigurationPage = () => {
 					</Grid>
 				</Grid>
 			</DashboardLayout>
-			<Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-				<Box sx={style}>
+			<Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} 
+			aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" >
+				<Box sx={style} className={classes.modal} >
 					<Typography id="modal-modal-title" variant="h6" component="h2">
 						Create Organization
 					</Typography>

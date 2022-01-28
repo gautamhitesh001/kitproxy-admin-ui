@@ -52,7 +52,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 	}, []);
 
 	useEffect(() => {
-		setSettingTags(configurationSettings[inputId] ? getDataArray(configurationSettings[inputId]) : []);
+		setSettingTags(configurationSettings && configurationSettings[inputId] ? getDataArray(configurationSettings[inputId]) : []);
 	}, [configurationSettings]);
 
 	const onFormSubmit = (values, { resetForm }) => {

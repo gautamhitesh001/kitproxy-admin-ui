@@ -72,7 +72,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 	// get Whitelisted Countries Initial Values
 	const getSelectedTags = () => {
 		let settingTagsArr = [];
-		countries.map((country) => (configurationSettings[inputId]?.includes(country.code) ? settingTagsArr.push(country.name) : null)); // Get Country Names from Country Codes
+		countries.map((country) => (configurationSettings && configurationSettings[inputId]?.includes(country.code) ? settingTagsArr.push(country.name) : null)); // Get Country Names from Country Codes
 		setSettingTags(settingTagsArr);
 	};
 
