@@ -11,6 +11,8 @@ import { PrimaryButton } from "../../../components/buttons";
 import { useHistory } from "react-router";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
 import { CustomPassword } from "../../../components/customPassword";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../../appRedux/actions/Authentication";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -28,11 +30,12 @@ const schema = Yup.object().shape({
 export const Login = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	const [showError, setShowError] = useState(false);
 
-	const onFormSubmit = ({ values }) => {
-		console.log("values", values);
+	const onFormSubmit = (values) => {
+		dispatch(userLogin(values, (res) => history.push("/configuration")));
 	};
 
 	return (
@@ -98,7 +101,7 @@ export const Login = () => {
 									Forgot Password?
 								</Link>
 							</Typography>
-							<PrimaryButton type="submit" fullWidth={false} variant="contained">
+							<PrimaryButton type="submit" fullWidth={false} variant="contained" >
 								LOG IN
 							</PrimaryButton>
 						</form>
