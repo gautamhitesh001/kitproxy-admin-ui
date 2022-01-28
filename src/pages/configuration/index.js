@@ -13,7 +13,7 @@ import { ConfigurationCard } from "../../components/cards";
 import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
-import { getConfigurationSettings, userLogin, updateConfigurationSetting, deployConfigurationSetting } from "../../appRedux/actions";
+import { getConfigurationSettings, createConfigurationSettings, deployConfigurationSetting } from "../../appRedux/actions";
 import { createOrg, getOrganization } from "../../appRedux/actions/Organization";
 
 const useStyles = makeStyles((theme) => ({
@@ -111,17 +111,25 @@ export const ConfigurationPage = () => {
 	const [configurationTabs, setConfigurationTabs] = useState([]);
 	const [tabContent, setTabContent] = useState([]);
 
-	const { updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
+	const { updatedConfigurationSettings, configurationSettings } = useSelector(({ configuration }) => configuration);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
-		dispatch(getConfigurationSettings(loginInfo.tokens.access.token));
 		dispatch(getOrganization(loginInfo.tokens.access.token, loginInfo.user.id));
 	}, []);
 
 	useEffect(() => {
 		setIsModalOpen(!isOrganizationCreated);
+		if(isOrganizationCreated) {
+			dispatch(getConfigurationSettings(loginInfo.tokens.access.token));
+		}
 	}, [isOrganizationCreated]);
+
+	useEffect(() => {
+		if(organizationInfo && organizationInfo[0]?.domainName ) {
+			dispatch(createConfigurationSettings(loginInfo.tokens.access.token, configurationSettings, organizationInfo[0]?.domainName));
+		}
+	}, [organizationInfo]);
 
 	useEffect(() => {
 		getTabContent();

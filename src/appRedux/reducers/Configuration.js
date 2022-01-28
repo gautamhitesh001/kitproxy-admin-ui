@@ -2,132 +2,45 @@ import { configurationConstants } from "../constants";
 
 const initialSettings = {
     configurationSettings: {
-        "projectId": "",
-        "creationDate": "",
-        "updationDate": "",
-        "projectName": "",
-        "projectDescription": "",
-        "createdBy": "",
-        "updatedBy": "",
-        "auditApplication-status": "enabled",
-        "auditApplication-config": {
-            "debugMode": false,
-            "traceMode": false
-        },
-        "cloudType": "AWS",
-        "cloudConfig": {
-            "accessKey": "",
-            "secretKey": "",
-            "region": "",
-            "bucket": ""
-        },
-        "cloudResources": {
-            "CDNId": "E242YVICAUYB7Y",
-            "secondaryCacheBucket": "s3://kitproxy-assets-production/<PROJECT-ID>/"
-        },
-        "originProtocol": "https",
-        "originKeepAliveTimeoutSec": 600,
-        "overrideOriginHostHeaders": false,
-        "bypassSSLValidation": false,
-        "rootURL": "https://some-new-website.com",
-        "proxyHostName": "",
-        "targetProxyDomain": "",
-        "targetProxyPort": "",
-        "targetProxyProtocol": "http",
-        "proxyDomain": {
-            "assets-adobedtm-com": "assets.adobedtm.com",
-            "chatbot-mantra-ai": "chatbot.mantra.ai",
-            "clientcdn-notifyvisitors-com": "clientcdn.notifyvisitors.com",
-            "cms-careinsurance-com": "cms.careinsurance.com",
-            "img-crehealthins-in": "img.crehealthins.in",
-            "www-everestjs-net": "www.everestjs.net"
-        },
-        "proxyDomainAdvancedConfig": {
-            "cms.careinsurance.com": {
-                "IncludedPaths": [
-                    "/upload_master/"
-                ]
-            },
-            "chatbot.mantra.ai": {
-                "IncludedPaths": [
-                    "/chatbox/mantra/index.php/chat/getstatus/"
-                ]
-            }
-        },
-        "assetsControl-status": "disabled",
-        "cacheConfig-status": "enabled",
-        "includeQueryParamsForCacheKey": true,
-        "overrideNoCacheHeader": true,
-        "cacheControlMaxAge": 0,
-        "cacheOriginCustomHeader": [],
-        "requestMethodIdentifier": [],
-        "staticAssetIdentifierRegex": ".(css|js|jpg|jpeg|svg|png|gif|webp|ico|ttf|eot|woff2|woff|bmp|ejs|pdf|ps|pict|eps|svgz|csv|mid|swf|doc|midi|ppt|pptx|tif|xls|xlsx|docx|tiff|jar|otf|zip|txt|rar|mov|mp4|mp3|mpeg|webm|avi|gz).*|^/blog/.*|^/blog$|^/kitextproxy*",
-        "staticAssetIdentifierRegexOption": "i",
-        "htmlAssetIdentifierRegex": ".(html)$|/family-health-insurance.*|^/health-insurance-for-senior-citizens.html.*|^/heart-health-insurance.html.*|^/buy-maternity-health-insurance-plan.html.*|^/buy-top-up-medical-insurance-policy.html.*|^/policy-buy-senior-citizens-health-insurance-online.html.*|^/travel-insurance-explore.html.*|^/cancer-insurance.html.*|^/heart-insurance.html.*|^/travel-insurance-student-explore.html.*|^/critical-insurance.html.*|^/operation-insurance.html.*|^/personal-accident-insurance-policy.html.*",
-        "htmlAssetIdentifierRegexOption": "i",
-        "homePageIdentifierRegex": "^/$",
-        "homePageIdentifierRegexOption": "i",
-        "excludeStaticUrlRegex": "/blog/admin*|/self-help-policy-details.html|/quote-request.html|/religare-health-insurance-agent.html|/health-insurance-branch-locator.html|/religare-health-insurance-eagency.html|/cpproject/thankyou.html|/cpproject/otp-varification.html|/health-plan-certified-network-hospitals.html|no-cache=true|/care-health-insurance-in-media.html|/public-disclosures.html|/health-insurance-brochure.html|/health-insurance-claim-forms.html|/other-downloads.html|/tools.html|/modified-or-withdrawn-product.html|^/kitextproxy/www-notifyvisitors-com/ext/v1/settings",
-        "excludeStaticUrlRegexOption": "i",
-        "minifyStaticAssets": true,
-        "minifyJs": true,
-        "minifyCss": true,
-        "minifyHtml": false,
-        "minifyInlineCss": true,
-        "minifyInlineJs": true,
-        "imageOptimization-status": "enabled",
-        "imageOptimization-config": {
-            "excludeImageOptimizationPathRegex": "^$",
-            "includeImageOptimizationPathRegex": "https://cms.careinsurance.com/upload_master/*"
-        },
-        "allowedRelativeMaxTotalSize": 1000000,
-        "compressionConfig-status": "enabled",
-        "compressionConfig-config": {
-            "excludeCompressionPathRegex": "^$",
-            "brotliCompression": "enabled",
-            "gzipCompression": "enabled"
-        },
-        "customClientConfiguration": {
-            "status": "disable"
-        },
-        "wafStatus": "enabled",
-        "illegalFileTypeRegex": ".(bat|dll|bak|cgi|com|ini)$",
-        "illegalFileTypeRegexOptions": "i",
-        "illegalFilePathRegex": "^(/config/).*|^(/etc/).*",
-        "illegalFilePathRegexOptions": "i",
-        "whitelistedPathRegex": "/k-hnypt/.*|/$|/family-health-insurance$|/health-insurance-for-diabetes$|/heart-health-insurance.html$|/health-insurance-for-senior-citizens.html$|/buy-top-up-medical-insurance-policy.html$|/1-crore-health-insurance-policy$|/arogya-sanjeevani-health-insurance$|/buy-maternity-health-insurance-plan.html$|/cancer-insurance.html$|/critical-insurance.html$|/heart-insurance.html$|/operation-insurance.html$|/health-insurance/$|/international-travel-insurance$|/travel-insurance-student-explore.html$",
-        "whitelistedPathRegexOptions": "i",
-        "geolocationconfiguration-status": "enabled",
-        "whitelistedCountryCodes": [],
-        "honeyPotLinks-status": "enabled",
-        "honeyPotLinks-config": {
-            "honeyPotMode": "block",
-            "honeyPotThreshold": 50,
-            "honeyPotAllowedRegex": "^/blog/*",
-            "honeyPotAllowedRegexOptions": "i",
-            "honeyPotBlockedRegex": "^/.*",
-            "honeyPotBlockedRegexOptions": "i",
-            "dbTableName": "<PROJECT_ID>_honeypot_audit"
-        },
-        "emailNotification-status": "enabled",
-        "tasks": [
-            "cacheInvalidation",
-            "seoOptimization"
+        domainName: "www.example.com",
+        assetsControl_status: "disabled",
+        cacheConfig_status: "enabled",
+        includeQueryParamsForCacheKey: true,
+        overrideNoCacheHeader: true,
+        cacheControlMaxAge: 0,
+        cacheOriginCustomHeader: [
+            "Strict-Transport-Security",
+            "X-Frame-Options",
+            "Referrer-Policy",
+            "X-Content-Type-Options",
+            "Content-Security-Policy",
+            "Pragma",
+            "X-XSS-Protection",
         ],
-        "recipients": [
-            "devesh.k@getkitsune.com"
-        ],
-        "seoOptimization-status": "enabled",
-        "tagsToValidate": [
-            "meta",
-            "a",
-            "title",
-            "h1"
-        ],
-        "localStorageDir": "./plugins/webCrawler/apify_storage",
-        "reportBucket": "s3://kitproxy-reports/611bfdfcfecf584cf830dd16/seo-report",
-        "reportBucketRegion": "ap-south-1",
-        "applicationRollback-status": "disabled"
+        requestMethodIdentifier: ["GET", "POST", "PUT", "DELETE"],
+        staticAssetIdentifierRegex: ".(css|js|jpg|jpeg|svg|png|gif|webp|ico|ttf|eot|woff2|woff|bmp|ejs|pdf|ps|pict|eps|svgz|csv|mid|swf|doc|midi|ppt|pptx|tif|xls|xlsx|docx|tiff|jar|otf|zip|txt|rar|mov|mp4|mp3|mpeg|webm|avi|gz).*|^/blog/.*|^/blog$|^/kitextproxy*",
+        staticAssetIdentifierRegexOption: "i",
+        htmlAssetIdentifierRegex: ".(html)$|/family-health-insurance.*|^/health-insurance-for-senior-citizens.html.*|^/heart-health-insurance.html.*|^/buy-maternity-health-insurance-plan.html.*|^/buy-top-up-medical-insurance-policy.html.*|^/policy-buy-senior-citizens-health-insurance-online.html.*|^/travel-insurance-explore.html.*|^/cancer-insurance.html.*|^/heart-insurance.html.*|^/travel-insurance-student-explore.html.*|^/critical-insurance.html.*|^/operation-insurance.html.*|^/personal-accident-insurance-policy.html.*",
+        htmlAssetIdentifierRegexOption: "i",
+        homePageIdentifierRegex: "^/$",
+        homePageIdentifierRegexOption: "i",
+        excludeStaticUrlRegex: "/blog/admin*|/self-help-policy-details.html|/quote-request.html|/religare-health-insurance-agent.html|/health-insurance-branch-locator.html|/religare-health-insurance-eagency.html|/cpproject/thankyou.html|/cpproject/otp-varification.html|/health-plan-certified-network-hospitals.html|no-cache=true|/care-health-insurance-in-media.html|/public-disclosures.html|/health-insurance-brochure.html|/health-insurance-claim-forms.html|/other-downloads.html|/tools.html|/modified-or-withdrawn-product.html|^/kitextproxy/www-notifyvisitors-com/ext/v1/settings",
+        excludeStaticUrlRegexOption: "i",
+        minifyStaticAssets: true,
+        minifyJs: true,
+        minifyCss: true,
+        minifyHtml: true,
+        minifyInlineCss: true,
+        minifyInlineJs: true,
+        imageOptimization_status: "enabled",
+        excludeImageOptimizationPathRegex: "^$",
+        includeImageOptimizationPathRegex: "https://cms.careinsurance.com/upload_master/*",
+        allowedRelativeMaxTotalSize: 1000000,
+        compressionConfig_status: "enabled",
+        excludeCompressionPathRegex: "^$",
+        brotliCompression: "enabled",
+        gzipCompression: "enabled",
+        customClientConfiguration_status: "disabled",
     },
     updatedConfigurationSettings: {},
 };
@@ -140,20 +53,28 @@ const Configuration = (state = initialSettings, action) => {
         case configurationConstants.GET_CONFIGURATION_SETTINGS_REQUEST:
             return {
                 ...state,
+                updatedConfigurationSettings: {}
             };
         case configurationConstants.GET_CONFIGURATION_SETTINGS_SUCCESS:
             return {
                 ...state,
                 configurationSettings: action.data,
+                updatedConfigurationSettings: {}
             };
         case configurationConstants.GET_CONFIGURATION_SETTINGS_FAILURE:
             return {
                 ...state,
+                updatedConfigurationSettings: {}
             };
         case configurationConstants.CONFIGURATION_CHANGE_REQUEST:
             return {
                 configurationSettings: Object.assign({}, state.configurationSettings, action.data),
                 updatedConfigurationSettings: Object.assign({}, state.updatedConfigurationSettings, action.data),
+            };
+        case configurationConstants.DEPLOY_CONFIGURATION_SETTINGS_SUCCESS:
+            return {
+                configurationSettings: Object.assign({}, state.configurationSettings, action.data),
+                updatedConfigurationSettings: {},
             };
         default:
             return state;

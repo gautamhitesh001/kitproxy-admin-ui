@@ -132,7 +132,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 							<Stack direction="row" alignItems="flex-start" justifyContent="space-between" flexWrap="wrap" width="100%">
 								<FormControl sx={{ width: 600 }}>
 									<ConfigMultiSelect
-										sectionId={sectionId}
+										sectionid={sectionId}
 										multiple
 										fullWidth
 										displayEmpty

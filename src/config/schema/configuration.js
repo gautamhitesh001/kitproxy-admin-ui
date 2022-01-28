@@ -134,7 +134,7 @@ export const configurationSchema = [
 										id: "geoLocationForm",
 										form: (
 											<ConfigurationMultiselectWithTags
-												sectionId="geolocationConfiguration"
+												sectionid="geolocationConfiguration"
 												inputId="whitelistedCountryCodes"
 												inputLabel=""
 												inputPlaceholder="Add Countries"

@@ -5,7 +5,9 @@ export const userLogin = (credentials, onSuccess) => {
     return (dispatch) => {
         dispatch({ type: authConstants.LOGIN_REQUEST });
         login(credentials).then((response) => {
-            dispatch({ type: authConstants.LOGIN_SUCCESS, data: response });
+            if (!response.code) {
+                dispatch({ type: authConstants.LOGIN_SUCCESS, data: response });
+            }
             if (onSuccess) {
                 onSuccess(response);
             }

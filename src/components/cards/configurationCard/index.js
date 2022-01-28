@@ -48,7 +48,6 @@ export const ConfigurationCard = ({
 		dispatch(updateConfigurationSetting(payload));
 	};
 
-
 	const getSwitchValue = () => {
 		return configurationSettings && configurationSettings[switchId];
 	};
