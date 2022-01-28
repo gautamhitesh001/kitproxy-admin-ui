@@ -6,7 +6,7 @@ export const getConfigurationData = (token) => {
         headers: { Authorization: "Bearer " + token },
     };
 
-    return fetch(`${process.env.REACT_APP_API_END_POINT}/configFrontend/?page=1&limit=10&domainName=www.example.com`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_END_POINT}/configFrontend/?page=1&limit=10&domainName=www.example1.com`, requestOptions).then(handleResponse);
 };
 
 export const updateConfigurationData = (token, data) => {
@@ -16,5 +16,5 @@ export const updateConfigurationData = (token, data) => {
         body: JSON.stringify(data),
     };
 
-    return fetch(`${process.env.REACT_APP_API_END_POINT}/configFrontend/www.example.com`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_END_POINT}/configFrontend/www.example1.com`, requestOptions).then(handleResponse);
 };

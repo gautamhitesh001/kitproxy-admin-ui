@@ -1,17 +1,20 @@
 import { Provider } from "react-redux";
-import { store } from "./appRedux/store";
+import { store, persistor } from "./appRedux/store";
 import "./scss/App.scss";
 import { AppRouter } from "./routes/routes";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import theme from "./config/theme";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
 	return (
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<AppRouter />
+				<PersistGate loading={<>Loading...</>} persistor={persistor}>
+					<CssBaseline />
+					<AppRouter />
+				</PersistGate>
 			</ThemeProvider>
 		</Provider>
 	);

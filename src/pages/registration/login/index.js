@@ -38,9 +38,8 @@ export const Login = () => {
 
     const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
 	useEffect(() => {
-		console.log(isUserLoggedIn)
 		if(isUserLoggedIn) {
-			return (<Redirect to="/configuration" />);
+			return history.push("/configuration");
 		}
 	}, [isUserLoggedIn]);
 
