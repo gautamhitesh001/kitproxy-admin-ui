@@ -27,5 +27,5 @@ const RestrictedRoute = ({ component: Component, ...rest }) => {
 export default RestrictedRoute;
 
 RestrictedRoute.propTypes = {
-	component: PropTypes.Component,
+	component: PropTypes.any,
 };

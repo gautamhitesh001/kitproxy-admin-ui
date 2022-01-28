@@ -43,18 +43,7 @@ export const ConfigurationCard = ({
 	const { loginInfo } = useSelector(({ authentication }) => authentication);
 
 	const handleSwitchChange = (e) => {
-		// let data = hasSettingParent ? get(configurationSettings, [settingParentId]) : get(configurationSettings, [parentId]);
 		let switchValue = isSwitchBoolean ? e.target.checked : e.target.checked ? "enabled" : "disabled";
-		// if (hasSettingParent && hasConfig) {
-		// 	data[parentId][configKey][switchId] = switchValue;
-		// } else if (hasSettingParent && !hasConfig) {
-		// 	data[parentId][switchId] = switchValue;
-		// } else if (!hasSettingParent && hasConfig) {
-		// 	data[configKey][switchId] = switchValue;
-		// } else {
-		// 	data[switchId] = switchValue;
-		// }
-		// let val = e?.target?.checked;
 		let payload = { [switchId]: switchValue };
 		dispatch(updateConfigurationSetting(payload));
 	};

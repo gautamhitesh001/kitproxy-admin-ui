@@ -14,7 +14,7 @@ import { Box } from "@mui/system";
 import { configurationSchema } from "../../config/schema/configuration";
 import { findIndex } from "lodash";
 import { getConfigurationSettings, userLogin, updateConfigurationSetting, deployConfigurationSetting } from "../../appRedux/actions";
-import { createOrg } from "../../appRedux/actions/Organization";
+import { createOrg, getOrganization } from "../../appRedux/actions/Organization";
 
 const useStyles = makeStyles((theme) => ({
 	contentContainer: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 	modal: {
 		height: "80vh",
 		overflow: "auto",
-	}
+	},
 }));
 
 const style = {
@@ -116,8 +116,12 @@ export const ConfigurationPage = () => {
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
 		dispatch(getConfigurationSettings(loginInfo.tokens.access.token));
-		setIsModalOpen(!isOrganizationCreated);
+		dispatch(getOrganization(loginInfo.tokens.access.token, loginInfo.user.id));
 	}, []);
+
+	useEffect(() => {
+		setIsModalOpen(!isOrganizationCreated);
+	}, [isOrganizationCreated]);
 
 	useEffect(() => {
 		getTabContent();
@@ -134,10 +138,11 @@ export const ConfigurationPage = () => {
 
 	const onFormSubmit = (values) => {
 		dispatch(createOrg(values, loginInfo.tokens.access.token, (res) => setIsModalOpen(false)));
+		dispatch(getOrganization(loginInfo.tokens.access.token, loginInfo.user.id));
 	};
 
 	const handleDeployment = () => {
-		dispatch(userLogin((loginInfo) => dispatch(deployConfigurationSetting(loginInfo.tokens.access.token, updatedConfigurationSettings))));
+		dispatch(deployConfigurationSetting(loginInfo.tokens.access.token, updatedConfigurationSettings, organizationInfo[0].domainName));
 	};
 
 	return (
@@ -147,9 +152,14 @@ export const ConfigurationPage = () => {
 					<Typography variant="h4" color="secondary.main">
 						Configuration
 					</Typography>
-					<ButtonBase className={classes.btnDocumentation}>
-						<Typography color="secondary.main">Open Documentation</Typography>
-					</ButtonBase>
+					<div>
+						<ButtonBase className={classes.btnDeploy} onClick={handleDeployment}>
+							<Typography color="#FFFFFF">Deploy</Typography>
+						</ButtonBase>
+						<ButtonBase className={classes.btnDocumentation}>
+							<Typography color="secondary.main">Open Documentation</Typography>
+						</ButtonBase>
+					</div>
 				</Stack>
 				<Grid columnSpacing="20px" container direction="row" classes={{ root: classes.contentContainer }}>
 					<Grid item xs={3}>
@@ -195,9 +205,8 @@ export const ConfigurationPage = () => {
 					</Grid>
 				</Grid>
 			</DashboardLayout>
-			<Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} 
-			aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" >
-				<Box sx={style} className={classes.modal} >
+			<Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+				<Box sx={style} className={classes.modal}>
 					<Typography id="modal-modal-title" variant="h6" component="h2">
 						Create Organization
 					</Typography>
