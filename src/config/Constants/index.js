@@ -30,6 +30,7 @@ import cloudIcon from "../../assets/icons/cloud.svg";
 import cloudDullIcon from "../../assets/icons/cloud_dull.svg";
 import playIconRight from "../../assets/icons/play_right.png";
 import trashIcon from "../../assets/icons/trash.svg";
+import moreOptions from "../../assets/images/more_vertical.png";
 
 import packageJson from "../../../package.json";
 
@@ -65,6 +66,7 @@ export var icon_cloud = cloudIcon;
 export var icon_cloud_dull = cloudDullIcon;
 export var icon_play_right = playIconRight;
 export var icon_trash = trashIcon;
+export var more_options = moreOptions;
 
 console.log(packageJson.version);
 export var app_version = "v" + packageJson.version;
