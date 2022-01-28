@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 const RestrictedRoute = ({ component: Component, ...rest }) => {
-    const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
+	const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
 
 	return (
 		<Route
@@ -27,5 +27,5 @@ const RestrictedRoute = ({ component: Component, ...rest }) => {
 export default RestrictedRoute;
 
 RestrictedRoute.propTypes = {
-    component: PropTypes.Component,
+	component: PropTypes.Component,
 };

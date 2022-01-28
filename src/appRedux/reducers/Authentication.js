@@ -1,32 +1,32 @@
 import { authConstants } from "../constants";
 
 const initialSettings = {
-    isUserLoggedIn: false,
-    loginInfo: {},
+	isUserLoggedIn: false,
+	loginInfo: {},
 };
 
 const Authentication = (state = initialSettings, action) => {
-    switch (action.type) {
-        case authConstants.LOGIN_REQUEST:
-            return {
-                ...state,
-                isUserLoggedIn: false,
-            };
-        case authConstants.LOGIN_SUCCESS:
-            return {
-                ...state,
-                isUserLoggedIn: true,
-                loginInfo: action.data,
-            };
-        case authConstants.LOGIN_FAILURE:
-            return {
-                ...state,
-                isUserLoggedIn: false,
-            };
+	switch (action.type) {
+		case authConstants.LOGIN_REQUEST:
+			return {
+				...state,
+				isUserLoggedIn: false,
+			};
+		case authConstants.LOGIN_SUCCESS:
+			return {
+				...state,
+				isUserLoggedIn: true,
+				loginInfo: action.data,
+			};
+		case authConstants.LOGIN_FAILURE:
+			return {
+				...state,
+				isUserLoggedIn: false,
+			};
 
-        default:
-            return state;
-    }
+		default:
+			return state;
+	}
 };
 
 export default Authentication;

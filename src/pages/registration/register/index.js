@@ -58,7 +58,7 @@ export const Register = () => {
 		setIsPasswordValid(passwordValidationData.reduce((prev, current) => prev && current.value));
 	}, [passwordValidationData]);
 
-	const onFormSubmit = ( values ) => {
+	const onFormSubmit = (values) => {
 		console.log("values", values);
 		dispatch(userRegister(values, () => history.push("/login")));
 	};

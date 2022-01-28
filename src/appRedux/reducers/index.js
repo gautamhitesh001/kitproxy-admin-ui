@@ -6,11 +6,11 @@ import Settings from "./Settings";
 import Organization from "./Organization";
 
 const rootReducer = combineReducers({
-    authentication: Authentication,
-    onboarding: Onboarding,
-    settings: Settings,
-    configuration: Configuration,
-    organization: Organization
+	authentication: Authentication,
+	onboarding: Onboarding,
+	settings: Settings,
+	configuration: Configuration,
+	organization: Organization,
 });
 
 export default rootReducer;

@@ -36,9 +36,9 @@ export const Login = () => {
 
 	const [showError, setShowError] = useState(false);
 
-    const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
+	const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
 	useEffect(() => {
-		if(isUserLoggedIn) {
+		if (isUserLoggedIn) {
 			return history.push("/configuration");
 		}
 	}, [isUserLoggedIn]);
@@ -110,7 +110,7 @@ export const Login = () => {
 									Forgot Password?
 								</Link>
 							</Typography>
-							<PrimaryButton type="submit" fullWidth={false} variant="contained" >
+							<PrimaryButton type="submit" fullWidth={false} variant="contained">
 								LOG IN
 							</PrimaryButton>
 						</form>

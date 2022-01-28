@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 		border: "1px solid #E6E6E6",
 		borderRadius: 4,
 		width: "100%",
+		minHeight: 54,
 	},
 }));
 

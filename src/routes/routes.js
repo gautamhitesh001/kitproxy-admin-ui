@@ -9,7 +9,6 @@ import PrivateRoute from "./privateRoute";
 
 const NotFoundRedirect = () => <Redirect to="/" />;
 
-
 class AppRouter extends Component {
 	render() {
 		return (
