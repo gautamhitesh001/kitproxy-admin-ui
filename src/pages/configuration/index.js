@@ -55,9 +55,11 @@ export const ConfigurationPage = () => {
 	const [tabContent, setTabContent] = useState([]);
 
 	const { updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
+	const { loginInfo } = useSelector(({ authentication }) => authentication);
+
 	useEffect(() => {
 		setConfigurationTabs(configurationSchema.map((value) => ({ label: value.tabTitle, index: value.index })));
-		dispatch(userLogin((loginInfo) => dispatch(getConfigurationSettings(loginInfo.tokens.access.token))));
+		dispatch(getConfigurationSettings(loginInfo.tokens.access.token));
 	}, []);
 
 	useEffect(() => {

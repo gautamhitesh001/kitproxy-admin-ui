@@ -3,16 +3,18 @@ import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
 import { PrimaryButton } from "../../../components/buttons";
 import { useHistory } from "react-router";
+import { Redirect } from "react-router-dom";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
 import { CustomPassword } from "../../../components/customPassword";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../../appRedux/actions/Authentication";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -33,6 +35,14 @@ export const Login = () => {
 	const dispatch = useDispatch();
 
 	const [showError, setShowError] = useState(false);
+
+    const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
+	useEffect(() => {
+		console.log(isUserLoggedIn)
+		if(isUserLoggedIn) {
+			return (<Redirect to="/configuration" />);
+		}
+	}, [isUserLoggedIn]);
 
 	const onFormSubmit = (values) => {
 		dispatch(userLogin(values, (res) => history.push("/configuration")));

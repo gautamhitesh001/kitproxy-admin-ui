@@ -5,27 +5,10 @@ import { Dashboard, DashboardDocumentation, DnsSettingError, IncompleteProjectSe
 import { BrowserNotSupported, DeviceNotSupported } from "../pages/error";
 import { OnboardingMain, OnboardingWelcome } from "../pages/onboarding";
 import { Login, Register, ResetPassword, ResetPasswordEmailVerification } from "../pages/registration";
+import PrivateRoute from "./privateRoute";
 
 const NotFoundRedirect = () => <Redirect to="/" />;
-// const RestrictedRoute = ({ component: Component, location, allowedUsers, ...rest }) => {
-// 	return (
-// 		<Route
-// 			{...rest}
-// 			render={(props) =>
-// 				isUserAuthenticated(allowedUsers) ? (
-// 					<Component {...props} />
-// 				) : (
-// 					<Redirect
-// 						to={{
-// 							pathname: "/logout",
-// 							state: { from: location },
-// 						}}
-// 					/>
-// 				)
-// 			}
-// 		/>
-// 	);
-// };
+
 
 class AppRouter extends Component {
 	render() {
@@ -43,7 +26,7 @@ class AppRouter extends Component {
 					{/* <Route exact path="/dashboard/documentation" component={DashboardDocumentation} /> */}
 					<Route exact path="/dashboard/dns-setting-error" component={DnsSettingError} />
 					<Route exact path="/dashboard/incomplete-project-setup" component={IncompleteProjectSetup} />
-					<Route exact path="/configuration" component={ConfigurationPage} />
+					<PrivateRoute exact path="/configuration" component={ConfigurationPage} />
 					<Route exact path="/device-not-supported" component={DeviceNotSupported} />
 					<Route exact path="/browser-not-supported" component={BrowserNotSupported} />
 					<Route component={NotFoundRedirect} />

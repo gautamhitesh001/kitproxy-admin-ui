@@ -1,6 +1,7 @@
 import { handleResponse } from ".";
 
 export const login = ({ email, password }) => {
+    console.log(email, password);
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
