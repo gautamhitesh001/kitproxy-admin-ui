@@ -8,7 +8,7 @@ import { TopbarProjectMenu } from "../../../components/menus/topbarProject";
 import { TopbarUserMenu } from "../../../components/menus/topbarUser";
 import { ui_kitsuneLogoMain, ui_sampleCompanyLogo } from "../../../config/Constants";
 import topbarUserMenu from "../../../config/menu/topbarUserMenu.json";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../../../appRedux/actions/Authentication";
 
@@ -122,7 +122,7 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 	};
 
 	const hideUserMenu = (item) => {
-		if(item.title === "Logout") {
+		if (item.title === "Logout") {
 			dispatch(userLogout());
 		}
 		setUserMenuAnchor(null);

@@ -47,14 +47,7 @@ const WhiteListedPathListItem = ({ value, index, removeWhiteListPath, values, ha
 				{("0" + (index + 1).toString()).slice(-2)}
 			</Typography>
 			{isEditable ? (
-				<ConfigInput
-					autoFocus={true}
-					fullWidth
-					defaultValue={value}
-					onChange={handleChange}
-					name={index}
-					value={values[index]}
-				/>
+				<ConfigInput autoFocus={true} fullWidth defaultValue={value} onChange={handleChange} name={index} value={values[index]} />
 			) : (
 				<ButtonBase className={classes.whiteListPathWrapper} disableRipple disableTouchRipple onClick={() => setIsEditable(true)}>
 					<Typography mr={2} color="black.90">

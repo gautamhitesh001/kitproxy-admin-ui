@@ -107,7 +107,7 @@ export const ResetPassword = () => {
 
 	const onFormSubmit = (values) => {
 		setShowSuccess(true);
-		dispatch(userSendVerificationEmail(values, (res) => console.log(res)));
+		dispatch(userSendVerificationEmail(values));
 	};
 
 	const renderSuccessComponent = () => (

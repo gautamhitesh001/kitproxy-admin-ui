@@ -17,7 +17,6 @@ export const getOrganization = (token, userId, onSuccess) => {
 	return (dispatch) => {
 		// dispatch({ type: organizationConstants.GET_ORGANIZATION_REQUEST });
 		getOrganizationInfo(token, userId).then((response) => {
-
 			if (response.organizations?.results.length) {
 				dispatch({ type: organizationConstants.GET_ORGANIZATION_SUCCESS, data: response.organizations?.results });
 			}

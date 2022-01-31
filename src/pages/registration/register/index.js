@@ -59,7 +59,6 @@ export const Register = () => {
 	}, [passwordValidationData]);
 
 	const onFormSubmit = (values) => {
-		console.log("values", values);
 		dispatch(userRegister(values, () => history.push("/login")));
 	};
 

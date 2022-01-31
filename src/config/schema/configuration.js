@@ -544,7 +544,7 @@ export const configurationSchema = [
 										inputId="originProtocol"
 										initValues={{}}
 										submitFunc={() => {}}
-										options={['HTTP', 'HTTPS']}
+										options={["HTTP", "HTTPS"]}
 										validationSchema={{
 											originProtocol: Yup.string().required("Please select an origin protocol."),
 										}}
@@ -711,7 +711,7 @@ export const configurationSchema = [
 												inputId="targetProxyProtocol"
 												initValues={{}}
 												submitFunc={() => {}}
-												options={['HTTP', 'HTTPS']}
+												options={["HTTP", "HTTPS"]}
 												validationSchema={{
 													targetProxyProtocol: Yup.string().required("Please select a target proxy protocol."),
 												}}
