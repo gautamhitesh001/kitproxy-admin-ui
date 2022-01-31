@@ -64,7 +64,7 @@ export const ConfigurationSingleTextFieldWithTagsForm = ({ inputId, inputLabel, 
 				.filter((val) => val)
 				.join("|");
 
-			dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: finalValue }, { ...updatedConfigurationSettings, [inputId]: finalValue }));
+			dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: finalValue }, { ...updatedConfigurationSettings, [inputId]: finalValue }));
 		}
 		resetForm({
 			values: { [inputId]: "" },

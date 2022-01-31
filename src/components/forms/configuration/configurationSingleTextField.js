@@ -24,7 +24,7 @@ export const ConfigurationSingleTextFieldForm = ({ inputId, inputLabel, inputPla
 
 	const onFormSubmit = (values) => {
 		submitFunc();
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: values[inputId] }, { ...updatedConfigurationSettings, [inputId]: values[inputId] }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: values[inputId] }, { ...updatedConfigurationSettings, [inputId]: values[inputId] }));
 		setIsActive(false);
 	};
 

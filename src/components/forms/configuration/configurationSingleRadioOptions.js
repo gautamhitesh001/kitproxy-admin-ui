@@ -12,7 +12,7 @@ export const ConfigurationSingleRadioOptions = ({ inputId, submitFunc, initValue
 	const schema = Yup.object().shape(validationSchema);
 	const dispatch = useDispatch();
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	const [selected, setSelected] = useState();
 
@@ -23,7 +23,7 @@ export const ConfigurationSingleRadioOptions = ({ inputId, submitFunc, initValue
 
 	const toggleOption = (event, newValue) => {
 		setSelected(newValue);
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: newValue?.toLowerCase() }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: newValue?.toLowerCase() }));
 	};
 
 	const onFormSubmit = (values) => {

@@ -29,12 +29,12 @@ export const userRegister = (user, onSuccess) => {
 export const userLogout = (credentials, onSuccess) => {
     return (dispatch) => {
         dispatch({ type: authConstants.LOGOUT_REQUEST });
-        logout(credentials).then((response) => {
-            dispatch({ type: authConstants.LOGOUT_SUCCESS, data: response });
-            if (onSuccess) {
-                onSuccess(response);
-            }
-        });
+        // logout(credentials).then((response) => {
+        // 	dispatch({ type: authConstants.LOGOUT_SUCCESS, data: response });
+        // 	if (onSuccess) {
+        // 		onSuccess(response);
+        // 	}
+        // });
     };
 };
 export const userRefreshTokens = (_refreshTokens, onSuccess) => {

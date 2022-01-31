@@ -120,13 +120,13 @@ export const ConfigurationPage = () => {
 
 	useEffect(() => {
 		setIsModalOpen(!isOrganizationCreated);
-		if(isOrganizationCreated) {
+		if (isOrganizationCreated) {
 			dispatch(getConfigurationSettings(loginInfo.tokens.access.token));
 		}
 	}, [isOrganizationCreated]);
 
 	useEffect(() => {
-		if(organizationInfo && organizationInfo[0]?.domainName ) {
+		if (organizationInfo && organizationInfo[0]?.domainName && configurationSettings.domainName === "www.example.com") {
 			dispatch(createConfigurationSettings(loginInfo.tokens.access.token, configurationSettings, organizationInfo[0]?.domainName));
 		}
 	}, [organizationInfo]);

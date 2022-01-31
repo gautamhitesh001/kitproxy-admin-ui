@@ -6,7 +6,6 @@ const initialValues = {
 };
 
 const Organization = (state = initialValues, action) => {
-    console.log(action)
     switch (action.type) {
         case organizationConstants.CREATE_ORGANIZATION_REQUEST:
         case organizationConstants.GET_ORGANIZATION_REQUEST:

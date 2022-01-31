@@ -150,7 +150,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	}, [configurationSettings]);
 
 	const onFormSubmit = (values, { resetForm, setSubmitting }) => {
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: configurationSettings[inputId] + "|" + values[inputId] }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: configurationSettings[inputId] + "|" + values[inputId] }));
 		resetForm({
 			values: { [inputId]: "" },
 		});
@@ -161,7 +161,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 	const removeWhiteListPath = (index) => {
 		let tempArr = [...whiteListedPaths];
 		tempArr.splice(index, 1);
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
 	};
 	const saveWhiteListPathChanges = (values, index) => {
 		let tempArr = [...whiteListedPaths];
@@ -170,7 +170,7 @@ export const ConfigurationSingleTextFieldwithListForm = ({ inputId, inputPlaceho
 				tempArr[item_index] = values[index];
 			}
 		});
-		dispatch(updateConfigurationSetting({ ...configurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }, { ...updatedConfigurationSettings, [inputId]: tempArr.join("|") }));
 	};
 
 	return (

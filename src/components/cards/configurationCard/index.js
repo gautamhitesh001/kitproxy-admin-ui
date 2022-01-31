@@ -39,7 +39,7 @@ export const ConfigurationCard = ({
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
-	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings } = useSelector(({ configuration }) => configuration);
 	const { loginInfo } = useSelector(({ authentication }) => authentication);
 
 	const handleSwitchChange = (e) => {
