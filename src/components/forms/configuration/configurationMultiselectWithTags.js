@@ -85,7 +85,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 	//updating global redux state
 	const updateGlobalState = (countryNameArray) => {
 		let settingTagsCode = getCountryCodesArray(countryNameArray);
-		let payload = { ...configurationSettings, [inputId]: settingTagsCode };
+		let payload = { [inputId]: settingTagsCode };
 		dispatch(updateConfigurationSetting(payload, { ...updatedConfigurationSettings, [inputId]: settingTagsCode }));
 	};
 
