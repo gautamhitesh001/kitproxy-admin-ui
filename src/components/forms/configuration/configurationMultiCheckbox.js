@@ -9,7 +9,6 @@ import { Box } from "@mui/system";
 import { useSelector, useDispatch } from "react-redux";
 import { updateConfigurationSetting } from "../../../appRedux/actions";
 
-
 const useStyles = makeStyles((theme) => ({
 	checkboxWrapper: {
 		backgroundColor: "#FFFFFF",
@@ -64,15 +63,15 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 	const handleOnChange = (evt, value) => {
 		console.log(evt.target.checked, value);
 		let list = configurationSettings[id];
-		if(!evt.target.checked) {
+		if (!evt.target.checked) {
 			let index = list.indexOf(value);
-			if(index !== -1) {
+			if (index !== -1) {
 				list.splice(index, 1);
 			}
 		} else {
 			list.push(value);
 		}
-		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings,  [id]: list  }));
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [id]: list }));
 	};
 
 	return (
