@@ -6,7 +6,9 @@ import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
 import PropTypes from "prop-types";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateConfigurationSetting } from "../../../appRedux/actions";
+
 
 const useStyles = makeStyles((theme) => ({
 	checkboxWrapper: {
@@ -30,10 +32,11 @@ const useStyles = makeStyles((theme) => ({
 export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initValues, validationSchema, checkboxFields, id }) => {
 	const classes = useStyles();
 	const schema = Yup.object().shape(validationSchema);
+	const dispatch = useDispatch();
 
 	const [isActive, setIsActive] = useState(false);
 
-	const { configurationSettings } = useSelector(({ configuration }) => configuration);
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	useEffect(() => {
 		return () => {
@@ -60,6 +63,16 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 
 	const handleOnChange = (evt, value) => {
 		console.log(evt.target.checked, value);
+		let list = configurationSettings[id];
+		if(!evt.target.checked) {
+			let index = list.indexOf(value);
+			if(index !== -1) {
+				list.splice(index, 1);
+			}
+		} else {
+			list.push(value);
+		}
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings,  [id]: list  }));
 	};
 
 	return (

@@ -1,12 +1,11 @@
 export const handleResponse = (response) => {
-	console.log(response, "pathak");
-	return response.text().then((text) => {
-		const data = text && JSON.parse(text);
-		if (!response.ok) {
-			if (response.status === 401) {
-				localStorage.removeItem("persist:root");
-			}
-		}
-		return data;
-	});
+    return response.text().then((text) => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                localStorage.removeItem("persist:root");
+            }
+        }
+        return data;
+    });
 };
