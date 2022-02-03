@@ -1,6 +1,6 @@
 import { ButtonBase, Chip, FormControl, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 import { Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
 import { ConfigMultiSelect } from "../../inputs";
@@ -10,6 +10,8 @@ import { Box } from "@mui/system";
 import countries from "../../../config/data/countries.json";
 import { X } from "react-feather";
 import { makeStyles } from "@mui/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { updateConfigurationSetting } from "../../../appRedux/actions";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -59,15 +61,47 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 	const [settingTags, setSettingTags] = useState([]);
 	const [isActive, setIsActive] = useState(false);
 
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		getSelectedTags();
+	}, [configurationSettings]);
+
+	// get Whitelisted Countries Initial Values
+	const getSelectedTags = () => {
+		let settingTagsArr = [];
+		countries.map((country) => (configurationSettings && configurationSettings[inputId]?.includes(country.code) ? settingTagsArr.push(country.name) : null)); // Get Country Names from Country Codes
+		setSettingTags(settingTagsArr);
+	};
+
+	//map country name to country codes for API payload
+	const getCountryCodesArray = (countryNameArray, countryCodeArray = []) => {
+		countries.map((country) => (countryNameArray?.includes(country.name) ? countryCodeArray.push(country.code) : null));
+		return countryCodeArray;
+	};
+
+	//updating global redux state
+	const updateGlobalState = (countryNameArray) => {
+		let settingTagsCode = getCountryCodesArray(countryNameArray);
+		let payload = { [inputId]: settingTagsCode };
+		dispatch(updateConfigurationSetting(payload, { ...updatedConfigurationSettings, [inputId]: settingTagsCode }));
+	};
+
+	//onSave
 	const onFormSubmit = (values, { resetForm }) => {
+		let updatedTags = [];
 		if (values[inputId]) {
-			setSettingTags(values[inputId]);
+			updatedTags = [...values[inputId], ...settingTags];
+			setSettingTags(updatedTags);
 		}
 		resetForm({
 			values: { [inputId]: [] },
 		});
 		submitFunc();
 		setSelectValue(null);
+		updateGlobalState(updatedTags);
 	};
 
 	const handleSelectChange = (e, callback) => {
@@ -82,6 +116,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 		let tempArr = [...settingTags];
 		tempArr.splice(index, 1);
 		setSettingTags(tempArr);
+		updateGlobalState(tempArr);
 	};
 
 	// const handleEdit = () => {
@@ -97,7 +132,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 							<Stack direction="row" alignItems="flex-start" justifyContent="space-between" flexWrap="wrap" width="100%">
 								<FormControl sx={{ width: 600 }}>
 									<ConfigMultiSelect
-										sectionId={sectionId}
+										sectionid={sectionId}
 										multiple
 										fullWidth
 										displayEmpty
@@ -150,7 +185,7 @@ export const ConfigurationMultiselectWithTags = ({ sectionId, inputId, extraHead
 								</ButtonBase>
 							</Stack>
 							<Stack flexWrap="wrap" direction="row" mt={3}>
-								{settingTags.map((val, index) => (
+								{settingTags?.map((val, index) => (
 									<Tag isActive={isActive} removeTag={removeTag} value={val} key={val + index} index={index} />
 								))}
 							</Stack>

@@ -3,14 +3,18 @@ import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
 import { PrimaryButton } from "../../../components/buttons";
 import { useHistory } from "react-router";
+import { Redirect } from "react-router-dom";
 import { ThirdPartyCTA } from "../../../components/widgets/thirdPartyCTA";
 import { CustomPassword } from "../../../components/customPassword";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../../appRedux/actions/Authentication";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -28,11 +32,21 @@ const schema = Yup.object().shape({
 export const Login = () => {
 	const classes = useStyles();
 	const history = useHistory();
-
+	const dispatch = useDispatch();
 	const [showError, setShowError] = useState(false);
 
-	const onFormSubmit = ({ values }) => {
-		console.log("values", values);
+	const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
+	useEffect(() => {
+		if (isUserLoggedIn) {
+			return history.push("/configuration");
+		}
+	}, [isUserLoggedIn]);
+
+	const onFormSubmit = (values) => {
+		const callback = (res) => {
+			history.push("/configuration");
+		};
+		dispatch(userLogin(values), callback);
 	};
 
 	return (

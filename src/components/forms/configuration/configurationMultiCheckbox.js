@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import { ConfigSaveButton } from "../../buttons/configSaveButton";
 import PropTypes from "prop-types";
 import { Box } from "@mui/system";
+import { useSelector, useDispatch } from "react-redux";
+import { updateConfigurationSetting } from "../../../appRedux/actions";
 
 const useStyles = makeStyles((theme) => ({
 	checkboxWrapper: {
@@ -26,11 +28,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initValues, validationSchema, checkboxFields }) => {
+export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initValues, validationSchema, checkboxFields, id }) => {
 	const classes = useStyles();
 	const schema = Yup.object().shape(validationSchema);
+	const dispatch = useDispatch();
 
 	const [isActive, setIsActive] = useState(false);
+
+	const { configurationSettings, updatedConfigurationSettings } = useSelector(({ configuration }) => configuration);
 
 	useEffect(() => {
 		return () => {
@@ -49,6 +54,24 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 
 	const handleCancel = () => {
 		setIsActive(false);
+	};
+
+	const getCheckedValue = (value) => {
+		return configurationSettings && configurationSettings[id] && configurationSettings[id].includes(value);
+	};
+
+	const handleOnChange = (evt, value) => {
+		console.log(evt.target.checked, value);
+		let list = configurationSettings[id];
+		if (!evt.target.checked) {
+			let index = list.indexOf(value);
+			if (index !== -1) {
+				list.splice(index, 1);
+			}
+		} else {
+			list.push(value);
+		}
+		dispatch(updateConfigurationSetting({ ...updatedConfigurationSettings, [id]: list }));
 	};
 
 	return (
@@ -77,7 +100,14 @@ export const ConfigurationMultiCheckboxForm = ({ inputLabel, submitFunc, initVal
 								{checkboxFields.map((value) => (
 									<Grid key={getCheckboxId(value)} item xs={6}>
 										<Stack className={classes.checkboxWrapper} alignItems="center" direction="row">
-											<Field disabled={!isActive} className={classes.checkBox} type="checkbox" name={getCheckboxId(value)} />
+											<Field
+												disabled={!isActive}
+												className={classes.checkBox}
+												type="checkbox"
+												name={getCheckboxId(value)}
+												checked={getCheckedValue(value)}
+												onChange={(evt) => handleOnChange(evt, value)}
+											/>
 											<Typography color="grey.500" ml={2}>
 												{value}
 											</Typography>
@@ -106,4 +136,5 @@ ConfigurationMultiCheckboxForm.propTypes = {
 	validationSchema: PropTypes.object,
 	initValues: PropTypes.object,
 	checkboxFields: PropTypes.array,
+	id: PropTypes.string,
 };

@@ -62,7 +62,7 @@ export const SelectResource = () => {
 	const [showAwsLoginModal, setShowAwsLoginModal] = useState(false);
 
 	const onFormSubmit = ({ values }) => {
-		console.log("values", values);
+		// console.log("values", values);
 	};
 
 	const setCtaArray = (isActive) => {

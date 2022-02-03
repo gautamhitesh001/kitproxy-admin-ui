@@ -10,6 +10,8 @@ import { useHistory } from "react-router";
 import { CustomPassword } from "../../../components/customPassword";
 import { ThirdPartyCTA } from "../../../components/widgets";
 import { checkPasswordValidation, passwordValidationArray } from "../../../utils/validatePassword";
+import { useDispatch } from "react-redux";
+import { userRegister } from "../../../appRedux/actions/Authentication";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -38,7 +40,7 @@ const schema = Yup.object().shape({
 		.matches(/^(?=.*[a-z])/, "Password must contain One Lowercase.")
 		.matches(/^(?=.*[0-9])/, "Password must contain One Number.")
 		.matches(/^(?=.*\W)/, "Password must contain One Special Character."),
-	phone: Yup.string()
+	phoneNumber: Yup.string()
 		.required("Please enter phone number.")
 		.matches(/^[2-9]\d{9}$/, "Please enter valid phone number"),
 });
@@ -46,6 +48,7 @@ const schema = Yup.object().shape({
 export const Register = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	const [showError, setShowError] = useState(false);
 	const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -55,8 +58,8 @@ export const Register = () => {
 		setIsPasswordValid(passwordValidationData.reduce((prev, current) => prev && current.value));
 	}, [passwordValidationData]);
 
-	const onFormSubmit = ({ values }) => {
-		console.log("values", values);
+	const onFormSubmit = (values) => {
+		dispatch(userRegister(values, () => history.push("/login")));
 	};
 
 	const handlePasswordChange = (e, callBack) => {
@@ -109,16 +112,16 @@ export const Register = () => {
 								size="small"
 							/>
 							<TextField
-								id="phone"
+								id="phoneNumber"
 								label="Phone Number"
 								variant="outlined"
 								fullWidth
 								onChange={handleChange}
 								onBlur={handleBlur}
-								name="phone"
-								value={values.phone}
-								error={touched.phone && Boolean(errors.phone)}
-								helperText={touched.phone ? errors.phone : ""}
+								name="phoneNumber"
+								value={values.phoneNumber}
+								error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+								helperText={touched.phoneNumber ? errors.phoneNumber : ""}
 								margin="normal"
 								size="small"
 								InputProps={{

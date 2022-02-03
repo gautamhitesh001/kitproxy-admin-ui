@@ -23,7 +23,11 @@ const Authentication = (state = initialSettings, action) => {
 				...state,
 				isUserLoggedIn: false,
 			};
-
+		case authConstants.LOGOUT_REQUEST:
+			return {
+				loginInfo: {},
+				isUserLoggedIn: false,
+			};
 		default:
 			return state;
 	}
