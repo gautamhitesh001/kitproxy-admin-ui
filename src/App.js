@@ -6,14 +6,17 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import theme from "./config/theme";
 import { PersistGate } from "redux-persist/integration/react";
+import { AlertProvider } from "./contexts/AlertContext";
 
 function App() {
 	return (
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={<>Loading...</>} persistor={persistor}>
-					<CssBaseline />
-					<AppRouter />
+					<AlertProvider>
+						<CssBaseline />
+						<AppRouter />
+					</AlertProvider>
 				</PersistGate>
 			</ThemeProvider>
 		</Provider>
