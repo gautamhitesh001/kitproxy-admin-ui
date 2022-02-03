@@ -1,4 +1,4 @@
 export const alertConstant = {
-    ADD: "ADD",
-    REMOVE: "REMOVE",
+	ADD: "ADD",
+	REMOVE: "REMOVE",
 };
