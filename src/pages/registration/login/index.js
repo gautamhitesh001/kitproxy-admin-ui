@@ -3,7 +3,7 @@ import { RegistrationCard } from "../../../components/cards";
 import { RegistrationLayout } from "../../../layouts/registration";
 import { AlertCircle } from "react-feather";
 import { Box } from "@mui/system";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import * as Yup from "yup";
@@ -33,7 +33,6 @@ export const Login = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const dispatch = useDispatch();
-
 	const [showError, setShowError] = useState(false);
 
 	const { isUserLoggedIn } = useSelector(({ authentication }) => authentication);
@@ -44,7 +43,10 @@ export const Login = () => {
 	}, [isUserLoggedIn]);
 
 	const onFormSubmit = (values) => {
-		dispatch(userLogin(values, (res) => history.push("/configuration")));
+		const callback = (res) => {
+			history.push("/configuration");
+		};
+		dispatch(userLogin(values), callback);
 	};
 
 	return (

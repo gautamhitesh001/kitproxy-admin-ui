@@ -4,6 +4,7 @@ import Configuration from "./Configuration";
 import Onboarding from "./Onboarding";
 import Settings from "./Settings";
 import Organization from "./Organization";
+import AlertReducer from "./Alert";
 
 const rootReducer = combineReducers({
 	authentication: Authentication,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	settings: Settings,
 	configuration: Configuration,
 	organization: Organization,
+	alert: AlertReducer,
 });
 
 export default rootReducer;

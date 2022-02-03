@@ -1,10 +1,17 @@
 import { login, register, logout, refreshTokens, forgotPassword, resetPassword, sendVerificationEmail, verifyEmail } from "../../services";
-import { authConstants } from "../constants";
+import { authConstants, alertConstant, configurationConstants, organizationConstants } from "../constants";
 
 export const userLogin = (credentials, onSuccess) => {
 	return (dispatch) => {
 		dispatch({ type: authConstants.LOGIN_REQUEST });
 		login(credentials).then((response) => {
+			dispatch({
+				type: alertConstant.ADD,
+				data: {
+					type: "success",
+					msg: "User logged in successfully.",
+				},
+			});
 			if (!response.code) {
 				dispatch({ type: authConstants.LOGIN_SUCCESS, data: response });
 			}
@@ -29,13 +36,8 @@ export const userRegister = (user, onSuccess) => {
 export const userLogout = (credentials, onSuccess) => {
 	return (dispatch) => {
 		dispatch({ type: authConstants.LOGOUT_REQUEST });
-		localStorage.clear();
-		// logout(credentials).then((response) => {
-		// 	dispatch({ type: authConstants.LOGOUT_SUCCESS, data: response });
-		// 	if (onSuccess) {
-		// 		onSuccess(response);
-		// 	}
-		// });
+		dispatch({ type: configurationConstants.CONFIGURATION_CHANGE_REQUEST });
+		dispatch({ type: organizationConstants.CREATE_ORGANIZATION_REQUEST });
 	};
 };
 export const userRefreshTokens = (_refreshTokens, onSuccess) => {

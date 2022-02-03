@@ -10,7 +10,7 @@ const Organization = (state = initialValues, action) => {
 		case organizationConstants.CREATE_ORGANIZATION_REQUEST:
 		case organizationConstants.GET_ORGANIZATION_REQUEST:
 			return {
-				...state,
+				organizationInfo: {},
 				isOrganizationCreated: false,
 			};
 		case organizationConstants.CREATE_ORGANIZATION_SUCCESS:
