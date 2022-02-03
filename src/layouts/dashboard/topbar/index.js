@@ -8,6 +8,9 @@ import { TopbarProjectMenu } from "../../../components/menus/topbarProject";
 import { TopbarUserMenu } from "../../../components/menus/topbarUser";
 import { ui_kitsuneLogoMain, ui_sampleCompanyLogo } from "../../../config/Constants";
 import topbarUserMenu from "../../../config/menu/topbarUserMenu.json";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { userLogout } from "../../../appRedux/actions/Authentication";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -84,6 +87,9 @@ const createUserMenu = (key, title) => {
 
 export const DashboardAppbar = ({ toggleSidebar }) => {
 	const classes = useStyles();
+	const history = useHistory();
+	const dispatch = useDispatch();
+
 	const projectMenuItems = [
 		createProjectMenu(1, <img width={40} height="auto" src={ui_sampleCompanyLogo} alt="logo" />, "Care Insurance"),
 		createProjectMenu(2, <Avatar>AC</Avatar>, "Accentiv"),
@@ -91,6 +97,8 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 	];
 
 	const userMenuItems = topbarUserMenu;
+
+	const { loginInfo } = useSelector(({ authentication }) => authentication);
 
 	const [projectMenuAnchor, setProjectMenuAnchor] = useState(null);
 	const [userMenuAnchor, setUserMenuAnchor] = useState(null);
@@ -113,7 +121,10 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 		setUserMenuAnchor(event.currentTarget);
 	};
 
-	const hideUserMenu = () => {
+	const hideUserMenu = (item) => {
+		if (item.title === "Logout") {
+			dispatch(userLogout());
+		}
 		setUserMenuAnchor(null);
 	};
 
@@ -154,7 +165,7 @@ export const DashboardAppbar = ({ toggleSidebar }) => {
 						<Avatar className={classes.userAvatar} />
 						<Box display="flex" flexDirection="column" alignItems="flex-start" mr={2} ml={2}>
 							<Typography variant="small2" color="common.black">
-								John Smith
+								{loginInfo.user.name}
 							</Typography>
 							<Typography variant="small1" color="black.80">
 								(Admin)

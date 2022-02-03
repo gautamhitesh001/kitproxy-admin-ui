@@ -34,7 +34,7 @@ export const TopbarUserMenu = ({ menuAnchor, open, handleClose, menuItems }) => 
 		<Menu id="projectMenu" anchorEl={menuAnchor} open={open} onClose={handleClose} classes={{ paper: classes.menu, list: classes.list }}>
 			{menuItems.map((option, index) => (
 				<div key={option.title + index}>
-					<MenuItem classes={{ root: classes.listItem }} onClick={handleClose}>
+					<MenuItem classes={{ root: classes.listItem }} onClick={() => handleClose(option)}>
 						<Typography variant="small1" color="black.80" ml={2}>
 							{option.title}
 						</Typography>

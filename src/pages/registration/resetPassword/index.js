@@ -13,6 +13,8 @@ import { findIndex } from "lodash";
 import useWindowDimensions from "../../../utils/windowDimensions";
 import { CustomPassword } from "../../../components/customPassword";
 import { checkPasswordValidation, passwordValidationArray } from "../../../utils/validatePassword";
+import { useDispatch } from "react-redux";
+import { userSendVerificationEmail } from "../../../appRedux/actions/Authentication";
 
 const useStyles = makeStyles((theme) => ({
 	formContainer: {
@@ -46,6 +48,7 @@ export const ResetPassword = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { isDesktopView } = useWindowDimensions();
+	const dispatch = useDispatch();
 
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [passwordValidationData, setPasswordValidationData] = useState([...passwordValidationArray]);
@@ -102,8 +105,9 @@ export const ResetPassword = () => {
 		setPasswordValidationData(checkPasswordValidation(e.target.value));
 	};
 
-	const onFormSubmit = ({ values }) => {
+	const onFormSubmit = (values) => {
 		setShowSuccess(true);
+		dispatch(userSendVerificationEmail(values));
 	};
 
 	const renderSuccessComponent = () => (
