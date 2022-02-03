@@ -85,8 +85,8 @@ const schema = Yup.object().shape({
 });
 
 const initialValues = {
-	domainName: "www.rahul.com",
-	organizationName: "rahul Inc",
+	domainName: "www.example.com",
+	organizationName: "Example Inc",
 	organizationAddress: "123 Main St.",
 	organizationCity: "Anytown",
 	organizationState: "CA",
@@ -98,7 +98,7 @@ const initialValues = {
 		name: "file",
 		url: "file url",
 	},
-	organizationWebsite: "http://www.rahul.com",
+	organizationWebsite: "http://www.example.com",
 };
 
 export const ConfigurationPage = () => {
