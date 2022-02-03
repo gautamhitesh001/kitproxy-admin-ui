@@ -13,10 +13,10 @@ function App() {
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={<>Loading...</>} persistor={persistor}>
-					<AlertProvider>
+					{/* <AlertProvider> */}
 						<CssBaseline />
 						<AppRouter />
-					</AlertProvider>
+					{/* </AlertProvider> */}
 				</PersistGate>
 			</ThemeProvider>
 		</Provider>
