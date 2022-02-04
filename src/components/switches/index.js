@@ -1,7 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/system";
-import { switchUnstyledClasses } from "@mui/material";
-import { SwitchUnstyled } from "@mui/base";
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { updateConfigurationSetting } from "../../appRedux/actions";
