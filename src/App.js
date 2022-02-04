@@ -14,8 +14,8 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={<>Loading...</>} persistor={persistor}>
 					{/* <AlertProvider> */}
-						<CssBaseline />
-						<AppRouter />
+					<CssBaseline />
+					<AppRouter />
 					{/* </AlertProvider> */}
 				</PersistGate>
 			</ThemeProvider>

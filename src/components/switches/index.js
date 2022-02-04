@@ -1,6 +1,9 @@
 import * as React from "react";
 import { styled } from "@mui/system";
-import { SwitchUnstyled, switchUnstyledClasses } from "@mui/material";
+import SwitchUnstyled, { switchUnstyledClasses } from "@mui/base/SwitchUnstyled";
+import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { updateConfigurationSetting } from "../../appRedux/actions";
 
 const Root = styled("span")`
 	font-size: 0;
