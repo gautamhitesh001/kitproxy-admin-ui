@@ -1,0 +1,194 @@
+name: complete tests and do build
+
+on:
+    workflow_dispatch:
+        inputs:
+            version_number:
+                required: true
+                default: v2
+                description: enter UI version ie v1/v2
+            build_name:
+                required: true
+                default: 2.1.10-beta
+                description: enter build version ie 2.x.x-beta
+            # test_run:
+            #     required: true
+            #     default: "true"
+            #     description: enter whether you want to run tests or not
+# on:
+#     workflow_dispatch:
+#         branches:
+#             - main
+#             - release/*
+#     pull_request:
+#         branches:
+#             - main
+#             - release/*
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version:
+                    # - 12.x
+                    - 14.x
+
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v1
+
+            - name: Prints the current branch name
+              run: echo "${GITHUB_BRANCH##*/}"
+              env:
+                  GITHUB_BRANCH: ${{ github.ref }}
+
+            - name: Get branch name
+              id: branch-name
+              uses: tj-actions/branch-names@v5.1
+
+            - name: Install dependencies using node ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: npm version
+              run: npm -v
+
+            - name: Install dependencies using npm and Node ${{ matrix.node-version }}
+              run: npm install -D
+              env:
+                  NODE_VERSION: ${{ matrix.node-version }}
+                  NODE_ENV: testing
+
+            - name: Run tests
+              id: coverage_test
+
+              run: npm run test-with-coverage
+              env:
+                  NODE_VERSION: ${{ matrix.node-version }}
+                  NODE_ENV: testing
+              continue-on-error: true
+
+            # - name: Test Success and do Build
+            #   id: build
+            #   if: steps.coverage_test.outcome == 'success'
+            #   run: |
+            #     npm run build --if-present
+            #     echo "Build Complete"
+
+            # - name: Deploy
+            #   id: deploy
+            #   if: steps.coverage_test.outcome == 'success'
+            #   run: |
+            #       chmod +x ./amplify-deploy.sh
+            #       ./amplify-deploy.sh ${{ secrets.AWS_AMPLIFY_APP_ID}} ${{ steps.branch-name.outputs.current_branch }}
+            #   env:
+            #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #       AWS_DEFAULT_REGION: us-east-1
+            #       AWS_DEFAULT_OUTPUT: json
+
+            # - name: Amplify CLI Deploy Action
+            #   uses: cordobeces/amplify-cli-action@v1.0.0
+            #   with:
+            #       env: prod
+            #   env:
+            #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #       AWS_REGION: us-east-1
+            # - name: configure amplify
+            #   id: configure
+            #   # if: steps.coverage_test.outcome == 'success'
+
+            #   uses: ambientlight/amplify-cli-action@0.3.0
+            #   with:
+            #       amplify_command: configure
+            #       amplify_env: prod
+            #       amplify_cli_version: "4.32.1"
+            #   env:
+            #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #       AWS_REGION: ap-south-1
+
+            # - name: deploy
+            #   id: deploy
+            #   #   if: steps.configure.outcome == 'success'
+            #   uses: ambientlight/amplify-cli-action@0.3.0
+            #   with:
+            #       amplify_command: publish
+            #       amplify_env: prod
+            #       amplify_cli_version: "4.32.1"
+            #   env:
+            #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #       AWS_REGION: ap-south-1
+
+            - name: Publish Results to S3
+              #   if: ${{ github.event.inputs.test_run }} == 'true'
+              uses: jakejarvis/s3-sync-action@master
+              with:
+                  args: --acl public-read --follow-symlinks --delete
+              env:
+                  SOURCE_DIR: "./coverage/lcov-report"
+                  AWS_REGION: "us-east-1"
+                  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  DEST_DIR: ${{secrets.AWS_S3_PREFIX}}/${{ github.event.inputs.version_number }}/${{ github.event.inputs.build_number }}
+
+            - name: Send Email to persons
+              #   if: ${{ github.event.inputs.test_run }} == 'true'
+              uses: dawidd6/action-send-mail@v3
+              with:
+                  # Required mail server address:
+                  server_address: ${{secrets.MAIL_SMTP}}
+                  # Required mail server port:
+                  server_port: ${{secrets.MAIL_PORT}}
+                  # Optional (recommended): mail server username:
+                  username: ${{secrets.MAIL_USERNAME}}
+                  # Optional (recommended) mail server password:
+                  password: ${{secrets.MAIL_PASSWORD}}
+                  # Required mail subject:
+                  subject: Test results for ${{github.repository}}/${{ github.ref }}
+                  # Required recipients' addresses:
+                  to: ${{secrets.MAIL_IDS}}
+                  # Required sender full name (address can be skipped):
+                  from: ${{secrets.MAIL_USERNAME}} # <user@example.com>
+                  # Optional whether this connection use TLS (default is true if server_port is 465)
+                  secure: false
+                  # Optional plain body:
+                  body: Deployment of ${{github.repository}}/${{ github.ref }} completed with ${{steps.deploy.outcome}}\n
+                      Test job of ${{github.repository}}/${{ github.ref }} completed with ${{steps.coverage_test.outcome}}!!\n
+                      Check out the results on ${{secrets.AWS_S3_BUCKET_URL}}/${{secrets.AWS_S3_PREFIX}}/${{ github.event.inputs.version_number }}/${{ github.event.inputs.build_number }}index.html
+
+                  # Optional HTML body read from file:
+                  # html_body: file://README.html
+                  # Optional carbon copy recipients:
+                  # cc: kyloren@example.com,leia@example.com
+                  # Optional blind carbon copy recipients:
+                  # bcc: r2d2@example.com,hansolo@example.com
+                  # Optional recipient of the email response:
+                  # reply_to: luke@example.com
+                  # Optional Message ID this message is replying to:
+                  # in_reply_to: <random-luke@example.com>
+                  # Optional unsigned/invalid certificates allowance:
+                  ignore_cert: true
+                  # # Optional converting Markdown to HTML (set content_type to text/html too):
+                  # convert_markdown: true
+                  # Optional attachments:
+                  # attachments: attachments.zip,git.diff,./dist/static/*.js
+                  # Optional priority: 'high', 'normal' (default) or 'low'
+                  priority: high
+            # - name: Build the application
+            #   run: npm run build --if-present
+            #   env:
+            #       NODE_VERSION: ${{ matrix.node-version }}
+            #       NODE_ENV: production
+
+            # # - name: Run tests
+            # #   run: npm run test
+            # #   env:
+            # #       NODE_VERSION: ${{ matrix.node-version }}
+            # #       NODE_ENV: production
